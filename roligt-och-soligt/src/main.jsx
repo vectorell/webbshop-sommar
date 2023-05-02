@@ -10,7 +10,7 @@ const router = createHashRouter([
     element: <Root />,
     children: [
       {
-        path: 'products'
+        path: 'products',
         // element: <Products />,
       },
       {

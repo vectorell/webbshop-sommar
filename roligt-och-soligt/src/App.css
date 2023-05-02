@@ -1,0 +1,28 @@
+* {
+    margin: 0em;
+    padding: 0em;
+    box-sizing: border-box;
+}
+
+main {
+    background-color: rgb(255, 255, 255);
+    width: 100vw;
+    height: 100vh;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+  }
+
+body {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+:root {
+    --color-colombia-blue: #BBDEF0;
+    --color-light-sea-green: #00A6A6;
+    --color-jonquil: #EFCA08;
+    --color-gamboge: #F49F0A;
+    --color-tangerine: #F08700;
+}
