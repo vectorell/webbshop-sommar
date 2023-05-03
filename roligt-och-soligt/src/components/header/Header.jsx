@@ -1,4 +1,3 @@
-import HamburgerMenu from '../hamburgermenu/HamburgerMenu'
 import './Header.css'
 import { useRecoilState } from 'recoil'
 import { hamburgerMenuState } from '../../recoil/atom/showHamburger/showHamburger'

@@ -121,7 +121,7 @@ function Products() {
 
             <ProductsContainer>
                 {products.map((product, index) => (
-                    <NavLink key={index} to={`/product/${product.productId}`}>
+                    <Link key={index} to={`/products/${product.productId}`}>
                     <ProductCard >
                         <ProductImageDiv>
                             <ProductImage src={product.picture}/>
@@ -129,7 +129,7 @@ function Products() {
                         <ProductTitle> {product.name} </ProductTitle>
                         <ProductPrice> {product.price}:- </ProductPrice>
                     </ProductCard>
-            </NavLink>
+            </Link>
                 ))}
             </ProductsContainer>
             <LinkDiv>
