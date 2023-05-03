@@ -2,6 +2,15 @@ import defaultPicture from './default.jpg'
 import skateboard from './skateboard.jpg'
 import badboll from './badboll.jpg'
 import vattenpistol from './vattenpistol.jpg'
+import sandpitset from './sandpitset.jpg'
+import drake from './kite.jpg'
+import snorkelset from './snorkelset2.jpg'
+import gatukritor from './gatukritor.jpg'
+import bubblor from './bubblor.png'
+import badminton from './badminton.jpg'
+import slide from './slide.jpg'
+import dart from './dart.jpg'
+import zipline from './zipline.jpg'
 
 let products = [
     {
@@ -32,7 +41,7 @@ let products = [
         name: 'Rutschkana',
         price: 799,
         description: 'En lite större rutschkana för montering i trädgåden till exempel.',
-        picture: defaultPicture,
+        picture: slide,
         shopId: 3001,
         productId: 4
     },
@@ -88,7 +97,7 @@ let products = [
         name: 'Sandlådekit',
         price: 499,
         description: "Ett kit med alla verktyg som behövs för att bygga fantastiska sandslott.",
-        picture: defaultPicture,
+        picture: sandpitset,
         shopId: 3001,
         productId: 11
     },
@@ -104,7 +113,7 @@ let products = [
         name: "Badmintonset",
         price: 399,
         description: "Ett komplett badmintonset för spel på stranden eller i trädgården.",
-        picture: defaultPicture,
+        picture: badminton,
         shopId: 3001,
         productId: 13
     },
@@ -112,7 +121,7 @@ let products = [
         name: "Flygande drake",
         price: 249,
         description: "En vacker drake som flyger högt i luften på en solig dag.",
-        picture: defaultPicture,
+        picture: drake,
         shopId: 3001,
         productId: 14
     },
@@ -120,7 +129,7 @@ let products = [
         name: 'Zipline Linbana',
         price: 1599,
         description: 'En zipline linbana för dig som vill susa fram genom träden.',
-        picture: defaultPicture,
+        picture: zipline,
         shopId: 3001,
         productId: 15
     },
@@ -128,15 +137,15 @@ let products = [
         name: 'Snorkelset för barn',
         price: 499,
         description: 'Ett snorkelset med dykmask, fenor samt snorkel i barnstorlek för minnesvärda ögonblick under ytan.',
-        picture: defaultPicture,
+        picture: snorkelset,
         shopId: 3001,
         productId: 16
     },
     {
-        name: 'Pilbåge med sugproppar',
-        price: 299,
-        description: 'Som en äkta Robin Hood kan du nu uppleva hur det är att skjuta med en pilbåge. Piltavla medföljer.',
-        picture: defaultPicture,
+        name: 'Dart, tavla och pilar',
+        price: 199,
+        description: 'Lika kul på förfesten liksom avkoppling i sommarstugan. Levereras med tavla och 5 pilar.',
+        picture: dart,
         shopId: 3001,
         productId: 17
     },
@@ -144,7 +153,7 @@ let products = [
         name: 'Såpbubbelset',
         price: 149,
         description: 'Olika verktyg för att skapa bubblor i alla dess former!',
-        picture: defaultPicture,
+        picture: bubblor,
         shopId: 3001,
         productId: 18
     },
@@ -160,7 +169,7 @@ let products = [
         name: 'Gatukritor',
         price: 29,
         description: 'Färglada gatukritor gjorda för asfalt. Färgen är ej permanent och försvinner vid regn.',
-        picture: defaultPicture,
+        picture: gatukritor,
         shopId: 3001,
         productId: 20
     },
