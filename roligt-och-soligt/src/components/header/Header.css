@@ -1,5 +1,6 @@
 .header-div {
-    background-color: #00A6A6;
+    background-color: var(--color-colombia-blue);
     width: 100vw;
     height: 6em;
+    position: relative;
 }

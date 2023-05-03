@@ -5,9 +5,13 @@
 }
 
 main {
-    background-color: rgb(255, 255, 255);
+    /* background: url("./assets/wallpaper2.jpg"); */
     width: 100vw;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
 }
 
 body::-webkit-scrollbar {
@@ -20,9 +24,20 @@ body {
 }
 
 :root {
+
+    /* FÄRGER */
     --color-colombia-blue: #BBDEF0;
     --color-light-sea-green: #00A6A6;
     --color-jonquil: #EFCA08;
     --color-gamboge: #F49F0A;
     --color-tangerine: #F08700;
+
+    /* SKUGGOR */
+    --shadow-normal: 1px 5px 6px #0000003d;
+    --shadow-hover: 1px 10px 12px #0000003d;
+    --shadow-active: 1px 2px 3px #0000003d;
+
+    /* AVRUNDNING AV HÖRN */
+    --radius-small: 0.2em;
+    --radius-medium: 0.5em;
 }

@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Root from './routes/Root'
+import { RecoilRoot } from 'recoil'
+import Products from './routes/products/Products'
 
 import { createHashRouter, RouterProvider } from 'react-router-dom'
 
@@ -11,7 +13,7 @@ const router = createHashRouter([
     children: [
       {
         path: 'products',
-        // element: <Products />,
+        element: <Products />,
       },
       {
         path: 'products/:id',
@@ -39,6 +41,8 @@ const router = createHashRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RecoilRoot>
+      <RouterProvider router={router} />
+    </RecoilRoot>
   </React.StrictMode>,
 )
