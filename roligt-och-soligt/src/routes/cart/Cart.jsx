@@ -10,6 +10,9 @@ import { ProductImage } from "./StyledCart"
 import { ButtonsDiv } from "./StyledCart"
 import { Button } from "./StyledCart"
 import { PageTitle } from "./StyledCart"
+import { NavButton } from "./StyledCart"
+import { PricePara } from "./StyledCart"
+import { BottomDiv } from "./StyledCart"
 
 function Cart() {
     const [cart, setCart] = useRecoilState(cartState)
@@ -31,27 +34,33 @@ function Cart() {
     return (
         <>
             <PageDiv>
-            <PageTitle> Kundvagn </PageTitle>
-            {cart.map((product, index) => {
-                return (
-                    <ProductDiv key={index}>
-                        <ImageDiv>
-                            <ProductImage src={product.picture} alt={product.name}/>
-                        </ImageDiv>
-                        <p> {product.name} </p>
-                        <p> {product.price}:- </p>
-                        <ButtonsDiv>
-                            <Button onClick={() => { removeFromCart(index); }}> - </Button>
-                            <Button onClick={() => addAnotherToCart(product)}> + </Button>
-                        </ButtonsDiv>
+                <PageTitle> Kundvagn </PageTitle>
+                {cart.map((product, index) => {
+                    return (
+                        <ProductDiv key={index}>
+                            <ImageDiv>
+                                <ProductImage src={product.picture} alt={product.name}/>
+                            </ImageDiv>
+                            <p> {product.name} </p>
+                            <p> {product.price}:- </p>
+                            <ButtonsDiv>
+                                <Button onClick={()=> removeFromCart(index)}> - </Button>
+                                <Button onClick={()=> addAnotherToCart(product)}> + </Button>
+                            </ButtonsDiv>
 
-                    </ProductDiv>
-                )
-            })}
-            <p> Totalt belopp: {totalPrice}:- </p>
+                        </ProductDiv>
+                    )
+                })}
 
             </PageDiv>
-        
+                <BottomDiv>
+                    <div>
+                        <PricePara> Totalt belopp: </PricePara>
+                        <PricePara> {totalPrice}:- </PricePara>
+                    </div>
+                    <NavButton to="/products"> {'< '}Tillbaka till produkter</NavButton>
+                    <NavButton> Till kassan {'>'} </NavButton>
+                </BottomDiv>
         </>
     )
 

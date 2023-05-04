@@ -7,8 +7,7 @@ export const PageTitle = styled.h1`
     font-size: 3em;
 `
 
-export const ProductDiv = 
-    styled.div`
+export const ProductDiv = styled.div`
     border: 1px solid #0000007d;
     border-radius: var(--radius-small);
     background-color: white;

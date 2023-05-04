@@ -5,6 +5,7 @@
     position: absolute;
     top: 6em;
     background-color: white;
+    z-index: 20;
 }
 
 .hamburger-links {
