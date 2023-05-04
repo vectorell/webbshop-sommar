@@ -16,3 +16,5 @@ badmintonset: Image by <a href="https://www.freepik.com/free-photo/badminton-set
 rutschkana: <a href="https://www.freepik.com/free-photo/colorful-playground-yard-park-sunset_10137094.htm#query=slide&position=31&from_view=search&track=robertav1_2_sidr">Image by standret</a> on Freepik
 dart: <a href="https://www.freepik.com/free-photo/target-dartboard-aim-sport-hobby_1047525.htm#page=2&query=dart&position=28&from_view=search&track=robertav1_2_sidr">Image by zirconicusso</a> on Freepik
 zipline: Image by <a href="https://www.freepik.com/free-photo/two-hiker-zip-line-adventure-against-sky-costa-rica_5223715.htm#page=3&query=zipline&position=15&from_view=search&track=robertav1_2_sidr">Freepik</a>
+edit-icon: <a href="https://www.flaticon.com/free-icons/pencil" title="pencil icons">Pencil icons created by Dave Gandy - Flaticon</a>
+edit-icon2: <a href="https://www.flaticon.com/free-icons/edit" title="edit icons">Edit icons created by Freepik - Flaticon</a>
