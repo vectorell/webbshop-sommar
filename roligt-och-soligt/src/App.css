@@ -37,6 +37,10 @@ body {
     --shadow-hover: 1px 10px 12px #0000003d;
     --shadow-active: 1px 2px 3px #0000003d;
 
+    /* TRANSFORM */
+    --transform-hover: scale(102%);
+    --transform-active: scale(100%);
+
     /* AVRUNDNING AV HÖRN */
     --radius-small: 0.2em;
     --radius-medium: 0.5em;

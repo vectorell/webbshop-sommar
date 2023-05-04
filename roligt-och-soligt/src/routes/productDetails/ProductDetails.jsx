@@ -1,12 +1,21 @@
+import { useEffect, useState } from "react"
+import { cartState } from "../../recoil/atom/cartState/cartState.js"
+import { useRecoilState } from "recoil"
 import { useParams } from "react-router-dom"
 import products from "../../assets/products.js"
-import { useEffect, useState } from "react"
-import styled from "styled-components"
-import { Link } from "react-router-dom"
+
+/** Imports for styled components **/
+import { PageTitle } from "./StyledProductDetails.jsx"
+import { ProductDiv } from "./StyledProductDetails.jsx"
+import { ProductImage } from "./StyledProductDetails.jsx"
+import { ProductInfo } from "./StyledProductDetails.jsx"
+import { ButtonsDiv } from "./StyledProductDetails.jsx"
+import { ButtonLink } from "./StyledProductDetails.jsx"
 
 function ProductDetails() {
     const {id} = useParams()
     const [product, setProduct] = useState(null)
+    const [cart, setCart] = useRecoilState(cartState)
 
     function findProduct(id) {
         return products.find(product => product.productId == id)
@@ -16,84 +25,15 @@ function ProductDetails() {
         setProduct(findProduct(id))
     },[id])
 
-    const PageTitle = styled.h1`
-    margin-top: 1em;
-    margin-bottom: 1em;
-    font-size: 3em;
-    `
 
-    const ProductDiv = styled.div`
-    border: 1px solid #0000007d;
-    border-radius: var(--radius-small);
-    background-color: white;
-    padding: 0.5em;
-    margin: 0.5em;
-    height: 50em;
-    // max-width: 15em;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: var(--shadow-normal);
-    transition: 0.2s;
-    `
 
-    const ProductImage = styled.img`
-        width: 100%;
-        // height: 70%;
-        object-fit: cover;
-        overflow: hidden;
-    `
 
-    const ProductInfo = styled.div`
-        display: flex;
-        flex-direction: column;
-        // justify-content: space-between;
-        row-gap: 2em;
-        padding: 1em; 
-    `
+    function addProductToCart(id) {
+        setCart(prevCart => [...prevCart, id])
+        console.log(cart)
+    }
 
-    const ButtonsDiv = styled.div`
-        display: flex;
-        column-gap: 1em;
-    `
-    const ButtonLink = styled(Link)`
-        padding: 1em 1.5em;
-        border: 1px solid black;
-        border-radius: var(--radius-small);
-        box-shadow: var(--shadow-normal);
-        transition: 0.2s;
-        border: none;
-        font-weight: 600;
-
-        &:hover {
-            transition: 0.2s;
-            box-shadow: var(--shadow-hover);
-            transform: scale(103%);
-        }
-
-        &:active {
-            transition: 0s;
-            box-shadow: var(--shadow-active);
-            transform: scale(97%);
-        }
-
-        &:nth-child(1) {
-            background-color: green;
-            color: white;
-        }
-        &:nth-child(2) {
-            background-color: var(--color-tangerine);
-            color: white;
-        }
-
-        &:nth-child(3) {
-            align-self: flex-start;
-            
-            margin: 1em;
-            border: 1px solid #0000003d;
-        }
-    `
+    
 
     return (
         <>
@@ -108,8 +48,8 @@ function ProductDetails() {
                         <p> { product.description } </p>
                         <p> { product.price }:- </p>
                         <ButtonsDiv>
-                            <ButtonLink> Lägg till i kundvagn </ButtonLink>
-                            <ButtonLink> Till kundvagn </ButtonLink>
+                            <ButtonLink onClick={() => {addProductToCart(findProduct(id))}}> Lägg till i kundvagn </ButtonLink>
+                            <ButtonLink to="/cart"> Till kundvagn </ButtonLink>
                         </ButtonsDiv>
                     </ProductInfo>
                 </>

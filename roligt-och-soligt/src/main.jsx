@@ -4,6 +4,7 @@ import Root from './routes/Root'
 import { RecoilRoot } from 'recoil'
 import Products from './routes/products/Products'
 import ProductDetails from './routes/productDetails/ProductDetails'
+import Cart from './routes/cart/Cart'
 
 import { createHashRouter, RouterProvider } from 'react-router-dom'
 
@@ -22,7 +23,7 @@ const router = createHashRouter([
       },
       {
         path: 'cart',
-        // element: <Cart />,
+        element: <Cart />,
       },
       {
         path: 'admin',
