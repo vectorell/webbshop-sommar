@@ -50,3 +50,16 @@ body {
     --radius-small: 0.2em;
     --radius-medium: 0.5em;
 }
+
+.input {
+    border: 2px solid #000000;
+    padding: 0.5em 1em;
+}
+
+.invalid {
+    border: 2px solid #ff0000;
+}
+
+.valid {
+    border: 2px solid #00ad00;
+}

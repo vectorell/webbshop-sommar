@@ -18,3 +18,6 @@ dart: <a href="https://www.freepik.com/free-photo/target-dartboard-aim-sport-hob
 zipline: Image by <a href="https://www.freepik.com/free-photo/two-hiker-zip-line-adventure-against-sky-costa-rica_5223715.htm#page=3&query=zipline&position=15&from_view=search&track=robertav1_2_sidr">Freepik</a>
 edit-icon: <a href="https://www.flaticon.com/free-icons/pencil" title="pencil icons">Pencil icons created by Dave Gandy - Flaticon</a>
 edit-icon2: <a href="https://www.flaticon.com/free-icons/edit" title="edit icons">Edit icons created by Freepik - Flaticon</a>
+no photo: Image by <a href="https://www.freepik.com/free-vector/gradient-no-photo-sign-design_23101642.htm#page=2&query=no%20image&position=6&from_view=search&track=robertav1_2_sidr">Freepik</a>
+add-icon: <a href="https://www.flaticon.com/free-icons/add" title="add icons">Add icons created by bqlqn - Flaticon</a>
+shopping-cart-icon: <a href="https://www.flaticon.com/free-icons/supermarket" title="supermarket icons">Supermarket icons created by itim2101 - Flaticon</a>

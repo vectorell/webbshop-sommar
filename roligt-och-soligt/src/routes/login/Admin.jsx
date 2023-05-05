@@ -1,5 +1,7 @@
 import { loginState } from "../../recoil/atom/loginState/loginState"
 import { useRecoilState } from "recoil"
+import { useEffect, useRef, useState } from "react"
+import staffList from "../../assets/staff/staffList"
 
 
 /** Styled Components */
@@ -12,33 +14,88 @@ import { UserImageDiv } from "./StyledAdmin"
 import { UserImage } from "./StyledAdmin"
 import { UserName } from "./StyledAdmin"
 import { EditIcon } from "./StyledAdmin"
+import { ErrorMessageUser } from "./StyledAdmin"
+import { LoginButton } from "./StyledAdmin"
+import noPhoto from "../../assets/no-photo.jpg"
+import addIcon from "../../assets/add-button.png"
 
-import StaffPer from "../../assets/staff/per.jpeg"
 import editIcon from "../../assets/edit-icon2.png"
 
 
 function Admin() {
     const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState)
+    const [loginError, setLoginError] = useState(false)
+    const userNameInput = useRef(null)
+    const [userNameErrorMessage, setUserNameErrorMessage] = useState((false))
+    const userPasswordInput = useRef(null)
+    const [userPasswordErrorMessage, setUserPasswordErrorMessage] = useState((false))
+
+    /** ADMIN-KONTO ******/
+    const adminAccount = { username: 'admin', password: 'password'}
+
+
+    /** ANVÄNDARNAMN ******/
+    function validateName() {
+        const userString = userNameInput.current.value
+        const regex = /^[a-zA-Z\s]{2,}$/
+
+        userString === '' ? (userNameInput.current.className = 'input', setUserNameErrorMessage((false)))
+        : regex.test(userString) ? (userNameInput.current.className = 'input valid', setUserNameErrorMessage((false)))
+        : (userNameInput.current.className = 'input invalid', setUserNameErrorMessage((true)))
+    }
+
+
+
+    /** LÖSENORD ******/
+    function validatePassword() {
+        const userString = userPasswordInput.current.value
+        const regex = /^.{8,30}$/
+
+        userString === '' ? (userPasswordInput.current.className = 'input', setUserPasswordErrorMessage((false)))
+        : regex.test(userString) ? (userPasswordInput.current.className = 'input valid', setUserPasswordErrorMessage((false)))
+        : (userPasswordInput.current.className = 'input invalid', setUserPasswordErrorMessage((true)))
+    }
+
+
+    /** LOGIN-KNAPP ******/
+    function validateLogin(event) {
+        event.preventDefault()
+        setLoginError((false))
+        
+        userNameInput.current.value === 'admin' && userPasswordInput.current.value === 'password' ? setIsLoggedIn(true)
+        : setIsLoggedIn(false), setLoginError(true)
+    }
+
 
     return (
         <>
-            <PageTitle> Admin  </PageTitle>
+            <PageTitle> Admin <button onClick={() => setIsLoggedIn(!isLoggedIn) }> {isLoggedIn ? 'Logga ut' : 'Logga in'} </button> </PageTitle>
 
-            <button onClick={ setIsLoggedIn(!isLoggedIn) }> {isLoggedIn ? 'Logga ut' : 'Logga in' } </button>
+            
 
             {/* OM INLOGGAD */}
             {isLoggedIn && (
-                <>  
-                    <p>Användare</p>
-                    <ContentDiv>
-                        <UserDiv>
-                            <UserImageDiv>
-                                <UserImage src={StaffPer} alt="Per"/>
-                            </UserImageDiv>
-                            <UserName> Victor </UserName>
-                            <EditIcon src={editIcon} />
-                        </UserDiv>
+                <>
+                    <p> Användare </p>
+                    <ContentDiv>  
+                            {staffList.map(staff => 
+                                <UserDiv key={staff.id}>
+                                    <UserImageDiv> 
+                                        <UserImage src={staff.image !== '' ? staff.image : noPhoto}/> 
+                                    </UserImageDiv>
+                                    <UserName> {staff.name} </UserName>
+                                    <EditIcon src={editIcon}/>
+                                </UserDiv>
+                            )}
+                            <UserDiv>
+                                    <UserImageDiv> 
+                                        <UserImage src={noPhoto}/> 
+                                    </UserImageDiv>
+                                    <UserName> Ny användare </UserName>
+                                    <EditIcon src={addIcon}/>
+                                </UserDiv>
                     </ContentDiv>
+                    <LoginButton onClick={() => {setLoginError(false), setIsLoggedIn(false)}} > Logga ut </LoginButton>
                 </>
             )}
             
@@ -51,15 +108,29 @@ function Admin() {
                 <Form>
                     <InputDiv>
                         <p> Användarnamn </p>
-                        <InputField />
+                        
+                        <InputField 
+                            className = 'input'
+                            type = 'text'
+                            ref={userNameInput}
+                            onChange={() => validateName()}
+                        />
+                        {userNameErrorMessage && <ErrorMessageUser> Var god ange ditt användarnamn med enbart bokstäver, minst två stycken. </ErrorMessageUser>}
                     </InputDiv>
 
                     <InputDiv>
                         <p> Lösenord </p>
-                        <InputField />
+                        <InputField
+                            className = 'input'
+                            type = 'password'
+                            ref={userPasswordInput}
+                            onChange={() => validatePassword()}
+                            />
+                            {userPasswordErrorMessage && <ErrorMessageUser> Var god ange ditt lösenord, från 8 till 30 tecken. </ErrorMessageUser>}
                     </InputDiv>
 
-                    <button> Logga in </button>
+                    <LoginButton onClick={(event) => validateLogin(event)}> Logga in </LoginButton>
+                    {loginError ? <p> Inget konto som matchar namn/lösenord hittades. Har du skrivit in dina uppgifter korrekt? </p> : null}
                 </Form>
             </>)
             

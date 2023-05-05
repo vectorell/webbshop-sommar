@@ -1,10 +1,15 @@
 import './Header.css'
 import { useRecoilState } from 'recoil'
+import { loginState } from '../../recoil/atom/loginState/loginState'
 import { hamburgerMenuState } from '../../recoil/atom/showHamburger/showHamburger'
 import styled from 'styled-components'
+import hamburgerIcon from "/src/assets/menu.png"
+import cartIcon from "/src/assets/shopping-cart.png"
+import { NavLink } from 'react-router-dom'
 
 function Header() {
     const [showHamburgerMenu, setShowHamburgerMenu] = useRecoilState(hamburgerMenuState)
+    const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState)
 
     const HamburgerIcon = styled.img`
         width: 3em;
@@ -14,10 +19,23 @@ function Header() {
             cursor: pointer;
         }
     `
+        const CartIcon = styled.img`
+        width: 3em;
+        margin: 1em;
+        justify-self: end;
+
+        &:hover {
+            cursor: pointer;
+        }
+    `
 
     return (
         <div className='header-div'>
-            <HamburgerIcon src="/src/assets/menu.png" alt="hamburger-menu" className="hamburger-icon" onClick={() => setShowHamburgerMenu(!showHamburgerMenu)}/>
+            <HamburgerIcon src={hamburgerIcon} alt="hamburger-menu" className="hamburger-icon" onClick={() => setShowHamburgerMenu(!showHamburgerMenu)}/>
+            {isLoggedIn && <p> (inloggad) </p>}
+            <NavLink to="/cart">
+            <CartIcon src={cartIcon}/>
+            </NavLink> 
         </div>
     )
 }
