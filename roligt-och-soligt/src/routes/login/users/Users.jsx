@@ -8,7 +8,7 @@ import { UserImageDiv } from "../StyledAdmin"
 import { UserImage } from "../StyledAdmin"
 import { UserName } from "../StyledAdmin"
 import { EditIcon } from "../StyledAdmin"
-import noPhoto from "../../../assets/no-photo.jpg"
+import deleteIcon from "../../../assets/close.png"
 
 import editIcon from "../../../assets/edit-icon2.png"
 function Users() {
@@ -16,13 +16,13 @@ function Users() {
     
     return (
         <>
-            {staff.map(staff => 
-                <UserDiv key={staff.id}>
+            {staff.map((user, index) => 
+                <UserDiv key={index}>
                     <UserImageDiv> 
-                        <UserImage src={staff.image !== '' ? staff.image : noPhoto}/> 
+                        <UserImage src={user.image !== '' ? user.image : noPhoto}/> 
                     </UserImageDiv>
-                    <UserName> {staff.name} </UserName>
-                    <EditIcon src={editIcon} onClick={() => deleteUser()}/>
+                    <UserName> {user.name} </UserName>
+                    <EditIcon src={deleteIcon} onClick={() => deleteUser(user.id, staff, setStaff)}/>
                 </UserDiv>
             )}
         

@@ -112,13 +112,15 @@ export const UserName = styled.p`
 export const EditIcon = styled.img`
     margin-top: 1em;
     height: 15%;
-    transition: 0.2s;
     padding: 0.1em 1em;
     border-radius: var(--radius-medium);
+    filter: grayscale();
+    transition: 0.1s;
     
     &:hover {
-        transition: 0.2s;
-        background: linear-gradient(to left, #FFFFFF, var(--color-colombia-blue), #FFFFFF);
+        filter: hue-rotate(0deg);
+        transition: 0.1s;
+        transform: scale(110%);
     }
 `
 

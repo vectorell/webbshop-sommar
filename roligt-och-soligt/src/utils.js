@@ -1,8 +1,6 @@
 import noPhoto from "../src/assets/no-photo.jpg"
 
 export function addNewUser(inputContent, staff, setStaff, setInputContent) {
-
-    console.log(inputContent)
     let user = {
         name: inputContent,
         image: noPhoto,
@@ -12,10 +10,10 @@ export function addNewUser(inputContent, staff, setStaff, setInputContent) {
 
     let newStaffList = [...staff, user]
     setStaff(newStaffList)
-    console.log(staff)
     setInputContent('')
 }
 
-export function deleteUser() {
-    console.log('delete')
+export function deleteUser(id, staff, setStaff) {
+    const filtered = staff.filter(user => user.id !== id)
+    setStaff(filtered)
 }
