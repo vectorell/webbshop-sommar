@@ -1,7 +1,13 @@
 import { loginState } from "../../recoil/atom/loginState/loginState"
 import { useRecoilState } from "recoil"
 import { useEffect, useRef, useState } from "react"
-import staffList from "../../assets/staff/staffList"
+import staffList from "../../recoil/atom/staffList/staffList"
+import { addNewUser } from "../../utils"
+import NewUserClean from "./newUserClean/NewUserClean"
+import NewUserDirty from "./newUserDirty/NewUserDirty"
+import Users from "./users/Users"
+import { newUserState } from "../../recoil/atom/newUser/newUserState"
+
 
 
 /** Styled Components */
@@ -22,6 +28,7 @@ import addIcon from "../../assets/add-button.png"
 import editIcon from "../../assets/edit-icon2.png"
 
 
+
 function Admin() {
     const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState)
     const [loginError, setLoginError] = useState(false)
@@ -29,6 +36,7 @@ function Admin() {
     const [userNameErrorMessage, setUserNameErrorMessage] = useState((false))
     const userPasswordInput = useRef(null)
     const [userPasswordErrorMessage, setUserPasswordErrorMessage] = useState((false))
+    const [isNewUserClean, setIsNewUserClean] = useRecoilState(newUserState)
 
     /** ADMIN-KONTO ******/
     const adminAccount = { username: 'admin', password: 'password'}
@@ -78,23 +86,11 @@ function Admin() {
                 <>
                     <p> Användare </p>
                     <ContentDiv>  
-                            {staffList.map(staff => 
-                                <UserDiv key={staff.id}>
-                                    <UserImageDiv> 
-                                        <UserImage src={staff.image !== '' ? staff.image : noPhoto}/> 
-                                    </UserImageDiv>
-                                    <UserName> {staff.name} </UserName>
-                                    <EditIcon src={editIcon}/>
-                                </UserDiv>
-                            )}
-                            <UserDiv>
-                                    <UserImageDiv> 
-                                        <UserImage src={noPhoto}/> 
-                                    </UserImageDiv>
-                                    <UserName> Ny användare </UserName>
-                                    <EditIcon src={addIcon}/>
-                                </UserDiv>
+                        <Users />
+
+                        { isNewUserClean ? <NewUserClean/> : <NewUserDirty/> }
                     </ContentDiv>
+                    
                     <LoginButton onClick={() => {setLoginError(false), setIsLoggedIn(false)}} > Logga ut </LoginButton>
                 </>
             )}

@@ -83,13 +83,11 @@ export const UserDiv = styled.div`
     flex-direction: column;
     align-items: center;
     border-radius: var(--radius-small);
-    transition: 0.2s;
+    /* transition: 0.2s; */
     box-shadow: var(--shadow-normal);
     
     &:hover {
-        transition: 0.2s;
-        transform: var(--transform-hover);
-        box-shadow: var(--shadow-hover);
+        outline: 2px solid var(--color-light-sea-green);
     }
 `
 export const UserImageDiv = styled.div`
@@ -120,7 +118,7 @@ export const EditIcon = styled.img`
     
     &:hover {
         transition: 0.2s;
-        background-color: var(--color-colombia-blue);
+        background: linear-gradient(to left, #FFFFFF, var(--color-colombia-blue), #FFFFFF);
     }
 `
 

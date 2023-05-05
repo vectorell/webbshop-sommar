@@ -21,3 +21,4 @@ edit-icon2: <a href="https://www.flaticon.com/free-icons/edit" title="edit icons
 no photo: Image by <a href="https://www.freepik.com/free-vector/gradient-no-photo-sign-design_23101642.htm#page=2&query=no%20image&position=6&from_view=search&track=robertav1_2_sidr">Freepik</a>
 add-icon: <a href="https://www.flaticon.com/free-icons/add" title="add icons">Add icons created by bqlqn - Flaticon</a>
 shopping-cart-icon: <a href="https://www.flaticon.com/free-icons/supermarket" title="supermarket icons">Supermarket icons created by itim2101 - Flaticon</a>
+bock-icon: <a href="https://www.flaticon.com/free-icons/tick" title="tick icons">Tick icons created by Robert Angle - Flaticon</a>
