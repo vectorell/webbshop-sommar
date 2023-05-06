@@ -1,8 +1,17 @@
 import styled from "styled-components"
-import products from "../../assets/products.js"
+import productList from "../../recoil/atom/products/products.js"
 import { Link, NavLink } from "react-router-dom"
+import Search from "../../components/search/Search.jsx"
+import { useRecoilState } from "recoil"
+import { searchState } from "../../recoil/atom/searchState/searchState.js"
+import { searchResults } from "../../recoil/atom/searchResults/searchResults.js"
+import Filter from "../../components/filter/Filter.jsx"
 
 function Products() {
+
+    const [products, setProducts] = useRecoilState(productList)
+    const [isSearchDirty, setIsSearchDirty] = useRecoilState(searchState)
+    const [foundProducts, setFoundProducts] = useRecoilState(searchResults)
 
     const PageTitle = styled.h1`
         margin-top: 1em;
@@ -111,7 +120,6 @@ function Products() {
             transform: scale(97%);
             box-shadow: var(--shadow-active);
         }
-
     `
 
     return (
@@ -119,8 +127,12 @@ function Products() {
 
         <PageTitle> Produkter </PageTitle>
 
+        <Search/>
+        <Filter />
+
+
             <ProductsContainer>
-                {products.map((product, index) => (
+                {(isSearchDirty ? foundProducts : products).map((product, index) => (
                     <Link key={index} to={`/products/${product.productId}`}>
                     <ProductCard >
                         <ProductImageDiv>

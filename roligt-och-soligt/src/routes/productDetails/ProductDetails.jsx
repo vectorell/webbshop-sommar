@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { cartState } from "../../recoil/atom/cartState/cartState.js"
 import { useRecoilState } from "recoil"
 import { useParams } from "react-router-dom"
-import products from "../../assets/products.js"
+import productList from "../../recoil/atom/products/products.js"
 
 /** Imports for styled components **/
 import { PageTitle } from "./StyledProductDetails.jsx"
@@ -16,6 +16,7 @@ function ProductDetails() {
     const {id} = useParams()
     const [product, setProduct] = useState(null)
     const [cart, setCart] = useRecoilState(cartState)
+    const [products, setProducts] = useRecoilState(productList)
 
     function findProduct(id) {
         return products.find(product => product.productId == id)
