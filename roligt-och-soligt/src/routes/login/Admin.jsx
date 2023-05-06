@@ -3,10 +3,11 @@ import { useRecoilState } from "recoil"
 import { useEffect, useRef, useState } from "react"
 import staffList from "../../recoil/atom/staffList/staffList"
 import { addNewUser } from "../../utils"
-import NewUserClean from "./newUserClean/NewUserClean"
-import NewUserDirty from "./newUserDirty/NewUserDirty"
-import Users from "./users/Users"
+import NewUserClean from "../../components/newUserClean/NewUserClean"
+import NewUserDirty from "../../components/newUserDirty/NewUserDirty"
+import Users from "../../components/users/Users"
 import { newUserState } from "../../recoil/atom/newUser/newUserState"
+import { validateName } from "../../utils"
 
 
 
@@ -15,17 +16,9 @@ import { InputDiv, PageTitle } from "./StyledAdmin"
 import { Form } from "./StyledAdmin"
 import { InputField } from "./StyledAdmin"
 import { ContentDiv } from "./StyledAdmin"
-import { UserDiv } from "./StyledAdmin"
-import { UserImageDiv } from "./StyledAdmin"
-import { UserImage } from "./StyledAdmin"
-import { UserName } from "./StyledAdmin"
-import { EditIcon } from "./StyledAdmin"
 import { ErrorMessageUser } from "./StyledAdmin"
 import { LoginButton } from "./StyledAdmin"
-import noPhoto from "../../assets/no-photo.jpg"
-import addIcon from "../../assets/add-button.png"
 
-import editIcon from "../../assets/edit-icon2.png"
 
 
 
@@ -42,15 +35,7 @@ function Admin() {
     const adminAccount = { username: 'admin', password: 'password'}
 
 
-    /** ANVÄNDARNAMN ******/
-    function validateName() {
-        const userString = userNameInput.current.value
-        const regex = /^[a-zA-Z\s]{2,}$/
 
-        userString === '' ? (userNameInput.current.className = 'input', setUserNameErrorMessage((false)))
-        : regex.test(userString) ? (userNameInput.current.className = 'input valid', setUserNameErrorMessage((false)))
-        : (userNameInput.current.className = 'input invalid', setUserNameErrorMessage((true)))
-    }
 
 
 
@@ -109,7 +94,7 @@ function Admin() {
                             className = 'input'
                             type = 'text'
                             ref={userNameInput}
-                            onChange={() => validateName()}
+                            onChange={() => validateName(userNameInput, setUserNameErrorMessage)}
                         />
                         {userNameErrorMessage && <ErrorMessageUser> Var god ange ditt användarnamn med enbart bokstäver, minst två stycken. </ErrorMessageUser>}
                     </InputDiv>

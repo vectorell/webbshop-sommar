@@ -1,16 +1,15 @@
-import staffList from "../../../recoil/atom/staffList/staffList"
+import staffList from "../../recoil/atom/staffList/staffList"
 import { useRecoilState } from "recoil"
-import { deleteUser } from "../../../utils"
+import { deleteUser } from "../../utils"
 
 /** Styled Components */
-import { UserDiv } from "../StyledAdmin"
-import { UserImageDiv } from "../StyledAdmin"
-import { UserImage } from "../StyledAdmin"
-import { UserName } from "../StyledAdmin"
-import { EditIcon } from "../StyledAdmin"
-import deleteIcon from "../../../assets/close.png"
+import { UserDiv } from "../../routes/login/StyledAdmin"
+import { UserImageDiv } from "../../routes/login/StyledAdmin"
+import { UserImage } from "../../routes/login/StyledAdmin"
+import { UserName } from "../../routes/login/StyledAdmin"
+import { EditIcon } from "../../routes/login/StyledAdmin"
+import deleteIcon from "../../assets/close.png"
 
-import editIcon from "../../../assets/edit-icon2.png"
 function Users() {
     const [staff,setStaff] = useRecoilState(staffList)
     

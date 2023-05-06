@@ -5,3 +5,8 @@ export const InputForm = styled.input`
     padding: 0.5em;
     margin-top: 0.5em;
 `
+
+export const ErrorMessage = styled.p`
+    font-size: 0.8em;
+    color: red;
+`

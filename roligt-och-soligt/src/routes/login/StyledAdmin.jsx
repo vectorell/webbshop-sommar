@@ -76,11 +76,12 @@ export const ContentDiv = styled.div`
 
 export const UserDiv = styled.div`
     border: 1px solid black;
-    max-width: 9em;
+    max-width: 10em;
     height: 14em;
     margin: 1em;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     border-radius: var(--radius-small);
     /* transition: 0.2s; */
@@ -127,4 +128,8 @@ export const EditIcon = styled.img`
 export const ErrorMessageUser = styled.p`
     font-size: 0.8em;
     color: #ff0000;
+`
+
+export const Message = styled.p`
+    font-size: 0.8em;
 `
