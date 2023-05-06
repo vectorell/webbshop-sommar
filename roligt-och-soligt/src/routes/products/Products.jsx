@@ -128,7 +128,6 @@ function Products() {
         <PageTitle> Produkter </PageTitle>
 
         <Search/>
-        <Filter />
 
 
             <ProductsContainer>

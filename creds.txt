@@ -23,3 +23,4 @@ add-icon: <a href="https://www.flaticon.com/free-icons/add" title="add icons">Ad
 shopping-cart-icon: <a href="https://www.flaticon.com/free-icons/supermarket" title="supermarket icons">Supermarket icons created by itim2101 - Flaticon</a>
 bock-icon: <a href="https://www.flaticon.com/free-icons/tick" title="tick icons">Tick icons created by Robert Angle - Flaticon</a>
 Erase-icon: <a href="https://www.flaticon.com/free-icons/close" title="close icons">Close icons created by Alfredo Hernandez - Flaticon</a>
+pil upp/ned: <a href="https://www.flaticon.com/free-icons/traffic" title="traffic icons">Traffic icons created by Freepik - Flaticon</a>

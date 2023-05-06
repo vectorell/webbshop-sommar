@@ -6,6 +6,7 @@ import { searchState } from "../../recoil/atom/searchState/searchState"
 import { searchResults } from "../../recoil/atom/searchResults/searchResults"
 import { SearchDiv } from "./StyledSearch"
 import { Button } from "./StyledSearch"
+import Filter from "../filter/Filter"
 
 function Search() {
     const inputField = useRef(null)
@@ -42,6 +43,8 @@ function Search() {
             <Button onClick={() => setIsSearchDirty((false)) }> 
                 Visa alla produkter 
             </Button>
+
+            <Filter/>
 
         </SearchDiv>
     )
