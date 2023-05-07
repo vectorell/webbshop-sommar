@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const PageTitle = styled.h1`
     margin-top: 1em;
@@ -132,4 +133,28 @@ export const ErrorMessageUser = styled.p`
 
 export const Message = styled.p`
     font-size: 0.8em;
+`
+
+export const StyledNavLink = styled(NavLink)`
+    background-color: white;
+    max-width: 13em;
+    font-size: 1.2em;
+    padding: 0.5em 1em;
+    margin: 2em;
+    border: 1px solid black;
+    border-radius: var(--radius-small);
+    box-shadow: var(--shadow-normal);
+    transition: 0.2s;
+    
+    &:hover {
+        transition: 0.2s;
+        box-shadow: var(--shadow-hover);
+        transform: var(--transform-hover);
+    }
+
+    &:active {
+        transition: 0s;
+        box-shadow: var(--shadow-active);
+        transform: var(--transform-active);
+    }
 `

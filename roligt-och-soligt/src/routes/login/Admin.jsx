@@ -8,6 +8,8 @@ import NewUserDirty from "../../components/newUserDirty/NewUserDirty"
 import Users from "../../components/users/Users"
 import { newUserState } from "../../recoil/atom/newUser/newUserState"
 import { validateName } from "../../utils"
+import AdminProducts from "../adminProducts/AdminProducts"
+import { StyledNavLink } from "./StyledAdmin"
 
 
 
@@ -18,6 +20,7 @@ import { InputField } from "./StyledAdmin"
 import { ContentDiv } from "./StyledAdmin"
 import { ErrorMessageUser } from "./StyledAdmin"
 import { LoginButton } from "./StyledAdmin"
+import { NavLink } from "react-router-dom"
 
 
 
@@ -76,6 +79,8 @@ function Admin() {
                         { isNewUserClean ? <NewUserClean/> : <NewUserDirty/> }
                     </ContentDiv>
                     
+                    <StyledNavLink to="/admin/products"> Redigera produkter </StyledNavLink>
+
                     <LoginButton onClick={() => {setLoginError(false), setIsLoggedIn(false)}} > Logga ut </LoginButton>
                 </>
             )}
