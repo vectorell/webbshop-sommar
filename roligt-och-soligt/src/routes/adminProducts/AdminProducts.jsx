@@ -137,14 +137,14 @@ function AdminProducts() {
                 
                 {(isSearchDirty ? foundProducts : products).map((product, index) => (
                     <Link key={index} to={`/admin/products/${product.productId}`}>
-                    <ProductCard >
-                        <ProductImageDiv>
-                            <ProductImage src={product.picture}/>
-                        </ProductImageDiv>
-                        <ProductTitle> {product.name} </ProductTitle>
-                        <ProductPrice> {product.price}:- </ProductPrice>
-                    </ProductCard>
-            </Link>
+                        <ProductCard >
+                            <ProductImageDiv>
+                                <ProductImage src={product.picture}/>
+                            </ProductImageDiv>
+                            <ProductTitle> {product.name} </ProductTitle>
+                            <ProductPrice> {product.price}:- </ProductPrice>
+                        </ProductCard>
+                    </Link>
                 ))}
             </ProductsContainer>
             <LinkDiv>

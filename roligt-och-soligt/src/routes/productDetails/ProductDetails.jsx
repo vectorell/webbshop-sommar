@@ -5,12 +5,7 @@ import { useParams } from "react-router-dom"
 import productList from "../../recoil/atom/products/products.js"
 
 /** Imports for styled components **/
-import { PageTitle } from "./StyledProductDetails.jsx"
-import { ProductDiv } from "./StyledProductDetails.jsx"
-import { ProductImage } from "./StyledProductDetails.jsx"
-import { ProductInfo } from "./StyledProductDetails.jsx"
-import { ButtonsDiv } from "./StyledProductDetails.jsx"
-import { ButtonLink } from "./StyledProductDetails.jsx"
+import { PageTitle, ProductDiv, ProductImage, ProductInfo, ButtonsDiv, ButtonLink } from "./StyledProductDetails.jsx"
 
 function ProductDetails() {
     const {id} = useParams()
@@ -49,7 +44,7 @@ function ProductDetails() {
                         <p> { product.description } </p>
                         <p> { product.price }:- </p>
                         <ButtonsDiv>
-                            <ButtonLink onClick={() => {addProductToCart(findProduct(id))}}> Lägg till i kundvagn </ButtonLink>
+                            <ButtonLink onClick={() => addProductToCart(findProduct(id))}> Lägg till i kundvagn </ButtonLink>
                             <ButtonLink to="/cart"> Till kundvagn </ButtonLink>
                         </ButtonsDiv>
                     </ProductInfo>

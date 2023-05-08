@@ -3,8 +3,7 @@ import { useRecoilState } from "recoil"
 import { cartState } from "../../recoil/atom/cartState/cartState"
 
 /** Styled Components */
-import { PageDiv } from "./StyledCart"
-import { ProductDiv } from "./StyledCart"
+import { PageDiv, ProductDiv } from "./StyledCart"
 import { ImageDiv } from "./StyledCart"
 import { ProductImage } from "./StyledCart"
 import { ButtonsDiv } from "./StyledCart"

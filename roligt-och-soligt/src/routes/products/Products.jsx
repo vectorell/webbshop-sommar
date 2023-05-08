@@ -1,23 +1,12 @@
-import styled from "styled-components"
 import productList from "../../recoil/atom/products/products.js"
 import { Link, NavLink } from "react-router-dom"
 import Search from "../../components/search/Search.jsx"
 import { useRecoilState } from "recoil"
 import { searchState } from "../../recoil/atom/searchState/searchState.js"
 import { searchResults } from "../../recoil/atom/searchResults/searchResults.js"
-import Filter from "../../components/filter/Filter.jsx"
 
 /** STYLED COMPONENTS */
-import { PageTitle } from "./StyledProducts.jsx"
-import { PageDiv } from "./StyledProducts.jsx"
-import { ProductsContainer } from "./StyledProducts.jsx"
-import { ProductCard } from "./StyledProducts.jsx"
-import { ProductTitle } from "./StyledProducts.jsx"
-import { ProductImageDiv } from "./StyledProducts.jsx"
-import { ProductImage } from "./StyledProducts.jsx"
-import { ProductPrice } from "./StyledProducts.jsx"
-import { LinkDiv } from "./StyledProducts.jsx"
-import { StyledLink } from "./StyledProducts.jsx"
+import { PageTitle, PageDiv, ProductsContainer, ProductCard, ProductTitle, ProductImageDiv, ProductImage, ProductPrice, LinkDiv, StyledLink } from "./StyledProducts.jsx"
 
 
 

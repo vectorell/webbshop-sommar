@@ -8,6 +8,7 @@ import Cart from './routes/cart/Cart'
 import Admin from './routes/login/Admin'
 import AdminProducts from './routes/adminProducts/AdminProducts'
 import AdminProductDetails from './routes/adminProductDetails/AdminProductDetails'
+import AddProductDetails from './components/addProductDetails/AddProductDetails'
 
 import { createHashRouter, RouterProvider } from 'react-router-dom'
 
@@ -42,7 +43,7 @@ const router = createHashRouter([
       },
       {
         path: 'admin/products/add-product',
-        element: <AdminProductDetails />,
+        element: <AddProductDetails />,
       },
       {
         path: 'admin/users',

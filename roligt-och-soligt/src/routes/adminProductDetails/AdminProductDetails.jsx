@@ -1,26 +1,19 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useRecoilState } from "recoil"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import productList from "../../recoil/atom/products/products.js"
-import { useRef } from "react"
 
 /** Imports for styled components **/
-import { PageTitle } from "../../routes/productDetails/StyledProductDetails.jsx"
-import { ProductDiv } from "../../routes/productDetails/StyledProductDetails.jsx"
-import { ProductImage } from "../../routes/productDetails/StyledProductDetails.jsx"
-import { ProductInfo } from "../../routes/productDetails/StyledProductDetails.jsx"
-import { ButtonsDiv } from "../../routes/productDetails/StyledProductDetails.jsx"
-import { ButtonLink } from "../../routes/productDetails/StyledProductDetails.jsx"
+import { PageTitle, ProductDiv, ProductImage, ProductInfo, ButtonsDiv, ButtonLink } from "../../routes/productDetails/StyledProductDetails.jsx"
 
 function AdminProductDetails() {
 
-
+    const navigate = useNavigate()
     
     const {id} = useParams()
     const [product, setProduct] = useState(null)
     const [products, setProducts] = useRecoilState(productList)
     const [edit, setEdit] = useState(false)
-    const [update, setUpdate] = useState(false)
     
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -63,12 +56,16 @@ function AdminProductDetails() {
     
         // Sätt tillbaka listan
         setProducts(newArray)
+
+        navigate("/admin/products")
     }
 
     function eraseProduct() {
         const newArray = [...products]
         const filteredArray = newArray.filter(obj => obj !== product)
         setProducts(filteredArray)
+
+        navigate("/admin/products")
     }
 
     
