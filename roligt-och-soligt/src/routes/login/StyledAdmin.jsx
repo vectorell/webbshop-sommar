@@ -15,15 +15,6 @@ export const Form = styled.form`
 `
 
 export const InputField = styled.input`
-    /* padding: 0.5em 1em;
-
-    &:focus {
-        outline: #000000;
-    }
-    
-    &:valid {
-        outline: #72fd00;
-    } */
 `
 
 export const InputDiv = styled.div`

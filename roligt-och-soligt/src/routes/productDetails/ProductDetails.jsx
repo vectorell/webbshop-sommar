@@ -3,11 +3,9 @@ import { cartState } from "../../recoil/atom/cartState/cartState.js"
 import { useRecoilState } from "recoil"
 import { useParams } from "react-router-dom"
 import productList from "../../recoil/atom/products/products.jsx"
-
-/** Imports for styled components **/
 import { PageTitle, ProductDiv, ProductImage, ProductInfo, ButtonsDiv, ButtonLink } from "./StyledProductDetails.jsx"
 
-function ProductDetails() {
+export default function ProductDetails() {
     const {id} = useParams()
     const [product, setProduct] = useState(null)
     const [cart, setCart] = useRecoilState(cartState)
@@ -21,16 +19,10 @@ function ProductDetails() {
         setProduct(findProduct(id))
     },[id])
 
-
-
-
     function addProductToCart(id) {
         setCart(prevCart => [...prevCart, id])
-        console.log(cart)
     }
-
     
-
     return (
         <>
             <PageTitle> Produktdetaljer </PageTitle>
@@ -55,5 +47,3 @@ function ProductDetails() {
         </>
     )
 }
-
-export default ProductDetails

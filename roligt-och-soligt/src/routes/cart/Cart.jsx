@@ -1,17 +1,6 @@
-import { useEffect, useState } from "react"
 import { useRecoilState } from "recoil"
 import { cartState } from "../../recoil/atom/cartState/cartState"
-
-/** Styled Components */
-import { PageDiv, ProductDiv } from "./StyledCart"
-import { ImageDiv } from "./StyledCart"
-import { ProductImage } from "./StyledCart"
-import { ButtonsDiv } from "./StyledCart"
-import { Button } from "./StyledCart"
-import { PageTitle } from "./StyledCart"
-import { NavButton } from "./StyledCart"
-import { PricePara } from "./StyledCart"
-import { BottomDiv } from "./StyledCart"
+import { PageDiv, ProductDiv, ImageDiv, ProductImage, ButtonsDiv, Button, PageTitle, NavButton, PricePara, BottomDiv } from "./StyledCart"
 
 function Cart() {
     const [cart, setCart] = useRecoilState(cartState)

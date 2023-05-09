@@ -3,7 +3,7 @@ import './HamburgerMenu.css'
 import { useRecoilState } from 'recoil'
 import { hamburgerMenuState } from '../../recoil/atom/showHamburger/showHamburger'
 
-function HamburgerMenu() {
+export default function HamburgerMenu() {
     const [showMenu, setShowMenu] = useRecoilState(hamburgerMenuState)
 
     function closeHamburgerMenu() {
@@ -21,5 +21,3 @@ function HamburgerMenu() {
         </div>
     )
 }
-
-export default HamburgerMenu

@@ -1,6 +1,6 @@
 import { loginState } from "../../recoil/atom/loginState/loginState"
 import { useRecoilState } from "recoil"
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import NewUserClean from "../../components/newUserClean/NewUserClean"
 import NewUserDirty from "../../components/newUserDirty/NewUserDirty"
 import Users from "../../components/users/Users"
@@ -8,17 +8,10 @@ import { newUserState } from "../../recoil/atom/newUser/newUserState"
 import { validateName } from "../../utils"
 import { accounts } from "../../recoil/atom/accounts/accounts"
 import { whoAmI } from "../../recoil/atom/whoAmI/whoAmI"
-
-
-
-/** Styled Components */
 import { InputDiv, PageTitle, Form, InputField, ContentDiv, ErrorMessageUser, LoginButton, StyledNavLink } from "./StyledAdmin"
 
 
-
-
-
-function Admin() {
+export default function Admin() {
     const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState)
     const [loginError, setLoginError] = useState(false)
     const userNameInput = useRef(null)
@@ -30,19 +23,15 @@ function Admin() {
     const [accountList, setAccountList] = useRecoilState(accounts)
     const [whoIAm, setWhoIAm] = useRecoilState(whoAmI)
 
-
-
-
-
-
-
     /** LÖSENORD ******/
     function validatePassword() {
         const userString = userPasswordInput.current.value
         const regex = /^.{8,30}$/
 
         userString === '' ? (userPasswordInput.current.className = 'input', setUserPasswordErrorMessage((false)))
+
         : regex.test(userString) ? (userPasswordInput.current.className = 'input valid', setUserPasswordErrorMessage((false)))
+
         : (userPasswordInput.current.className = 'input invalid', setUserPasswordErrorMessage((true)))
     }
 
@@ -100,32 +89,12 @@ function Admin() {
     // }
 
     // fetchUsers()
-
-    async function findUser(name, password) {
-        const response = await fetch('https://www.forverkliga.se/JavaScript/api/fe/?action=get-users&shopid=3001')
-        const data = await response.json()
-        console.log(data)
-        console.log('name', name)
-        console.log('password', password)
-
-
-         
-
-
-    }
     
-
     async function validateLogin(name, password) {
         event.preventDefault()
         setLoginError((false))
-        // setIsLoggedIn((true))
 
-        const data = {
-            shopid: 3001,
-            username: name,
-            password: password
-        }
-
+        const data = { shopid: 3001, username: name, password: password }
         const options = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -133,38 +102,26 @@ function Admin() {
         }
 
         let response = await fetch('https://www.forverkliga.se/JavaScript/api/fe/?action=login-user', options)
-        console.log(response)
         let statusObject = await response.json()
         console.log(statusObject)
 
-        let updateWhoIAm
         statusObject.status === 'success' ? 
             (setIsLoggedIn(true), 
             setLoginError(false),
-            (updateWhoIAm = {...whoIAm, username: name}),
-            (updateWhoIAm.username = name),
-            setWhoIAm(updateWhoIAm)) 
-            
+            setWhoIAm({...whoIAm, username: name})) 
         : setLoginError(true)
-
     }
     
-
-
     return (
         <>
-            <PageTitle>  { isLoggedIn ? `Välkommen ${whoIAm.username}!` : 'Logga in' }  </PageTitle>
-            <button onClick={() => setIsLoggedIn(!isLoggedIn) }> {isLoggedIn ? 'Logga ut' : 'Logga in'} </button>
+            <PageTitle>{isLoggedIn ? `Välkommen ${whoIAm.username}!` : 'Logga in'}</PageTitle>
+            <button onClick={() => setIsLoggedIn(!isLoggedIn) }> 
+            {isLoggedIn ? 'Logga ut' : 'Logga in'} </button>
 
-            
-
-            {/* OM INLOGGAD */}
-            {isLoggedIn && (
-                <>
+            {isLoggedIn && ( <>
                     <p> Användare </p>
                     <ContentDiv>  
                         <Users />
-
                         { isNewUserClean ? <NewUserClean/> : <NewUserDirty/> }
                     </ContentDiv>
                     
@@ -175,46 +132,38 @@ function Admin() {
             )}
             
             
-            
             { !isLoggedIn &&
             // OM UTLOGGAD
-            
-            (<>
-                <Form>
-                    <InputDiv>
-                        <p> Användarnamn </p>
-                        
-                        <InputField 
-                            className = 'input'
-                            type = 'text'
-                            ref={userNameInput}
-                            onChange={() => validateName(userNameInput, setUserNameErrorMessage)}
-                        />
-                        {userNameErrorMessage && <ErrorMessageUser> Var god ange ditt användarnamn med enbart bokstäver, minst två stycken. </ErrorMessageUser>}
-                    </InputDiv>
-
-                    <InputDiv>
-                        <p> Lösenord </p>
-                        <InputField
-                            className = 'input'
-                            type = 'password'
-                            ref={userPasswordInput}
-                            onChange={() => validatePassword()}
+                (<>
+                    <Form>
+                        <InputDiv>
+                            <p> Användarnamn </p>
+                            
+                            <InputField 
+                                className = 'input'
+                                type = 'text'
+                                ref={userNameInput}
+                                onChange={() => validateName(userNameInput, setUserNameErrorMessage)}
                             />
-                            {userPasswordErrorMessage && <ErrorMessageUser> Var god ange ditt lösenord, från 8 till 30 tecken. </ErrorMessageUser>}
-                    </InputDiv>
+                            {userNameErrorMessage && <ErrorMessageUser> Var god ange ditt användarnamn med enbart bokstäver, minst två stycken. </ErrorMessageUser>}
+                        </InputDiv>
 
-                    <LoginButton onClick={() => validateLogin(userNameInput.current.value, userPasswordInput.current.value)}> Logga in </LoginButton>
-                    {loginError ? <p> Inget konto som matchar namn/lösenord hittades. Har du skrivit in dina uppgifter korrekt? </p> : null}
-                </Form>
-            </>)
-            
-        
-        }
+                        <InputDiv>
+                            <p> Lösenord </p>
+                            <InputField
+                                className = 'input'
+                                type = 'password'
+                                ref={userPasswordInput}
+                                onChange={() => validatePassword()}
+                                />
+                                {userPasswordErrorMessage && <ErrorMessageUser> Var god ange ditt lösenord, från 8 till 30 tecken. </ErrorMessageUser>}
+                        </InputDiv>
 
-
+                        <LoginButton onClick={() => validateLogin(userNameInput.current.value, userPasswordInput.current.value)}> Logga in </LoginButton>
+                        {loginError ? <p> Inget konto som matchar namn/lösenord hittades. Har du skrivit in dina uppgifter korrekt? </p> : null}
+                    </Form>
+                </>)
+            }
         </>
     )
 }
-
-export default Admin

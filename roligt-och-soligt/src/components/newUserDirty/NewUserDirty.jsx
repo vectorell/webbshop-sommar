@@ -1,27 +1,19 @@
-/** Styled Components */
-import { UserDiv } from "../../routes/login/StyledAdmin"
-import { UserImageDiv } from "../../routes/login/StyledAdmin"
-import { UserImage } from "../../routes/login/StyledAdmin"
-import { EditIcon } from "../../routes/login/StyledAdmin"
-import noPhoto from "../../assets/staff/no-photo.jpg"
+import { UserDiv, EditIcon, Message } from "../../routes/login/StyledAdmin"
 import addIcon from "../../assets/add-button.png"
 import { useRef, useState } from "react"
 import { useRecoilState } from "recoil"
 import { newUserState } from "../../recoil/atom/newUser/newUserState"
 import iconChecked from '../../assets/checked.png'
-import { InputForm } from "./StyledNewUserDirty"
-// import { addNewUser } from "../../utils"
 import staffList from "../../recoil/atom/staffList/staffList"
 import { validateName } from "../../utils"
-import { ErrorMessage } from "./StyledNewUserDirty"
-import { Message } from "../../routes/login/StyledAdmin"
+import { InputForm, ErrorMessage } from "./StyledNewUserDirty"
 
-function NewUserDirty() {
+
+export default function NewUserDirty() {
     const [isNewUserClean, setIsNewUserClean] = useRecoilState(newUserState)
     
     const [inputContentName, setInputContentName] = useState(null)
     const [inputContentPassword, setInputContentPassword] = useState(null)
-
 
     const inputFieldName = useRef(null)
     const inputFieldPassword = useRef(null)
@@ -31,10 +23,6 @@ function NewUserDirty() {
     const baseUrl = 'https://www.forverkliga.se/JavaScript/api/fe/'
 
     async function addNewUser(name, password) {
-        console.log('addNewUser körs!')
-    
-        console.log(name)
-        console.log(password)
     
         const data = {
             shopid: 3001,
@@ -51,12 +39,10 @@ function NewUserDirty() {
         let response = await fetch((baseUrl + '?action=add-user'), options)
         console.log(response)
         setStaff(prevStaff => [...prevStaff, data])
-    
     }
 
     return (
         <UserDiv>
-
             <InputForm 
                 ref={inputFieldName} 
                 className="input"
@@ -78,7 +64,6 @@ function NewUserDirty() {
                 onChange={() => {
                     setInputContentPassword(inputFieldPassword.current.value)
                     validateName(inputFieldPassword, setUserPasswordErrorMessage)
-                    // console.log(inputContentPassword)
                 }}
                 />
 
@@ -89,20 +74,13 @@ function NewUserDirty() {
                     
                     : <EditIcon src={iconChecked} onClick={() => (
                         inputContentName === null) && (inputContentPassword === null) ? setIsNewUserClean(!isNewUserClean) 
-                        
                     : 
-                     
-                    
+
                     (inputFieldName.current.classList.contains('valid')) &&
                     (inputFieldPassword.current.classList.contains('valid'))
-                    
                     ? (addNewUser(inputContentName, inputContentPassword), setIsNewUserClean(!isNewUserClean)) : null
                     } /> 
                 }
-
-            
         </UserDiv>
     )
 }
-
-export default NewUserDirty

@@ -1,16 +1,13 @@
-import { useEffect, useState, useRef } from "react"
+import { useState, useRef } from "react"
 import { useRecoilState } from "recoil"
-import { useParams, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import productList from "../../recoil/atom/products/products.jsx"
 import defaultToysImage from '../../assets/product-images/default-toys.jpg'
 import { uploadProduct } from "../../utils.js"
-
-
-/** Imports for styled components **/
 import { PageTitle, ProductDiv, ProductImage, ProductInfo, ButtonsDiv, ButtonLink } from "../../routes/productDetails/StyledProductDetails.jsx"
 import { ErrorMessage, DivInput } from "./StyledAddProductDetails.jsx"
 
-function AddProductDetails() {
+export default function AddProductDetails() {
 
     const navigate = useNavigate()
     const [products, setProducts] = useRecoilState(productList)
@@ -27,7 +24,6 @@ function AddProductDetails() {
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState(null)
 
-
     const baseUrl = 'https://www.forverkliga.se/JavaScript/api/fe/'
     const shopId = 3001
 
@@ -36,17 +32,10 @@ function AddProductDetails() {
             let response = await fetch(baseUrl + '?action=get-products&shopid=' + shopId)
             const data = await response.json()
             setProducts(data)
-            console.log(data)
-            
         } catch (error) {
             console.log('error !')
-            
         }
     }
-
-    // useEffect(() => {
-    //     getAllProducts()
-    // }, [])
     
     function applyChanges() {
         setNameErrorMsg(false)
@@ -71,7 +60,6 @@ function AddProductDetails() {
             picture: defaultToysImage,
             shopId: 3001,
         }
-        
         
         if (nameIsValid && descriptionIsValid && priceIsValid) {
             uploadProduct(product)
@@ -115,8 +103,7 @@ function AddProductDetails() {
                         <p> Pris </p>
                         <input 
                             type='number'
-                            min='0'
-                            max='999999999999'
+                            min='0' max='999999999999'
                             ref={inputPrice} 
                             placeholder="Pris"
                             onChange={ (event) => { setPrice(event.target.value)}}
@@ -124,23 +111,14 @@ function AddProductDetails() {
                         { priceErrorMsg ? <ErrorMessage> Vad god ange ett pris, endast siffror mellan 0 - 999 999 999 999. </ErrorMessage> : null}
                     </DivInput>     
 
-                        
-
-
-
                     <ButtonsDiv>
-                        <ButtonLink onClick={() => {
-                            applyChanges()
-                            }}> Spara </ButtonLink>
+                        <ButtonLink onClick={() => applyChanges()}> Spara </ButtonLink>
                     </ButtonsDiv>
 
                 </ProductInfo>
                 
-            
             </ProductDiv>
             <ButtonLink to="/admin/products"> Tillbaka </ButtonLink>
         </>
     )
 }
-
-export default AddProductDetails

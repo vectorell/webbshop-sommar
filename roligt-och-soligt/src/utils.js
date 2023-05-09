@@ -1,8 +1,4 @@
-import noPhoto from "./assets/staff/no-photo.jpg"
-
 import defaultPicture from '../src/assets/product-images/default.jpg'
-
-
 import skateboard from '../src/assets/product-images/skateboard.jpg'
 import badboll from '../src/assets/product-images/badboll.jpg'
 import vattenpistol from '../src/assets/product-images/vattenpistol.jpg'
@@ -16,16 +12,6 @@ import slide from '../src/assets/product-images/slide.jpg'
 import dart from '../src/assets/product-images/dart.jpg'
 import zipline from '../src/assets/product-images/zipline.jpg'
 
-import productList from "./recoil/atom/products/products"
-
-
-
-
-
-
-
-
-
 /** VALIDERING ANVÄNDARNAMN ******/
 export function validateName(input, errorMessage) {
     const userString = input.current.value
@@ -38,21 +24,13 @@ export function validateName(input, errorMessage) {
     : (input.current.classList.remove('valid'), input.current.classList.add('invalid'), errorMessage((true)))
 }
 
-import isLoadingAPI from "./recoil/atom/isLoadingAPI/isLoadingAPI"
-
-
-
 
 /** API-funktioner nedan */
 const baseUrl = 'https://www.forverkliga.se/JavaScript/api/fe/'
 const shopId = 3001
 
-
-
-
 export async function uploadProduct(product) {
-
-
+    
     const data = {
         action: 'add-product',
         name: product.name,
@@ -76,9 +54,6 @@ export async function uploadProduct(product) {
 }
 
 export async function deleteProductById(id) {
-
-
-
     const data = {
         action: 'delete-product',
         shopid: shopId,
@@ -263,21 +238,6 @@ export let productListToUpload = [
 
 
 // productListToUpload.forEach(product => uploadProduct(product))
-
-// uploadProduct(productListToUpload[0])
-// deleteProductById(2869)
-// deleteProductById(2870)
-// deleteProductById(2871)
-// deleteProductById(2872)
-// deleteProductById(2873)
-// deleteProductById(2874)
-// deleteProductById(7769)
-// deleteProductById(7768)
-// deleteProductById(7767)
-// deleteProductById(7766)
-// getAllProducts()
-
-
 
 export async function addUserToAPI(username, password) {
 
