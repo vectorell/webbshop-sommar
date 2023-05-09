@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import productList from "../../recoil/atom/products/products.js"
+import productList from "../../recoil/atom/products/products.jsx"
 import { Link, NavLink } from "react-router-dom"
 import Search from "../../components/search/Search.jsx"
 import { useRecoilState } from "recoil"
@@ -7,6 +7,7 @@ import { searchState } from "../../recoil/atom/searchState/searchState.js"
 import { searchResults } from "../../recoil/atom/searchResults/searchResults.js"
 import Filter from "../../components/filter/Filter.jsx"
 import AddProduct from "../../components/addProduct/AddProduct.jsx"
+import { productListToUpload, uploadProduct } from "../../utils.js"
 
 function AdminProducts() {
 
@@ -123,10 +124,21 @@ function AdminProducts() {
         }
     `
 
+    function eraseAllProducts() {
+        products.forEach(product => deleteProductById(product.id))
+    }
+
+    function resetAllProducts() {
+        productListToUpload.forEach(product => uploadProduct(product))
+    }
+
     return (
         <PageDiv>
 
         <PageTitle> Produkter (admin) </PageTitle>
+        <button onClick={eraseAllProducts}> RADERA ALLT </button>
+        <br/>
+        <button onClick={resetAllProducts}> ÅTERSTÄLL ALLT </button>
 
         <Search/>
 
@@ -136,7 +148,7 @@ function AdminProducts() {
                 <AddProduct />
                 
                 {(isSearchDirty ? foundProducts : products).map((product, index) => (
-                    <Link key={index} to={`/admin/products/${product.productId}`}>
+                    <Link key={index} to={`/admin/products/${product.id}`}>
                         <ProductCard >
                             <ProductImageDiv>
                                 <ProductImage src={product.picture}/>

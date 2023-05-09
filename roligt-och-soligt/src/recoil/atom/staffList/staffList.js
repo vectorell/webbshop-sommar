@@ -6,26 +6,7 @@ import { atom } from "recoil"
 
 const staffList = atom({
     key: 'staffList',
-    default: [
-        {
-            name: 'Per',
-            image: StaffPer,
-            id: 1,
-            passw: '',
-        },
-        {
-            name: 'Thatsanee',
-            image: StaffThatsanee,
-            id: 2,
-            passw: '',
-        },
-        {
-            name: 'Lisa',
-            image: StaffLisa,
-            id: 3,
-            passw: '',
-        },
-    ]
+    default: []
 })
 
 export default staffList

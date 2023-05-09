@@ -6,7 +6,7 @@ import { UserName } from "../../routes/login/StyledAdmin"
 import { EditIcon } from "../../routes/login/StyledAdmin"
 import noPhoto from "../../../src/assets/staff/no-photo.jpg"
 import addIcon from "../../../src/assets/add-button.png"
-import { addNewUser } from "../../utils"
+// import { addNewUser } from "../../utils"
 import { useRecoilState } from "recoil"
 import { newUserState } from "../../recoil/atom/newUser/newUserState"
 

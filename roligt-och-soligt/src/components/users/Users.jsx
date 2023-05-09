@@ -1,27 +1,46 @@
 import staffList from "../../recoil/atom/staffList/staffList"
 import { useRecoilState } from "recoil"
-import { deleteUser } from "../../utils"
+import defaultImage from '../../assets/staff/no-photo.jpg'
 
 /** Styled Components */
-import { UserDiv } from "../../routes/login/StyledAdmin"
-import { UserImageDiv } from "../../routes/login/StyledAdmin"
-import { UserImage } from "../../routes/login/StyledAdmin"
-import { UserName } from "../../routes/login/StyledAdmin"
-import { EditIcon } from "../../routes/login/StyledAdmin"
+import { UserDiv, UserImageDiv, UserImage, UserName, EditIcon } from "../../routes/login/StyledAdmin"
 import deleteIcon from "../../assets/close.png"
 
 function Users() {
-    const [staff,setStaff] = useRecoilState(staffList)
+    const [staff, setStaff] = useRecoilState(staffList)
+    const baseUrl = 'https://www.forverkliga.se/JavaScript/api/fe/'
+
+    async function deleteUser(user) {
+
+        const data = {
+            shopid: 3001,
+            userid: user.id
+        }
+    
+        const options = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        }
+    
+        let response = await fetch((baseUrl + '?action=delete-user'), options)
+        console.log(response)
+
+        const newArray = [...staff]
+        const filteredArray = newArray.filter(selectedUser => selectedUser.id !== user.id)
+        setStaff(filteredArray)
+    }
+
     
     return (
         <>
-            {staff.map((user, index) => 
+            {staff && staff.map((user, index) => 
                 <UserDiv key={index}>
                     <UserImageDiv> 
-                        <UserImage src={user.image !== '' ? user.image : noPhoto}/> 
+                        <UserImage src={defaultImage}/> 
                     </UserImageDiv>
-                    <UserName> {user.name} </UserName>
-                    <EditIcon src={deleteIcon} onClick={() => deleteUser(user.id, staff, setStaff)}/>
+                    <UserName> {user.username} </UserName>
+                    <EditIcon src={deleteIcon} onClick={() => deleteUser(user)}/>
                 </UserDiv>
             )}
         

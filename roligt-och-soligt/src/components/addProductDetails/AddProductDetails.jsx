@@ -1,8 +1,10 @@
 import { useEffect, useState, useRef } from "react"
 import { useRecoilState } from "recoil"
 import { useParams, useNavigate } from "react-router-dom"
-import productList from "../../recoil/atom/products/products.js"
+import productList from "../../recoil/atom/products/products.jsx"
 import defaultToysImage from '../../assets/product-images/default-toys.jpg'
+import { uploadProduct } from "../../utils.js"
+
 
 /** Imports for styled components **/
 import { PageTitle, ProductDiv, ProductImage, ProductInfo, ButtonsDiv, ButtonLink } from "../../routes/productDetails/StyledProductDetails.jsx"
@@ -21,7 +23,30 @@ function AddProductDetails() {
     const inputDescription = useRef(null)
     const inputPrice = useRef(null)
 
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [price, setPrice] = useState(null)
 
+
+    const baseUrl = 'https://www.forverkliga.se/JavaScript/api/fe/'
+    const shopId = 3001
+
+    async function getAllProducts() {
+        try {
+            let response = await fetch(baseUrl + '?action=get-products&shopid=' + shopId)
+            const data = await response.json()
+            setProducts(data)
+            console.log(data)
+            
+        } catch (error) {
+            console.log('error !')
+            
+        }
+    }
+
+    // useEffect(() => {
+    //     getAllProducts()
+    // }, [])
     
     function applyChanges() {
         setNameErrorMsg(false)
@@ -45,21 +70,17 @@ function AddProductDetails() {
             description: inputDescription.current.value,
             picture: defaultToysImage,
             shopId: 3001,
-            productId: products.length + 1
         }
         
-        const newProductList = [...products, product]
-
         
-
         if (nameIsValid && descriptionIsValid && priceIsValid) {
-            setProducts(newProductList)
+            uploadProduct(product)
+            getAllProducts()
             navigate("/admin/products")
         }
     }
 
     
-
     return (
         <>
             <PageTitle> Lägg till produkt </PageTitle>

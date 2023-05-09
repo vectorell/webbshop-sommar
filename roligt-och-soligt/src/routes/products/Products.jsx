@@ -1,12 +1,15 @@
-import productList from "../../recoil/atom/products/products.js"
+import productList from "../../recoil/atom/products/products.jsx"
 import { Link, NavLink } from "react-router-dom"
 import Search from "../../components/search/Search.jsx"
 import { useRecoilState } from "recoil"
 import { searchState } from "../../recoil/atom/searchState/searchState.js"
 import { searchResults } from "../../recoil/atom/searchResults/searchResults.js"
+import { useEffect, useState } from "react"
+import isLoadingAPI from "../../recoil/atom/isLoadingAPI/isLoadingAPI.js"
 
 /** STYLED COMPONENTS */
 import { PageTitle, PageDiv, ProductsContainer, ProductCard, ProductTitle, ProductImageDiv, ProductImage, ProductPrice, LinkDiv, StyledLink } from "./StyledProducts.jsx"
+// import { getAllProducts } from "../../utils.js"
 
 
 
@@ -15,8 +18,7 @@ function Products() {
     const [products, setProducts] = useRecoilState(productList)
     const [isSearchDirty, setIsSearchDirty] = useRecoilState(searchState)
     const [foundProducts, setFoundProducts] = useRecoilState(searchResults)
-
-    
+    const [isLoading, setIsLoading] = useRecoilState(isLoadingAPI)
 
     return (
         <PageDiv>
@@ -28,7 +30,7 @@ function Products() {
 
             <ProductsContainer>
                 {(isSearchDirty ? foundProducts : products).map((product, index) => (
-                    <Link key={index} to={`/products/${product.productId}`}>
+                    <Link key={index} to={`/products/${product.id}`}>
                     <ProductCard >
                         <ProductImageDiv>
                             <ProductImage src={product.picture}/>
