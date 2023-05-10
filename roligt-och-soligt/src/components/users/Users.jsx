@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil"
 import defaultImage from '../../assets/staff/no-photo.jpg'
 
 /** Styled Components */
-import { UserDiv, UserImageDiv, UserImage, UserName, EditIcon } from "../../routes/login/StyledAdmin"
+import { UserDiv, UserImageDiv, UserImage, UserName, EditIcon } from "../../components/users/StyledUsers.jsx"
 import deleteIcon from "../../assets/close.png"
 
 function Users() {

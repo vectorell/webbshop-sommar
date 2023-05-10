@@ -2,18 +2,21 @@ import styled from "styled-components";
 
 export const SearchDiv = styled.div`
     display: flex;
-    /* flex-direction: column; */
     align-items: flex-end;
     justify-content: center;
     flex-wrap: wrap;
     column-gap: 1em;
     border-radius: var(--radius-medium);
     background-color: black;
-    /* margin: 0.5em; */
     padding: 0.5em;
     color: white;
     font-size: 1.2em;
     width: 100%;
+    text-align: start;
+
+    @media (max-width: 500px) {
+        border-radius: 0em;
+    }
 `
 
 export const DivSearchField = styled.div`
@@ -21,9 +24,18 @@ export const DivSearchField = styled.div`
     flex-direction: column;
     align-items: flex-start;
     width: 50%;
+    
+    @media (max-width: 500px) {
+        margin-bottom: 0.5em;
+        width: 100%;
+    }
 `
 export const ParaFieldText = styled.p`
     font-size: 0.8em;
+
+    @media (max-width: 500px) {
+        font-size: 0.75em;
+    }
 `
 
 export const SearchInput = styled.input`

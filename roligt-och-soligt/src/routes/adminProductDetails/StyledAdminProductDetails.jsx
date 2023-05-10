@@ -5,6 +5,11 @@ export const PageTitle = styled.h1`
     margin-top: 1em;
     margin-bottom: 1em;
     font-size: 3em;
+    text-align: center;
+
+    @media (max-width: 500px) {
+        font-size: 2em;
+    }
 `
 
 export const ProductDiv = styled.div`
@@ -21,6 +26,10 @@ export const ProductDiv = styled.div`
     justify-content: space-between;
     box-shadow: var(--shadow-normal);
     transition: 0.2s;
+
+    @media (max-width: 500px) {
+        height: fit-content;
+    }
 `
 
 export const ProductImage = styled.img`

@@ -5,13 +5,17 @@ export const PageTitle = styled.h1`
     margin-top: 1em;
     margin-bottom: 1em;
     font-size: 3em;
+
+    @media (max-width: 500px) {
+        font-size: 2em;
+    }
 `
 
 export const ProductDiv = styled.div`
     border: 1px solid #0000007d;
     border-radius: var(--radius-small);
     background-color: white;
-    padding: 0.5em;
+    /* padding: 0.5em; */
     margin: 0.5em;
     height: 50em;
     // max-width: 15em;
@@ -25,7 +29,7 @@ export const ProductDiv = styled.div`
 
 export const ProductImage = styled.img`
     width: 100%;
-    // height: 70%;
+    /* height: 70%; */
     object-fit: cover;
     overflow: hidden;
 `
@@ -43,7 +47,7 @@ export const ButtonsDiv = styled.div`
     column-gap: 1em;
 `
 export const ButtonLink = styled(Link)`
-    padding: 1em 1.5em;
+    padding: 1em 1.3em;
     border: 1px solid black;
     border-radius: var(--radius-small);
     box-shadow: var(--shadow-normal);

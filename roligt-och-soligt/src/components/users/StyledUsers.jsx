@@ -1,15 +1,10 @@
-import styled from "styled-components";
+import styled from "styled-components"
 import { NavLink } from "react-router-dom";
 
 export const PageTitle = styled.h1`
     margin-top: 1em;
     margin-bottom: 1em;
     font-size: 3em;
-    text-align: center;
-
-    @media (max-width: 500px) {
-        font-size: 2em;
-    }
 `
 export const Form = styled.form`
     display: flex;
@@ -59,7 +54,7 @@ export const ContentDiv = styled.div`
     border: 1px solid var(--color-light-sea-green);
     border-radius: var(--radius-medium);
     /* width: 80%; */
-    min-height: fit-content;
+    min-height: 15em;
     box-shadow: var(--shadow-normal);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

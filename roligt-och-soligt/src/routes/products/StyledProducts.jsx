@@ -5,18 +5,27 @@ export const PageTitle = styled.h1`
     margin-top: 1em;
     margin-bottom: 1em;
     font-size: 3em;
+
+    @media (max-width: 500px) {
+        font-size: 2em;
+    }
 `
 
 export const PageDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding-bottom: 2em;
     text-align: center;
     width: 60%;
+
+    @media (max-width: 500px) {
+        width: 100%;
+    }
 `
 
 export const ProductsContainer = styled.div`
-    // border: 1px solid green;
     display: grid;
-    // padding: 1em;
     grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
     padding-bottom: 2em;
@@ -75,7 +84,6 @@ export const ProductPrice = styled.p`
 
 `
 export const LinkDiv = styled.div`
-    // border: 1px dashed blue;
     width: 100%;
     display: flex;
     justify-content: space-around;

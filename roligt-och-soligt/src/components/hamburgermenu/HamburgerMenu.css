@@ -1,7 +1,7 @@
 .hamburger-menu-div {
     /* border: 1px solid green; */
     box-shadow: var(--shadow-normal);
-    width: 80%;
+    max-width: 40em;
     padding-bottom: 1em;
     position: fixed;
     top: 6em;
@@ -44,4 +44,10 @@
 a {
     text-decoration: none;
     color: black;
+}
+
+@media (max-width: 500px) {
+    .hamburger-links > * {
+        font-size: 1em;
+    }
 }

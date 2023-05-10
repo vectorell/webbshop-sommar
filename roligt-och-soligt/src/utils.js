@@ -29,34 +29,38 @@ export function validatePassword(userPasswordInput, setUserPasswordErrorMessage)
     const userString = userPasswordInput.current.value
     const regex = /^.{8,30}$/
 
-    userString === '' ? (userPasswordInput.current.className = 'input', setUserPasswordErrorMessage((false)))
+    // userString === '' ? (userPasswordInput.current.className = 'input', setUserPasswordErrorMessage((false)))
 
-    : regex.test(userString) ? (userPasswordInput.current.className = 'input valid', setUserPasswordErrorMessage((false)))
+    userString === '' ? (userPasswordInput.current.classList.add('input'), setUserPasswordErrorMessage((false)), userPasswordInput.current.classList.remove('invalid'))
 
-    : (userPasswordInput.current.className = 'input invalid', setUserPasswordErrorMessage((true)))
+    : regex.test(userString) ? (userPasswordInput.current.classList.add('valid'), setUserPasswordErrorMessage((false)), userPasswordInput.current.classList.remove('invalid'))
+
+    : (userPasswordInput.current.classList.add('invalid'), userPasswordInput.current.classList.remove('valid'), setUserPasswordErrorMessage((true)))
 }
 
 
 /** VALIDERING: sökfält */
-export function validateSearch(input, inputElement, errorMessage) {
-    // console.log('validateSearch körs')
+export function validateSearch(input, inputElement, errorMessage, type) {
+    console.log('validateSearch körs')
     inputElement.current.classList.remove('invalid')
     inputElement.current.classList.remove('valid')
 
     const string = input
-    const regex = /^[0-9a-zA-Z\s]{1,}$/
+
+    let regex
+    type === 'search' ? regex = /^[-"()=:.,!?0-9a-öA-Ö\s]{1,30}$/ :
+    type === 'text' ? regex = /^[-"()=:.,!?0-9a-öA-Ö\s]{2,150}$/ :
+    type === 'price' ? regex = /^[0-9]{1,15}$/ : null
 
     regex.test(input) ? console.log('matchar') 
     : console.log('matchar ej')
 
     
-    string === '' ? (inputElement.current.classList.add('input'), errorMessage((false)), inputElement.current.classList.remove('invalid'))
+    string === '' ? (inputElement.current.classList.add('input'), errorMessage((false)), inputElement.current.classList.remove('invalid'), inputElement.current.classList.remove('valid'))
 
     : regex.test(string) ? (inputElement.current.classList.add('valid'), inputElement.current.classList.remove('invalid'), errorMessage((false)))
 
     : (inputElement.current.classList.remove('valid'), inputElement.current.classList.add('invalid'), errorMessage((true)))
-
-
 }
 
 

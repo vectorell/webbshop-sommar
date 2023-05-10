@@ -10,6 +10,9 @@ export const PageTitle = styled.h1`
 export const PageDiv = styled.div`
     padding-bottom: 2em;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 
 export const ProductsContainer = styled.div`
@@ -73,7 +76,7 @@ export const ProductPrice = styled.p`
 `
 
 export const LinkDiv = styled.div`
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: space-around;
     margin-top: 2em;

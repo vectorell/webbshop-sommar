@@ -44,7 +44,7 @@ export default function Search() {
                         maxLength='20'
                         placeholder='Sök på din vara här..'
                         onChange={(event) => {
-                            validateSearch(event.target.value, inputField, setErrorMessage)
+                            validateSearch(event.target.value, inputField, setErrorMessage, 'search')
                             setInputContent(event.target.value)
                         }}
                     />

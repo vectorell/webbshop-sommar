@@ -7,12 +7,14 @@ export const FilterDiv = styled.div`
     column-gap: 1em;
     /* border: 1px solid white; */
     background-color: black;
-    margin: 0.5em;
     padding: 0.5em;
+    margin-top: 0.5em;
     color: white;
-    /* font-size: 1.2em; */
-    /* width: 55%; */
     border-radius: var(--radius-medium);
+
+    @media (max-width: 500px) {
+        border-radius: 0em;
+    }
 `
 
 export const Button = styled.button`

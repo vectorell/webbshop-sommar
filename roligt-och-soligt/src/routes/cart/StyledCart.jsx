@@ -8,9 +8,10 @@ export const PageDiv = styled.div`
     min-height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     row-gap: 1em;
+    align-items: center;
     position: relative;
+    margin-bottom: 1em;
 
     @media (max-width: 500px) {
         min-height: 100%;
@@ -54,7 +55,7 @@ export const ProductDiv = styled.div`
 
     @media (max-width: 500px) {
         flex-direction: column;
-        height: unset;
+        min-height: 15em;
         padding-right: unset;
     }
 `
@@ -151,9 +152,9 @@ export const BottomDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
+    /* position: fixed;
     bottom: 0em;
-    margin-top: 2em;
+    margin-top: 2em; */
     color: white;
 
     @media (max-width: 500px) {

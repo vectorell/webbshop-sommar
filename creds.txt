@@ -25,3 +25,4 @@ bock-icon: <a href="https://www.flaticon.com/free-icons/tick" title="tick icons"
 Erase-icon: <a href="https://www.flaticon.com/free-icons/close" title="close icons">Close icons created by Alfredo Hernandez - Flaticon</a>
 pil upp/ned: <a href="https://www.flaticon.com/free-icons/traffic" title="traffic icons">Traffic icons created by Freepik - Flaticon</a>
 defaultToys: <a href="https://www.freepik.com/free-vector/toy-designs-collection_1024942.htm#query=toys&position=19&from_view=search&track=sph">Image by orsolyarigo</a> on Freepik
+tillbaka-ikon: <a href="https://www.flaticon.com/free-icons/arrow" title="arrow icons">Arrow icons created by Freepik - Flaticon</a>
