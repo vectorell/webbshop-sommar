@@ -9,12 +9,15 @@ import styled from 'styled-components'
 import isLoadingAPI from '../recoil/atom/isLoadingAPI/isLoadingAPI'
 import productList from '../recoil/atom/products/products'
 import staffList from '../recoil/atom/staffList/staffList'
+import Start from './start/Start'
+import { useNavigate } from 'react-router-dom'
 
 export default function Root() {
     const [showHamburgerMenu, setShowHamburgerMenu] = useRecoilState(hamburgerMenuState)
     const [isLoading, setIsLoading] = useRecoilState(isLoadingAPI)
     const [products, setProducts] = useRecoilState(productList)
     const [users, setUsers] = useRecoilState(staffList)
+    const navigate = useNavigate()
 
     const Space = styled.div`
         margin: 3em;

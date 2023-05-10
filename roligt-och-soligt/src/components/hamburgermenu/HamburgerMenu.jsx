@@ -13,7 +13,7 @@ export default function HamburgerMenu() {
     return (
         <div className="hamburger-menu-div">
             <div className="hamburger-links">
-                <NavLink to="" onClick={closeHamburgerMenu}> Start </NavLink>
+                <NavLink to="start" onClick={closeHamburgerMenu}> Start </NavLink>
                 <NavLink to="products" onClick={closeHamburgerMenu}> Produkter </NavLink>
                 <NavLink to="cart" onClick={closeHamburgerMenu}> Kundvagn </NavLink>
                 <NavLink to="admin" onClick={closeHamburgerMenu}> Personalinloggning </NavLink>

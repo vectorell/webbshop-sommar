@@ -11,7 +11,7 @@ export const PageDiv = styled.div`
     row-gap: 1em;
     align-items: center;
     position: relative;
-    margin-bottom: 1em;
+    margin-bottom: 15em;
 
     @media (max-width: 500px) {
         min-height: 100%;
@@ -112,33 +112,20 @@ export const PricePara = styled.p`
 
 
 export const NavButton = styled(Link)`
-    border: 1px solid black;
-    padding: 2em 0em;
+    border: 1px solid #000000;
+    padding: 0.5em;
     margin: 1em;
-    font-size: 1.4em;
-    border-radius: var(--radius-small);
-    box-shadow: var(--shadow-normal);
+    background: #313131;
+    color: white;
     transition: 0.2s;
-    background-color: #FFFFFF;
-    flex-grow: 1;
-    text-align: center;
-    width: 12em;
+    font-size: 1.5em;
+    border-radius: var(--radius-small);
 
     &:hover {
+        background: white;
+        color: black;
         transition: 0.2s;
-        transform: var(--transform-hover);
-        box-shadow: var(--shadow-hover);
-    }
-    
-    &:active {
-        transition: 0s;
-        transform: var(--transform-active);
-        box-shadow: var(--shadow-active);
-    }
 
-    @media (max-width: 500px) {
-        padding: 1em;
-        width: 80%;
     }
 
 
@@ -152,9 +139,9 @@ export const BottomDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    /* position: fixed;
+    position: fixed;
     bottom: 0em;
-    margin-top: 2em; */
+    margin-top: 2em;
     color: white;
 
     @media (max-width: 500px) {

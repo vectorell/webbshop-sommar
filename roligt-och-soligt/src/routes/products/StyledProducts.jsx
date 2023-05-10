@@ -97,24 +97,18 @@ export const LinkDiv = styled.div`
 `
 
 export const StyledLink = styled(NavLink)`
-    // border: 1px solid black;
-    border-radius: var(--radius-small);
-    padding: 0.7em 1.7em;
-    font-weight: 600;
-    font-size: 1.3em;
-    box-shadow: var(--shadow-normal);
+    border: 1px solid #000000;
+    padding: 0.5em;
+    background: #313131;
+    color: white;
     transition: 0.2s;
-    background-color: var(--color-colombia-blue);
-    
+    font-size: 1.5em;
+    border-radius: var(--radius-small);
+
     &:hover {
+        background: white;
+        color: black;
         transition: 0.2s;
-        transform: scale(103%);
-        box-shadow: var(--shadow-hover);
-    }
-    
-    &:active {
-        transition: 0s;
-        transform: scale(97%);
-        box-shadow: var(--shadow-active);
+
     }
 `

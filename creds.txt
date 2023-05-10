@@ -26,3 +26,4 @@ Erase-icon: <a href="https://www.flaticon.com/free-icons/close" title="close ico
 pil upp/ned: <a href="https://www.flaticon.com/free-icons/traffic" title="traffic icons">Traffic icons created by Freepik - Flaticon</a>
 defaultToys: <a href="https://www.freepik.com/free-vector/toy-designs-collection_1024942.htm#query=toys&position=19&from_view=search&track=sph">Image by orsolyarigo</a> on Freepik
 tillbaka-ikon: <a href="https://www.flaticon.com/free-icons/arrow" title="arrow icons">Arrow icons created by Freepik - Flaticon</a>
+hero image: <a href="https://www.freepik.com/free-photo/concept-summer-skin-care-accessories-space-text_41131945.htm#query=summer%20toys&position=43&from_view=search&track=ais">Image by atlascompany</a> on Freepik

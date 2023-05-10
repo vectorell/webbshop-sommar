@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Root from './routes/Root'
 import { RecoilRoot } from 'recoil'
+import Start from './routes/start/Start'
 import Products from './routes/products/Products'
 import ProductDetails from './routes/productDetails/ProductDetails'
 import Cart from './routes/cart/Cart'
@@ -16,6 +17,10 @@ const router = createHashRouter([
     path: '',
     element: <Root />,
     children: [
+      {
+        path: 'start',
+        element: <Start />,
+      },
       {
         path: 'products',
         element: <Products />,
@@ -54,4 +59,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <RouterProvider router={router} />
     </RecoilRoot>
   </React.StrictMode>,
+  window.location.href = "#/start"
 )

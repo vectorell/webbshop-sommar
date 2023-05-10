@@ -31,7 +31,7 @@ export default function Products() {
                     ))}
                 </ProductsContainer>
                 <LinkDiv>
-                    <StyledLink to="/"> Tillbaka till start </StyledLink>
+                    <StyledLink to="/start"> Tillbaka till start </StyledLink>
                     <StyledLink to="/cart"> Till kundvagnen </StyledLink>
                 </LinkDiv>
             </PageDiv>
