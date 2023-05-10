@@ -5,8 +5,7 @@ import NewUserClean from "../../components/newUserClean/NewUserClean"
 import NewUserDirty from "../../components/newUserDirty/NewUserDirty"
 import Users from "../../components/users/Users"
 import { newUserState } from "../../recoil/atom/newUser/newUserState"
-import { validateName } from "../../utils"
-import { accounts } from "../../recoil/atom/accounts/accounts"
+import { validateName, validatePassword } from "../../utils"
 import { whoAmI } from "../../recoil/atom/whoAmI/whoAmI"
 import { InputDiv, PageTitle, Form, InputField, ContentDiv, ErrorMessageUser, LoginButton, StyledNavLink } from "./StyledAdmin"
 
@@ -19,97 +18,33 @@ export default function Admin() {
     const userPasswordInput = useRef(null)
     const [userPasswordErrorMessage, setUserPasswordErrorMessage] = useState((false))
     const [isNewUserClean, setIsNewUserClean] = useRecoilState(newUserState)
-
-    const [accountList, setAccountList] = useRecoilState(accounts)
     const [whoIAm, setWhoIAm] = useRecoilState(whoAmI)
-
-    /** LÖSENORD ******/
-    function validatePassword() {
-        const userString = userPasswordInput.current.value
-        const regex = /^.{8,30}$/
-
-        userString === '' ? (userPasswordInput.current.className = 'input', setUserPasswordErrorMessage((false)))
-
-        : regex.test(userString) ? (userPasswordInput.current.className = 'input valid', setUserPasswordErrorMessage((false)))
-
-        : (userPasswordInput.current.className = 'input invalid', setUserPasswordErrorMessage((true)))
-    }
-
-
-    /** LOGIN-KNAPP ******/
-    // function validateLogin(event) {
-    //     event.preventDefault()
-    //     setLoginError((false))
-        
-    //     // userNameInput.current.value === account.username && userPasswordInput.current.value === account.username ? setIsLoggedIn(true)
-    //     // : setIsLoggedIn(false), setLoginError(true)
-
-    //     let foundAccount
-    //     let foundAccountNameIsValid
-    //     let foundAccountPasswordValid
-
-    //     if (accountList.find(account => account.username === (userNameInput.current.value)) ) {
-    //         foundAccount = accountList.find(account => account.username === (userNameInput.current.value))
-    //         foundAccountNameIsValid = (foundAccount.username == userNameInput.current.value)
-    //         foundAccountPasswordValid = (foundAccount.password == userPasswordInput.current.value)
-
-            
-
-    //     } else {
-    //         foundAccount = null
-    //     }
-
-    //     console.log(foundAccount)
-
-
-
-    //     if (foundAccount === null) {
-    //         console.log('nay')
-    //         setIsLoggedIn(false)
-    //         setLoginError(true)
-    //         userPasswordInput.current.className = 'input'
-    //         userNameInput.current.className = 'input'
-    //     } else if (foundAccountNameIsValid && foundAccountPasswordValid) {
-    //         console.log('yay')
-    //         setIsLoggedIn((true))
-            
-    //         let updateWhoIAm = {...whoIAm, username: foundAccount.username}
-    //         updateWhoIAm.username = foundAccount.username
-            
-    //         setWhoIAm(updateWhoIAm)
-    //         console.log(updateWhoIAm)
-
-    //         setWhoIAm(updateWhoIAm)
-    //         console.log('setWhoIAm', whoIAm, whoAmI)
-    //         userPasswordInput.current.className = 'input'
-    //         userNameInput.current.className = 'input'
-    //     }
-
-
-    // }
-
-    // fetchUsers()
     
     async function validateLogin(name, password) {
         event.preventDefault()
         setLoginError((false))
 
-        const data = { shopid: 3001, username: name, password: password }
-        const options = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
+        const usernameIsValid = /^[a-zA-Z\s]{2,}$/.test(name)
+        const passwordIsValid = /^.{8,30}$/.test(password)
+
+        if (usernameIsValid && passwordIsValid) {
+            const data = { shopid: 3001, username: name, password: password }
+            const options = {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            }
+    
+            let response = await fetch('https://www.forverkliga.se/JavaScript/api/fe/?action=login-user', options)
+            let statusObject = await response.json()
+            console.log(statusObject)
+    
+            statusObject.status === 'success' ? 
+                (setIsLoggedIn(true), 
+                setLoginError(false),
+                setWhoIAm({...whoIAm, username: name})) 
+            : setLoginError(true)
         }
-
-        let response = await fetch('https://www.forverkliga.se/JavaScript/api/fe/?action=login-user', options)
-        let statusObject = await response.json()
-        console.log(statusObject)
-
-        statusObject.status === 'success' ? 
-            (setIsLoggedIn(true), 
-            setLoginError(false),
-            setWhoIAm({...whoIAm, username: name})) 
-        : setLoginError(true)
     }
     
     return (
@@ -126,11 +61,8 @@ export default function Admin() {
                     </ContentDiv>
                     
                     <StyledNavLink to="/admin/products"> Redigera produkter </StyledNavLink>
-
                     <LoginButton onClick={() => {setLoginError(false), setIsLoggedIn(false)}} > Logga ut </LoginButton>
-                </>
-            )}
-            
+            </>)}
             
             { !isLoggedIn &&
             // OM UTLOGGAD
@@ -138,7 +70,6 @@ export default function Admin() {
                     <Form>
                         <InputDiv>
                             <p> Användarnamn </p>
-                            
                             <InputField 
                                 className = 'input'
                                 type = 'text'
@@ -154,7 +85,7 @@ export default function Admin() {
                                 className = 'input'
                                 type = 'password'
                                 ref={userPasswordInput}
-                                onChange={() => validatePassword()}
+                                onChange={() => validatePassword(userPasswordInput, setUserPasswordErrorMessage)}
                                 />
                                 {userPasswordErrorMessage && <ErrorMessageUser> Var god ange ditt lösenord, från 8 till 30 tecken. </ErrorMessageUser>}
                         </InputDiv>

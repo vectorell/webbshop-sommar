@@ -24,6 +24,41 @@ export function validateName(input, errorMessage) {
     : (input.current.classList.remove('valid'), input.current.classList.add('invalid'), errorMessage((true)))
 }
 
+/** VALIDERING LÖSENORD ******/
+export function validatePassword(userPasswordInput, setUserPasswordErrorMessage) {
+    const userString = userPasswordInput.current.value
+    const regex = /^.{8,30}$/
+
+    userString === '' ? (userPasswordInput.current.className = 'input', setUserPasswordErrorMessage((false)))
+
+    : regex.test(userString) ? (userPasswordInput.current.className = 'input valid', setUserPasswordErrorMessage((false)))
+
+    : (userPasswordInput.current.className = 'input invalid', setUserPasswordErrorMessage((true)))
+}
+
+
+/** VALIDERING: sökfält */
+export function validateSearch(input, inputElement, errorMessage) {
+    // console.log('validateSearch körs')
+    inputElement.current.classList.remove('invalid')
+    inputElement.current.classList.remove('valid')
+
+    const string = input
+    const regex = /^[0-9a-zA-Z\s]{1,}$/
+
+    regex.test(input) ? console.log('matchar') 
+    : console.log('matchar ej')
+
+    
+    string === '' ? (inputElement.current.classList.add('input'), errorMessage((false)), inputElement.current.classList.remove('invalid'))
+
+    : regex.test(string) ? (inputElement.current.classList.add('valid'), inputElement.current.classList.remove('invalid'), errorMessage((false)))
+
+    : (inputElement.current.classList.remove('valid'), inputElement.current.classList.add('invalid'), errorMessage((true)))
+
+
+}
+
 
 /** API-funktioner nedan */
 const baseUrl = 'https://www.forverkliga.se/JavaScript/api/fe/'

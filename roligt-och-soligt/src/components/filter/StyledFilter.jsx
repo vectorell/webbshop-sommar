@@ -11,7 +11,7 @@ export const FilterDiv = styled.div`
     padding: 0.5em;
     color: white;
     /* font-size: 1.2em; */
-    width: 55%;
+    /* width: 55%; */
     border-radius: var(--radius-medium);
 `
 

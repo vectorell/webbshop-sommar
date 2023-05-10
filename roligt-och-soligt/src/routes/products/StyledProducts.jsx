@@ -10,6 +10,7 @@ export const PageTitle = styled.h1`
 export const PageDiv = styled.div`
     padding-bottom: 2em;
     text-align: center;
+    width: 60%;
 `
 
 export const ProductsContainer = styled.div`
@@ -27,30 +28,30 @@ export const ProductsContainer = styled.div`
 `
     
 export const ProductCard = styled.div`
-border: 1px solid #0000007d;
-border-radius: var(--radius-small);
-background-color: white;
-padding: 0.5em;
-margin: 0.5em;
-height: 22em;
-max-width: 15em;
-overflow: hidden;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-box-shadow: var(--shadow-normal);
-transition: 0.2s;
-
-&:hover {
+    border: 1px solid #0000007d;
+    border-radius: var(--radius-small);
+    background-color: white;
+    padding: 0.5em;
+    margin: 0.5em;
+    height: 22em;
+    max-width: 15em;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-normal);
     transition: 0.2s;
-    transform: scale(105%);
-    box-shadow: var(--shadow-hover);
-}
-&:active {
-    transition: 0s;
-    transform: scale(97%);
-    box-shadow: var(--shadow-active);
-}
+
+    &:hover {
+        transition: 0.2s;
+        transform: scale(105%);
+        box-shadow: var(--shadow-hover);
+    }
+    &:active {
+        transition: 0s;
+        transform: scale(97%);
+        box-shadow: var(--shadow-active);
+    }
 `
 
 export const ProductTitle = styled.h2`
