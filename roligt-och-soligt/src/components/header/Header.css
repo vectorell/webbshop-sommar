@@ -1,5 +1,7 @@
 .header-div {
-    background-color: var(--color-colombia-blue);
+    /* background: linear-gradient( #FFFFFF ,var(--color-colombia-blue)); */
+    background: white;
+    border: 1px solid black;
     width: 100vw;
     height: 6em;
     position: fixed;
@@ -8,4 +10,5 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-shadow: var(--shadow-normal);
 }

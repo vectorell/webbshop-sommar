@@ -1,6 +1,7 @@
 import styled from "styled-components"
 
 export const FilterDiv = styled.div`
+    background: linear-gradient(230deg, #FFFFFF 55%, var(--color-jonquil) 55%, #ffffff);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,6 +12,7 @@ export const FilterDiv = styled.div`
     margin-top: 0.5em;
     color: white;
     border-radius: var(--radius-medium);
+
 
     @media (max-width: 500px) {
         border-radius: 0em;

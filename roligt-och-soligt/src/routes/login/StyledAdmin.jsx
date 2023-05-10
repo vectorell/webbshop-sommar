@@ -15,16 +15,27 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
+    width: 30%;
     max-width: 35em;
+
+    @media (max-width: 500px) {
+        width: 80%;
+    }
+`
+export const ParaFieldName = styled.p`
+    align-self: start;
 `
 
 export const InputField = styled.input`
+    padding: 0.5em;
+    /* max-width: 25em; */
+    width: 100%;
 `
 
 export const InputDiv = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
     flex-wrap: wrap;
     width: 100%;
     height: 5em;

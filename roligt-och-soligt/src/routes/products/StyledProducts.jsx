@@ -35,7 +35,7 @@ export const ProductsContainer = styled.div`
     }
     
 `
-    
+
 export const ProductCard = styled.div`
     border: 1px solid #0000007d;
     border-radius: var(--radius-small);

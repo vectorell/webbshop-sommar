@@ -6,14 +6,20 @@ export const PageDiv = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 50%;
+
+    @media (max-width: 500px) {
+        max-width: unset;
+    }
 `
 export const WelcomeCardDiv = styled.div`
     border: 1px solid #cdcdcd;
+    background: linear-gradient(230deg, #FFFFFF 55%, var(--color-jonquil) 55%, #ffffff 80%);
     margin: 2em;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
+    width: 100%;
     min-height: 40em;
     box-shadow: var(--shadow-normal);   
 
@@ -23,7 +29,7 @@ export const WelcomeCardDiv = styled.div`
     }
 `
 export const MainInfoDiv = styled.div`
-    /* border: 1px dashed green; */
+    padding: 1em;
     display: flex;
     column-gap: 5em;
 
@@ -52,14 +58,16 @@ export const ProductsButton = styled(NavLink)`
     transition: 0.2s;
     font-size: 1.5em;
     border-radius: var(--radius-small);
-    margin: 1em;
     text-align: center;
-
+    
     &:hover {
         background: white;
         color: black;
         transition: 0.2s;
-
+        
+    }
+    @media (max-width: 500px) {
+        margin-top: 1em;
     }
 `
 

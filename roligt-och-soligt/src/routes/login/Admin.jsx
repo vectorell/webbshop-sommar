@@ -7,7 +7,7 @@ import Users from "../../components/users/Users"
 import { newUserState } from "../../recoil/atom/newUser/newUserState"
 import { validateName, validatePassword } from "../../utils"
 import { whoAmI } from "../../recoil/atom/whoAmI/whoAmI"
-import {InputDiv,PageTitle,Form,InputField,ContentDiv,ErrorMessageUser,LoginButton,StyledNavLink,} from "./StyledAdmin"
+import {InputDiv,PageTitle,Form,InputField,ContentDiv,ErrorMessageUser,LoginButton,StyledNavLink, ParaFieldName} from "./StyledAdmin"
 
 export default function Admin() {
     const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState)
@@ -50,9 +50,9 @@ export default function Admin() {
     return (
         <>
             <PageTitle> {isLoggedIn ? `Välkommen, ${whoIAm.username}!` : "Logga in"} </PageTitle>
-            {/* <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
+            <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
                 {isLoggedIn ? "Logga ut" : "Logga in"}{" "}
-            </button> */}
+            </button>
 
             {isLoggedIn && (
                 <>
@@ -71,7 +71,7 @@ export default function Admin() {
             {!isLoggedIn && ( <>
                     <Form>
                         <InputDiv>
-                            <p> Användarnamn </p>
+                            <ParaFieldName> Användarnamn </ParaFieldName>
                             <InputField
                                 className="input"
                                 type="text"
@@ -82,7 +82,7 @@ export default function Admin() {
                         </InputDiv>
 
                         <InputDiv>
-                            <p> Lösenord </p>
+                            <ParaFieldName> Lösenord </ParaFieldName>
                             <InputField
                                 className="input"
                                 type="password"

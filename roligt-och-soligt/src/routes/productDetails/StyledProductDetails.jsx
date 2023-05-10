@@ -18,7 +18,7 @@ export const ProductDiv = styled.div`
     /* padding: 0.5em; */
     margin: 0.5em;
     height: 50em;
-    // max-width: 15em;
+    max-width: 50em;
     overflow: hidden;
     display: flex;
     flex-direction: column;

@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil"
 import { cartState } from "../../recoil/atom/cartState/cartState"
-import { PageDiv, ProductDiv, ImageDiv, ProductImage, ButtonsDiv, Button, PageTitle, NavButton, PricePara, BottomDiv } from "./StyledCart"
+import { PageDiv, ProductDiv, ImageDiv, ProductImage, ButtonsDiv, Button, PageTitle, NavButton, PricePara, BottomDiv, ParaProductName, ParaProductPrice } from "./StyledCart"
 
 function Cart() {
     const [cart, setCart] = useRecoilState(cartState)
@@ -29,8 +29,10 @@ function Cart() {
                             <ImageDiv>
                                 <ProductImage src={product.picture} alt={product.name}/>
                             </ImageDiv>
-                            <p> {product.name} </p>
-                            <p> {product.price}:- </p>
+                            <div>
+                                <ParaProductName> {product.name} </ParaProductName>
+                                <ParaProductPrice> {product.price}:- </ParaProductPrice>
+                            </div>
                             <ButtonsDiv>
                                 <Button onClick={()=> removeFromCart(index)}> - </Button>
                                 <Button onClick={()=> addAnotherToCart(product)}> + </Button>

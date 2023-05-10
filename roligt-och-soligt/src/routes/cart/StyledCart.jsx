@@ -3,7 +3,8 @@ import { Link } from "react-router-dom"
 
 export const PageDiv = styled.div`
     /* border: 1px solid black; */
-    width: 100%;
+    width: 50%;
+    min-width: 32em;
     height: fit-content;
     min-height: 100%;
     display: flex;
@@ -12,10 +13,14 @@ export const PageDiv = styled.div`
     align-items: center;
     position: relative;
     margin-bottom: 15em;
-
+    
     @media (max-width: 500px) {
+        min-width: 90%;
         min-height: 100%;
+        margin-bottom: 25em;
     }
+
+
 `
 
 export const PageTitle = styled.h1`
@@ -26,12 +31,11 @@ export const PageTitle = styled.h1`
 
 export const ProductDiv = styled.div`
     border: 1px solid black;
-    width: 70%;
-    /* padding: 2em; */
     border-radius: var(--radius-small);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    column-gap: 1em;;
     font-size: 1.3em;
     font-weight: 600;
     box-shadow: var(--shadow-normal);
@@ -39,6 +43,7 @@ export const ProductDiv = styled.div`
     height: 5em;
     overflow: hidden;
     padding-right: 1em;
+    width: 90%;
     
     &:hover {
         cursor: pointer;
@@ -46,12 +51,6 @@ export const ProductDiv = styled.div`
         box-shadow: var(--shadow-hover);
         transform: var(--transform-hover);
     }
-
-    /* &:active {
-        transition: 0s;
-        box-shadow: var(--shadow-active);
-        transform: var(--transform-active);
-    } */
 
     @media (max-width: 500px) {
         flex-direction: column;
@@ -62,6 +61,7 @@ export const ProductDiv = styled.div`
 
 export const ImageDiv = styled.div`
     width: 30%;
+    min-width: fit-content;
     height: 100%;
     overflow: hidden;
     border: 1px solid black;
@@ -77,14 +77,25 @@ export const ProductImage = styled.img`
     object-fit: cover;
     /* overflow: hidden; */
 `
+
+export const ParaProductName = styled.p`
+    font-weight: 500;
+    font-size: 0.9em;
+    `
+export const ParaProductPrice = styled.p`
+    font-weight: 500;
+    font-size: 0.8em;
+`
+
 export const ButtonsDiv = styled.div`
     display: flex;
-    column-gap: 1em;
+    column-gap: 0.5em;
+    /* flex-wrap: wrap; */
 `
 
 export const Button = styled.button`
-    padding: 0.25em 0.6em;
-    margin: 1em 0em;
+    padding: 0.1em 0.3em;
+    /* margin: 1em 0em; */
     font-size: 1.5em;
     color: white;
     /* border-radius: 100%; */
@@ -106,7 +117,7 @@ export const Button = styled.button`
 `
 export const PricePara = styled.p`
     margin: 0.5em 3em;
-    font-size: 2em;
+    font-size: 1.5em;
     flex-grow: 1;
 `
 
@@ -134,7 +145,7 @@ export const NavButton = styled(Link)`
 export const BottomDiv = styled.div`
     border-top: 1px solid black;
     background-color: #000000;
-    height: 10em;
+    height: 7em;
     width: 100%;
     display: flex;
     justify-content: center;
