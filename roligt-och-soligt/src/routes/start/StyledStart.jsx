@@ -7,6 +7,7 @@ export const PageDiv = styled.div`
     justify-content: center;
     align-items: center;
     max-width: 60em;
+    margin-top: 2em;
 
     @media (max-width: 500px) {
         max-width: unset;
@@ -14,7 +15,7 @@ export const PageDiv = styled.div`
 `
 export const WelcomeCardDiv = styled.div`
     border: 1px solid #cdcdcd;
-    background: linear-gradient(230deg, #FFFFFF 55%, var(--color-jonquil) 55%, #ffffff 80%);
+    background: linear-gradient(160deg, #FFFFFF 55%, var(--color-jonquil) 55%, #ffffff 80%);
     margin: 2em;
     display: flex;
     flex-direction: column;
@@ -44,10 +45,15 @@ export const MainInfoDiv = styled.div`
 `
 export const InfoDiv = styled.div`
     /* border: 1px dashed green; */
+    & > * {
+        font-size: var(--fontsize-smallmedium);
+    }
 `
+
 
 export const PageTitle = styled.h1`
     margin-top: 1em;
+    font-size: var(--fontsize-XXL);
 `
 
 export const InfoTitle = styled.p`
@@ -66,7 +72,7 @@ export const ProductsButton = styled(NavLink)`
     text-align: center;
     
     &:hover {
-        background: white;
+        background: none;
         color: black;
         transition: 0.2s;
         

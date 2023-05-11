@@ -7,7 +7,7 @@ import Users from "../../components/users/Users"
 import { newUserState } from "../../recoil/atom/newUser/newUserState"
 import { validateName, validatePassword } from "../../utils"
 import { whoAmI } from "../../recoil/atom/whoAmI/whoAmI"
-import {InputDiv,PageTitle,Form,InputField,ContentDiv,ErrorMessageUser,LoginButton,StyledNavLink, ParaFieldName} from "./StyledAdmin"
+import {InputDiv,PageTitle,Form,InputField,ContentDiv,ErrorMessageUser,LoginButton,StyledNavLink, ParaFieldName, SectionTitle, PageDiv, ButtonsDiv} from "./StyledAdmin"
 import loadingSpinner from '../../assets/loading-spinner.gif'
 
 export default function Admin() {
@@ -55,24 +55,23 @@ export default function Admin() {
     }
 
     return (
-        <>
+        <PageDiv>
             <PageTitle> {isLoggedIn ? `Välkommen, ${whoIAm.username}!` : "Logga in"} </PageTitle>
-            <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
-                {isLoggedIn ? "Logga ut" : "Logga in"}{" "}
-            </button>
-
+            
+            
             {isLoggedIn && (
                 <>
-                    <p> Användare </p>
+                    <SectionTitle> Användare </SectionTitle>
                     <ContentDiv>
                         <Users />
                         {isNewUserClean ? <NewUserClean /> : <NewUserDirty />}
                     </ContentDiv>
-
-                    <StyledNavLink to="/admin/products"> Redigera produkter </StyledNavLink>
-                    <LoginButton onClick={() => {setLoginError(false), setIsLoggedIn(false)}}>
-                        Logga ut
-                    </LoginButton>
+                    <ButtonsDiv>
+                        <StyledNavLink to="/admin/products"> Redigera produkter </StyledNavLink>
+                        <LoginButton onClick={() => {setLoginError(false), setIsLoggedIn(false)}}>
+                            Logga ut
+                        </LoginButton>
+                    </ButtonsDiv>
                 </>)}
 
             {!isLoggedIn && ( <>
@@ -113,6 +112,6 @@ export default function Admin() {
                     </Form>
                 </>
             )}
-        </>
+        </PageDiv>
     )
 }

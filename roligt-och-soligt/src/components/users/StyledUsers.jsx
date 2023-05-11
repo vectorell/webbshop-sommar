@@ -1,10 +1,11 @@
 import styled from "styled-components"
 import { NavLink } from "react-router-dom";
+import pattern from '../../assets/pattern.jpg'
 
 export const PageTitle = styled.h1`
     margin-top: 1em;
     margin-bottom: 1em;
-    font-size: 3em;
+    font-size: var(--fontsize-XXL);
 `
 export const Form = styled.form`
     display: flex;
@@ -68,16 +69,17 @@ export const ContentDiv = styled.div`
 
 export const UserDiv = styled.div`
     border: 1px solid black;
-    max-width: 10em;
-    height: 14em;
+    width: 10em;
+    height: 7em;
     margin: 1em;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     border-radius: var(--radius-small);
     /* transition: 0.2s; */
     box-shadow: var(--shadow-normal);
+    background-image: url( ${pattern} ) ;
     
     &:hover {
         outline: 2px solid var(--color-light-sea-green);
@@ -104,7 +106,7 @@ export const UserName = styled.p`
 
 export const EditIcon = styled.img`
     margin-top: 1em;
-    height: 15%;
+    height: 2em;
     padding: 0.1em 1em;
     border-radius: var(--radius-medium);
     filter: grayscale();

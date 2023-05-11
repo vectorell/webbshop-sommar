@@ -3,7 +3,7 @@ import { cartState } from "../../recoil/atom/cartState/cartState.js"
 import { useRecoilState } from "recoil"
 import { useParams } from "react-router-dom"
 import productList from "../../recoil/atom/products/products.jsx"
-import { PageDiv, PageTitle, ProductDiv, ProductImage, ProductInfo, ButtonsDiv, ButtonLink, ButtonLinkAddToCart, DivAddToCart } from "./StyledProductDetails.jsx"
+import { PageDiv, PageTitle, ProductDiv, ProductImage, ProductInfo, ButtonsDiv, ButtonLink, ButtonLinkAddToCart, DivAddToCart, DivProductImage, ParaProductDescription, ParaProductName, ParaProductPrice } from "./StyledProductDetails.jsx"
 
 export default function ProductDetails() {
     const {id} = useParams()
@@ -31,11 +31,13 @@ export default function ProductDetails() {
 
             {product && 
                 <>
-                    <ProductImage src={ product.picture } alt={product.name}/>
+                    <DivProductImage>
+                        <ProductImage src={ product.picture } alt={product.name}/>
+                    </DivProductImage>
                     <ProductInfo>
                         <h1> {product.name} </h1>
-                        <p> { product.description } </p>
-                        <p> { product.price }:- </p>
+                        <ParaProductDescription> { product.description } </ParaProductDescription>
+                        <ParaProductPrice> { product.price }:- </ParaProductPrice>
                     </ProductInfo>
                     <DivAddToCart>
                         <ButtonLinkAddToCart onClick={() => {
@@ -47,10 +49,10 @@ export default function ProductDetails() {
                 </>
             }
             </ProductDiv>
-                    <ButtonsDiv>
-                        <ButtonLink to="/products"> Tillbaka </ButtonLink>
-                        <ButtonLink to="/cart"> Till kundvagn </ButtonLink>
-                    </ButtonsDiv>
+            <ButtonsDiv>
+                <ButtonLink to="/products"> Tillbaka till produkter </ButtonLink>
+                <ButtonLink to="/cart"> Till kundvagn </ButtonLink>
+            </ButtonsDiv>
         </PageDiv>
     )
 }

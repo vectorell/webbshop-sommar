@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { Link, NavLink } from "react-router-dom"
+import pattern from '../../assets/pattern.jpg'
 
 export const PageDiv = styled.div`
     /* border: 1px solid black; */
@@ -26,7 +27,7 @@ export const PageDiv = styled.div`
 export const PageTitle = styled.h1`
     margin-top: 1em;
     margin-bottom: 1em;
-    font-size: 3em;
+    font-size: var(--fontsize-XXL);
 `
 
 export const ProductDiv = styled.div`
@@ -44,6 +45,7 @@ export const ProductDiv = styled.div`
     overflow: hidden;
     padding-right: 1em;
     width: 90%;
+    background-image: url( ${pattern}) ;
     
     &:hover {
         cursor: pointer;
@@ -80,11 +82,11 @@ export const ProductImage = styled.img`
 
 export const ParaProductName = styled.p`
     font-weight: 500;
-    font-size: 0.9em;
+    font-size: var(--fontsize-medium);
     `
 export const ParaProductPrice = styled.p`
     font-weight: 500;
-    font-size: 0.8em;
+    font-size: var(--fontsize-small);
 `
 
 export const ButtonsDiv = styled.div`
@@ -126,7 +128,6 @@ export const PricePara = styled.p`
     text-align: center;
 `
 
-
 export const NavButton = styled(Link)`
     border: 1px solid #000000;
     padding: 0.5em;
@@ -134,7 +135,7 @@ export const NavButton = styled(Link)`
     background: #313131;
     color: white;
     transition: 0.2s;
-    font-size: 1.2em;
+    font-size: var(--fontsize-medium);
     border-radius: var(--radius-small);
     text-align: center;
 
@@ -147,8 +148,6 @@ export const NavButton = styled(Link)`
     @media (max-width: 500px) {
         width: 90%;
     }
-
-
 `
 
 export const BottomDiv = styled.div`

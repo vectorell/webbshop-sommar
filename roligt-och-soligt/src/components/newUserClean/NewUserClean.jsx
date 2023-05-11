@@ -10,10 +10,10 @@ function NewUserClean() {
 
     return (
         <UserDiv>
-            <UserImageDiv> 
+            {/* <UserImageDiv> 
                 <UserImage src={noPhoto}/> 
-            </UserImageDiv>
-            <UserName> Ny användare </UserName>
+            </UserImageDiv> */}
+            <UserName> Ny användare? </UserName>
             <EditIcon src={addIcon} onClick={() => setIsNewUserClean(!isNewUserClean)}/>
         </UserDiv>
     )

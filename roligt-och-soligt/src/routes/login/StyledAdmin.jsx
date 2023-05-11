@@ -1,25 +1,40 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import pattern from '../../assets/pattern.jpg'
+
+export const PageDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+`
 
 export const PageTitle = styled.h1`
-    margin-top: 1em;
+    margin-top: 2em;
     margin-bottom: 1em;
-    font-size: 3em;
+    font-size: var(--fontsize-XXL);
     text-align: center;
 
     @media (max-width: 500px) {
         font-size: 2em;
     }
 `
+
+export const SectionTitle = styled.p`
+    font-weight: 600;
+    font-size: 1.4em;
+    align-self: flex-start;
+`
 export const Form = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 30%;
     max-width: 35em;
 
     @media (max-width: 500px) {
         width: 80%;
+        row-gap: 1.5em;
     }
 `
 export const ParaFieldName = styled.p`
@@ -36,33 +51,35 @@ export const InputDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     width: 100%;
+    min-width:31em;
     height: 5em;
+
+    @media(max-width: 500px) {
+        min-width: unset;
+    }
 `
 
 export const LoginButton = styled.button`
-    background-color: white;
-    /* min-width: 10em; */
-    max-width: 10em;
-    font-size: 1.2em;
-    padding: 0.5em 1em;
-    margin: 1em;
-    border: 1px solid black;
-    border-radius: var(--radius-small);
-    box-shadow: var(--shadow-normal);
+border: 1px solid #000000;
+    padding: 0.5em;
+    background: #313131;
+    color: white;
     transition: 0.2s;
-    
+    font-size: 1.1em;
+    border-radius: var(--radius-small);
+    margin: 1em;
+
+    &:active {
+        background: linear-gradient(230deg, #FFFFFF 55%, var(--color-jonquil) 55%, #ffffff);;
+        color: black;
+    }
+
     &:hover {
         transition: 0.2s;
         box-shadow: var(--shadow-hover);
-        transform: var(--transform-hover);
-    }
-
-    &:active {
-        transition: 0s;
-        box-shadow: var(--shadow-active);
-        transform: var(--transform-active);
+        transform: scale(103%);
     }
 `
 
@@ -74,10 +91,11 @@ export const ContentDiv = styled.div`
     box-shadow: var(--shadow-normal);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    background: #FFFFFF;
 
     @media (max-width: 500px) {
         grid-template-columns: 1fr;
-        width: 80%;
+        width: 100%;
         justify-items: center;
     }
 `
@@ -89,11 +107,12 @@ export const UserDiv = styled.div`
     margin: 1em;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     border-radius: var(--radius-small);
     /* transition: 0.2s; */
     box-shadow: var(--shadow-normal);
+    background-image: url( ${pattern} ) ;
     
     &:hover {
         outline: 2px solid var(--color-light-sea-green);
@@ -120,7 +139,7 @@ export const UserName = styled.p`
 
 export const EditIcon = styled.img`
     margin-top: 1em;
-    height: 15%;
+    height: 2em;
     padding: 0.1em 1em;
     border-radius: var(--radius-medium);
     filter: grayscale();
@@ -143,25 +162,27 @@ export const Message = styled.p`
 `
 
 export const StyledNavLink = styled(NavLink)`
-    background-color: white;
-    max-width: 13em;
-    font-size: 1.2em;
-    padding: 0.5em 1em;
-    margin: 2em;
-    border: 1px solid black;
-    border-radius: var(--radius-small);
-    box-shadow: var(--shadow-normal);
+border: 1px solid #000000;
+    padding: 0.5em;
+    background: #313131;
+    color: white;
     transition: 0.2s;
-    
+    font-size: 1.1em;
+    border-radius: var(--radius-small);
+    margin: 1em;
+
+    &:active {
+        background: linear-gradient(230deg, #FFFFFF 55%, var(--color-jonquil) 55%, #ffffff);;
+        color: black;
+    }
+
     &:hover {
         transition: 0.2s;
         box-shadow: var(--shadow-hover);
-        transform: var(--transform-hover);
+        transform: scale(103%);
     }
+`
 
-    &:active {
-        transition: 0s;
-        box-shadow: var(--shadow-active);
-        transform: var(--transform-active);
-    }
+export const ButtonsDiv = styled.div`
+    display: flex;
 `

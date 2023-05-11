@@ -10,7 +10,7 @@ export const SearchDiv = styled.div`
     background-color: black;
     padding: 0.5em;
     color: white;
-    font-size: 1.2em;
+    font-size: var(--fontsize-medium);
     width: 100%;
     text-align: start;
 
@@ -30,6 +30,7 @@ export const DivSearchField = styled.div`
         width: 100%;
     }
 `
+
 export const ParaFieldText = styled.p`
     font-size: 0.8em;
 
@@ -41,12 +42,15 @@ export const ParaFieldText = styled.p`
 export const SearchInput = styled.input`
     width: 100%;
     padding: 0.5em 1em;
+    font-size: var(--fontsize-small);
 
     &:focus::placeholder {
         opacity: 0;
     }
 `
+
 export const Button = styled.button`
     /* color: green; */
     padding: 0.5em 1em;
+    font-size: var(--fontsize-small);
 `

@@ -25,7 +25,7 @@ export const Button = styled.button`
     background: #313131;
     color: white;
     transition: 0.2s;
-    font-size: 0.8em;
+    font-size: var(--fontsize-small);
     border-radius: var(--radius-small);
 
     &:hover {
@@ -38,5 +38,9 @@ export const Button = styled.button`
         background: white;
         color: black;
         transition: 0.2s;
+    }
+
+    @media(max-width: 500px) {
+        font-size: 0.9em;
     }
 `

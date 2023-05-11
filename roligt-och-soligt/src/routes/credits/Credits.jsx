@@ -67,6 +67,10 @@ export default function Credits() {
                         <LiTitle> Default new product image </LiTitle>
                         <a href="https://www.freepik.com/free-vector/toy-designs-collection_1024942.htm#query=toys&position=19&from_view=search&track=sph">Image by orsolyarigo</a> on Freepik
                     </LiElement>
+                    <LiElement>
+                        <LiTitle> Pattern </LiTitle>
+                        <a href="https://www.freepik.com/free-vector/white-triangles-background_893922.htm#query=pattern%20subtle&position=5&from_view=search&track=ais">Image by Layerace</a> on Freepik
+                    </LiElement>
                 </UlElement>
             </DivUl>
 

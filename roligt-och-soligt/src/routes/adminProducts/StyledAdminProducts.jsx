@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 export const PageTitle = styled.h1`
     margin-top: 1em;
     margin-bottom: 1em;
-    font-size: 3em;
+    font-size: var(--fontsize-XXL);
 `
 
 export const PageDiv = styled.div`

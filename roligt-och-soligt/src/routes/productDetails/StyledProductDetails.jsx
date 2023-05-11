@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { Link, NavLink } from "react-router-dom"
+import pattern from '../../assets/pattern.jpg'
 
 export const PageDiv = styled.div`
     display: flex;
@@ -10,7 +11,7 @@ export const PageDiv = styled.div`
 export const PageTitle = styled.h1`
     margin-top: 1em;
     margin-bottom: 1em;
-    font-size: 3em;
+    font-size: var(--fontsize-XXL);
 
     @media (max-width: 500px) {
         font-size: 2em;
@@ -20,7 +21,7 @@ export const PageTitle = styled.h1`
 export const ProductDiv = styled.div`
     border: 1px solid #0000007d;
     border-radius: var(--radius-small);
-    background: linear-gradient(130deg, #FFFFFF 75%, var(--color-jonquil) );
+    background-image: url( ${pattern} );
     padding: 0.5em;
     margin: 0.5em;
     /* height: 50em; */
@@ -36,8 +37,11 @@ export const ProductDiv = styled.div`
 export const ProductImage = styled.img`
     width: 100%;
     /* height: 70%; */
-    object-fit: cover;
+    object-fit: stretch;
     overflow: hidden;
+    `
+export const DivProductImage = styled.div`
+    /* border: inset; */
 `
 
 export const ProductInfo = styled.div`
@@ -53,6 +57,18 @@ export const ProductInfo = styled.div`
     }
 `
 
+export const ParaProductName = styled.p`
+    
+`
+
+export const ParaProductDescription = styled.p`
+    font-size: var(--fontsize-smallmedium);
+`
+
+export const ParaProductPrice = styled.p`
+    font-size: var(--fontsize-medium);
+`
+
 export const ButtonsDiv = styled.div`
     display: flex;
     column-gap: 1em;
@@ -64,12 +80,12 @@ export const ButtonLink = styled(Link)`
     background: #313131;
     color: white;
     transition: 0.2s;
-    font-size: 1.1em;
+    font-size: var(--fontsize-medium);
     border-radius: var(--radius-small);
     margin: 1em;
 
     &:active {
-        background: linear-gradient(230deg, #FFFFFF 55%, var(--color-jonquil) 55%, #ffffff);;
+        background: none;
         color: black;
     }
 
@@ -84,9 +100,12 @@ export const ButtonLink = styled(Link)`
         box-shadow: var(--shadow-active);
         transform: scale(97%);
     }
+
+    @media(max-width: 500px) {
+        font-size: var(--fontsize-small);
+    }
 `
 export const ButtonLinkAddToCart = styled.button`
-    /* border: 1px solid #000000; */
     padding: 0.5em;
     background: #56915e;
     color: white;
