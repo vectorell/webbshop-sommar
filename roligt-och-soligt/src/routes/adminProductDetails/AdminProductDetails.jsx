@@ -6,14 +6,16 @@ import isLoadingAPI from "../../recoil/atom/isLoadingAPI/isLoadingAPI.js"
 import { validateSearch } from "../../utils.js"
 
 import { PageTitle, ProductDiv, ProductImage, ProductInfo, ButtonsDiv, ButtonLink, DivInput, ParaErrorMsg, DivErrorMsg } from "../../routes/adminProductDetails/StyledAdminProductDetails.jsx"
+import loadingSpinner from "../../recoil/atom/loadingSpinner/loadingSpinner.js"
 
-function AdminProductDetails() {
+export default function AdminProductDetails() {
 
     const navigate = useNavigate()
     const {id} = useParams()
     
     const [products, setProducts] = useRecoilState(productList)
     const [isLoading, setIsLoading] = useRecoilState(isLoadingAPI)
+    const [spinnerLoading, setSpinnerLoading] = useRecoilState(loadingSpinner)
     
     const [edit, setEdit] = useState(false)
     const [product, setProduct] = useState(null)
@@ -32,30 +34,25 @@ function AdminProductDetails() {
     const shopId = 3001
 
 
-    function findProduct(id) {
-        return products.find(product => product.id == id)
-    }
+    function findProduct(id) { return products.find(product => product.id == id) }
 
-    useEffect(() => {
-        setProduct(findProduct(id))
-    },[id])
-
+    useEffect(() => { setProduct( findProduct(id)) }, [id] )
 
     async function getAllProducts() {
+        setSpinnerLoading(true)
         try {
             let response = await fetch(baseUrl + '?action=get-products&shopid=' + shopId)
             const data = await response.json()
             setProducts(data)
         } catch (error) {
             console.log('error !')
+        } finally {
+            setSpinnerLoading(false)
+            setIsLoading(false)
         }
-        setIsLoading(false)
     }
 
-    useEffect(() => {
-        getAllProducts()
-    }, [])
-
+    useEffect( () => { getAllProducts() }, [] )
 
     async function applyChanges(title, description, price) {
         const regexName = /^[-"()=:.,!?0-9a-öA-Ö\s]{2,150}$/
@@ -71,43 +68,56 @@ function AdminProductDetails() {
         let priceIsValid = regexPrice.test(price)
 
         if (nameIsValid && descriptionIsValid && priceIsValid) {
-            const data = {
-                name: inputTitle.current.value !== '' ? title : product.name,
-                price: inputPrice.current.value !== '' ? Number(price) : Number(product.price),
-                description: inputDescription.current.value !== '' ? description : product.description,
-                picture: product.picture,
-                shopid: 3001,
-                productid: product.id,
+            setSpinnerLoading(true)
+            try {
+                const data = {
+                    name: inputTitle.current.value !== '' ? title : product.name,
+                    price: inputPrice.current.value !== '' ? Number(price) : Number(product.price),
+                    description: inputDescription.current.value !== '' ? description : product.description,
+                    picture: product.picture,
+                    shopid: 3001,
+                    productid: product.id,
+                }
+                
+                const options = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                }
+                
+                let response = await fetch((baseUrl + '?action=edit-product'), options)
+                console.log(response)
+                
+                getAllProducts()
+                navigate("/admin/products")
+                
+            } catch (error) {
+            } finally {
+                setSpinnerLoading(false)
             }
-    
-            const options = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            }
-    
-            let response = await fetch((baseUrl + '?action=edit-product'), options)
-            console.log(response)
-    
-            getAllProducts()
-            navigate("/admin/products")
         }
     }
   
     async function eraseProduct() {
-        const data = { shopid: shopId, productid: product.id }
-
-        const options = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
+        setSpinnerLoading(true)
+        try {
+            const data = { shopid: shopId, productid: product.id }
+    
+            const options = {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            }
+            
+            let response = await fetch((baseUrl + '?action=delete-product'), options)
+            console.log(response)
+        } catch (error) {
+        } finally {
+            setSpinnerLoading(false)
+            navigate("/admin/products")
         }
-        
-        let response = await fetch((baseUrl + '?action=delete-product'), options) && getAllProducts()
-        console.log(response)
-        navigate("/admin/products")
+        getAllProducts()
     }
-
 
     return (
         <>
@@ -119,16 +129,14 @@ function AdminProductDetails() {
                 <ProductInfo>
                     { !edit ?
                      <>
-                    <h1> {product.name} </h1>
-                    <p> { product.description } </p>
-                    <p> { product.price }:- </p>
+                        <h1> {product.name} </h1>
+                        <p> { product.description } </p>
+                        <p> { product.price }:- </p>
                     </>
-                        :
-                <>
-                
+                    :
+                    <>
                     <DivInput>
                         <p> Namn </p>
-                        
                         <input
                             className="input"
                             ref={inputTitle} 
@@ -145,9 +153,7 @@ function AdminProductDetails() {
                     </DivInput>
 
                     <DivInput>
-                        
                         <p> Beskrivning </p>
-
                         <input 
                             className="input"
                             ref={inputDescription} 
@@ -164,9 +170,7 @@ function AdminProductDetails() {
                     </DivInput>
                                 
                     <DivInput>
-                        
                         <p> Pris </p>
-                        
                         <input 
                             className="input"
                             ref={inputPrice} 
@@ -191,10 +195,8 @@ function AdminProductDetails() {
                                 setEdit(!edit)
                                 applyChanges(title, description, price)
                                 }}> Spara </ButtonLink>}
-                            
                             <ButtonLink onClick={eraseProduct}> Ta bort produkt </ButtonLink>
                         </ButtonsDiv>
-                    
                     </>
                 }
             </ProductDiv>
@@ -202,5 +204,3 @@ function AdminProductDetails() {
         </>
     )
 }
-
-export default AdminProductDetails

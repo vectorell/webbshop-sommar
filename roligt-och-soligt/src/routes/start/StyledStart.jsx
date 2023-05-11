@@ -6,7 +6,7 @@ export const PageDiv = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 50%;
+    max-width: 60em;
 
     @media (max-width: 500px) {
         max-width: unset;
@@ -20,7 +20,7 @@ export const WelcomeCardDiv = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    min-height: 40em;
+    /* min-height: 40em; */
     box-shadow: var(--shadow-normal);   
 
     @media (max-width: 500px) {
@@ -31,7 +31,12 @@ export const WelcomeCardDiv = styled.div`
 export const MainInfoDiv = styled.div`
     padding: 1em;
     display: flex;
+    justify-content: center;
+    align-items: center;
     column-gap: 5em;
+    row-gap: 1em;
+    flex-wrap: wrap;
+    text-align: center;
 
     @media (max-width: 500px) {
         flex-direction: column;

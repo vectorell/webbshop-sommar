@@ -11,6 +11,7 @@ import AdminProducts from './routes/adminProducts/AdminProducts'
 import AdminProductDetails from './routes/adminProductDetails/AdminProductDetails'
 import AddProductDetails from './components/addProductDetails/AddProductDetails'
 import { createHashRouter, RouterProvider } from 'react-router-dom'
+import Credits from './routes/credits/Credits'
 
 const router = createHashRouter([
   {
@@ -48,6 +49,10 @@ const router = createHashRouter([
       {
         path: 'admin/products/add-product',
         element: <AddProductDetails />,
+      },
+      {
+        path: 'creds',
+        element: <Credits />,
       },
     ]
   }

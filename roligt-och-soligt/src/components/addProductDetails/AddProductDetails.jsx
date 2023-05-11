@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { useRecoilState } from "recoil"
 import { useNavigate } from "react-router-dom"
 import productList from "../../recoil/atom/products/products.jsx"
@@ -8,13 +8,12 @@ import { PageTitle, ProductDiv, ProductImage, ProductInfo, ButtonsDiv, ButtonLin
 import {DivErrorMsg, ParaErrorMsg} from '../addProductDetails/StyledAddProductDetails.jsx'
 import { DivInput } from "./StyledAddProductDetails.jsx"
 import { validateSearch } from "../../utils.js"
-
-
+import loadingSpinner from "../../recoil/atom/loadingSpinner/loadingSpinner.js"
 
 export default function AddProductDetails() {
-
     const navigate = useNavigate()
     const [products, setProducts] = useRecoilState(productList)
+    const [isLoading, setIsLoading] = useRecoilState(loadingSpinner)
 
     const [errorMessageTitle, setErrorMessageTitle] = useState(false)
     const [errorMessageDescription, setErrorMessageDescription] = useState(false)
@@ -32,18 +31,19 @@ export default function AddProductDetails() {
     const shopId = 3001
 
     async function getAllProducts() {
+        setIsLoading(true)
         try {
             let response = await fetch(baseUrl + '?action=get-products&shopid=' + shopId)
             const data = await response.json()
             setProducts(data)
         } catch (error) {
             console.log('error !')
+        } finally {
+            setIsLoading(false)
         }
     }
     
-    function applyChanges() {
-
-
+    async function applyChanges() {
         setErrorMessageTitle(false)
         setErrorMessageDescription(false)
         setErrorMessagePrice(false)
@@ -51,7 +51,7 @@ export default function AddProductDetails() {
         const string = inputDescription.current.value
         const regexDescription = /^[\w\s"'-.,!?:]{2,50}$/i
 
-        const nameIsValid = (inputTitle.current.value).match( '^[a-öA-Ö0-9]{2,30}$' )
+        const nameIsValid = (inputTitle.current.value).match( '^[\s0-9a-öA-Ö]{2,30}$' )
         const descriptionIsValid = regexDescription.test( string )
         const priceIsValid = (inputPrice.current.value).match( '^[0-9]{1,12}$' )
 
@@ -68,10 +68,16 @@ export default function AddProductDetails() {
         }
         
         if (nameIsValid && descriptionIsValid && priceIsValid) {
-            uploadProduct(product)
-            navigate("/admin/products")
+            setIsLoading(true)
+            try {
+                await uploadProduct(product, isLoading, setIsLoading)
+            } catch (error) {
+            } finally {
+                setIsLoading(false)
+                getAllProducts()
+                navigate("/admin/products")
+            }
         }
-        getAllProducts()
     }
 
     return (
@@ -82,7 +88,6 @@ export default function AddProductDetails() {
                 <ProductInfo>  
                     <DivInput>
                         <p> Namn </p>
-                        
                         <input
                             className="input"
                             ref={inputTitle} 
@@ -100,7 +105,6 @@ export default function AddProductDetails() {
 
                     <DivInput>
                         <p> Beskrivning </p> 
-
                         <input 
                             className="input"
                             ref={inputDescription} 
@@ -115,12 +119,10 @@ export default function AddProductDetails() {
                         <DivErrorMsg>
                             { errorMessageDescription && <ParaErrorMsg> Var god skriv in mellan 2 och 30 <strong> bokstäver </strong> och/eller <strong> siffror. </strong></ParaErrorMsg> }
                         </DivErrorMsg>
-
                     </DivInput>
                                 
                     <DivInput>
                         <p> Pris </p>
-                        
                         <input 
                             className="input"
                             ref={inputPrice} 
@@ -136,69 +138,11 @@ export default function AddProductDetails() {
                     </DivInput>
                 
                 </ProductInfo>
-
-
-                        <ButtonsDiv>
-                            
-                            <ButtonLink onClick={() => {
-                                applyChanges(title, description, price)
-                                }}> Spara </ButtonLink>
-                        </ButtonsDiv>
-
+                <ButtonsDiv>
+                    <ButtonLink onClick={() => { applyChanges(title, description, price) }}> Spara </ButtonLink>
+                </ButtonsDiv>
             </ProductDiv>
             <ButtonLink to="/admin/products"> Tillbaka </ButtonLink>
         </>
     )
-    // return (
-    //     <>
-    //         <PageTitle> Lägg till produkt </PageTitle>
-    //         <ProductDiv>
-
-    //             <ProductImage src={ defaultToysImage } alt="standardbild"/>
-    //             <ProductInfo>
-
-    //                 <DivInput>
-    //                     <p> Produktnamn </p>
-    //                     <input
-    //                         type='text'
-    //                         ref={inputTitle} 
-    //                         placeholder="Namn"
-    //                         onChange={ (event) => { setTitle(event.target.value)}}
-    //                     />
-    //                     { nameErrorMsg ? <ErrorMessage> Vad god ange ett namn, mellan 2 och 30 bokstäver och/eller siffror. </ErrorMessage> : null}
-    //                 </DivInput>
-
-    //                 <DivInput>
-    //                     <p> Beskrivning </p>
-    //                     <input
-    //                         type='text' 
-    //                         ref={inputDescription} 
-    //                         placeholder="Beskrivning"
-    //                         onChange={ (event) => { setDescription(event.target.value)}}
-    //                     />
-    //                     { descriptionErrorMsg ? <ErrorMessage> Vad god ange en beskrivning, mellan 5 och 50 bokstäver och/eller siffror. </ErrorMessage> : null}
-    //                 </DivInput>
-
-    //                 <DivInput>
-    //                     <p> Pris </p>
-    //                     <input 
-    //                         type='number'
-    //                         min='0' max='999999999999'
-    //                         ref={inputPrice} 
-    //                         placeholder="Pris"
-    //                         onChange={ (event) => { setPrice(event.target.value)}}
-    //                     />
-    //                     { errorMessagePrice ? <ErrorMessage> Vad god ange ett pris, endast siffror mellan 0 - 999 999 999 999. </ErrorMessage> : null}
-    //                 </DivInput>     
-
-    //                 <ButtonsDiv>
-    //                     <ButtonLink onClick={() => applyChanges()}> Spara </ButtonLink>
-    //                 </ButtonsDiv>
-
-    //             </ProductInfo>
-                
-    //         </ProductDiv>
-    //         <ButtonLink to="/admin/products"> Tillbaka </ButtonLink>
-    //     </>
-    // )
 }

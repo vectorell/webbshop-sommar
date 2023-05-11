@@ -11,7 +11,6 @@ export default function Products() {
     const [products, setProducts] = useRecoilState(productList)
     const [isSearchDirty, setIsSearchDirty] = useRecoilState(searchState)
     const [foundProducts, setFoundProducts] = useRecoilState(searchResults)
-    const [isLoading, setIsLoading] = useRecoilState(isLoadingAPI)
 
     return (
         <PageDiv>

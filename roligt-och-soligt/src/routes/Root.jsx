@@ -9,8 +9,9 @@ import styled from 'styled-components'
 import isLoadingAPI from '../recoil/atom/isLoadingAPI/isLoadingAPI'
 import productList from '../recoil/atom/products/products'
 import staffList from '../recoil/atom/staffList/staffList'
-import Start from './start/Start'
 import { useNavigate } from 'react-router-dom'
+import { loginState } from '../recoil/atom/loginState/loginState'
+import { whoAmI } from '../recoil/atom/whoAmI/whoAmI'
 
 export default function Root() {
     const [showHamburgerMenu, setShowHamburgerMenu] = useRecoilState(hamburgerMenuState)
@@ -18,6 +19,8 @@ export default function Root() {
     const [products, setProducts] = useRecoilState(productList)
     const [users, setUsers] = useRecoilState(staffList)
     const navigate = useNavigate()
+    const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState)
+    const [whoIAm, setWhoIAm] = useRecoilState(whoAmI)
 
     const Space = styled.div`
         margin: 3em;
@@ -61,6 +64,15 @@ export default function Root() {
             </header>
             <main>
             <Space/>
+            
+                {isLoggedIn && <div className='logged-in-user-div'>
+                    
+                    <h3 className='h3-who-am-i'> 
+                    Inloggad som: <code className="para-username">{whoIAm.username}</code> 
+                    </h3>
+                    <button className='logout-btn' onClick={() => {setIsLoggedIn(false), navigate('admin') }}> <code>Logga ut?</code> </button>
+                </div>}
+            
                 {showHamburgerMenu && <HamburgerMenu />}
                 { isLoading ? <p> Laddar ... </p> : <Outlet /> }
             </main>

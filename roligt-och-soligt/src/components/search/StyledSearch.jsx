@@ -41,6 +41,10 @@ export const ParaFieldText = styled.p`
 export const SearchInput = styled.input`
     width: 100%;
     padding: 0.5em 1em;
+
+    &:focus::placeholder {
+        opacity: 0;
+    }
 `
 export const Button = styled.button`
     /* color: green; */

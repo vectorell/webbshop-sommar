@@ -32,6 +32,11 @@ export const Button = styled.button`
         background: white;
         color: black;
         transition: 0.2s;
+    }
 
+    &:active {
+        background: white;
+        color: black;
+        transition: 0.2s;
     }
 `

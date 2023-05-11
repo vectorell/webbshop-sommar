@@ -62,3 +62,58 @@ body {
 .valid {
     border: 2px solid #00ad00;
 }
+
+.h3-who-am-i {
+    align-self: flex-start;
+    margin: 0.5em;
+    font-size: 0.9em;
+}
+
+.logged-in-user-div {
+    align-self: flex-start;
+    border: 1px solid rgb(199, 199, 199);
+    border-top: none;
+    border-left: none;
+    border-radius: var(--radius-small);
+    background: linear-gradient(230deg, #FFFFFF 55%, var(--color-jonquil) 55%, #ffffff 80%);
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 6em;
+    z-index: 20;
+    box-shadow: var(--shadow-normal);
+}
+
+.para-username {
+    border: 1px solid black;
+    background-color: #000000;
+    color: white;
+    padding: 0.1em 0.5em;
+    font-size: 1.5em;
+}
+
+.logout-btn {
+    border: 1px solid rgb(124, 124, 124);
+    background: #693232;
+    color: white;
+    padding: 0.1em 0.5em;
+    font-size: 1.2em;
+    font-weight: 600;
+    display: flex;
+    margin-right: 0.5em;
+    transition: 0.2s;
+    border-radius: var(--radius-small);
+}
+
+.logout-btn:hover {
+    background: #b94747;
+    color: white;
+    transition: 0.2s;
+    transform: var(--transform-hover);
+    box-shadow: var(--shadow-hover);
+    cursor: pointer;
+}
+.logout-btn:active {
+    transform: var(--transform-active);
+    box-shadow: var(--shadow-active);
+}

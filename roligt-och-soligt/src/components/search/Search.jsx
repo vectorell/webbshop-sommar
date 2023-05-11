@@ -15,7 +15,6 @@ export default function Search() {
     const [isSearchDirty, setIsSearchDirty] = useRecoilState(searchState)
     const [errorMessage, setErrorMessage] = useState(false)
 
-
     function filterByString(input) {
         const searchString = input.toLowerCase()
         const regex = /^[0-9a-zA-Z\s]{1,}$/
@@ -27,14 +26,17 @@ export default function Search() {
         console.log('test #2'), 
         setIsSearchDirty(true)
         )
-        
-    }    
 
+        searchString == '' && setFoundProducts(products)
+    }
+
+    function handleEnterKey(event) {
+        filterByString(inputContent)
+    }
 
     return (
         <>
             <SearchDiv>
-
                 <DivSearchField>
                     {!errorMessage ? <ParaFieldText> Sök produkt </ParaFieldText> : <ParaFieldText> Vänligen ange endast bokstäver/siffror. </ParaFieldText> }
                     <SearchInput 
@@ -47,6 +49,8 @@ export default function Search() {
                             validateSearch(event.target.value, inputField, setErrorMessage, 'search')
                             setInputContent(event.target.value)
                         }}
+                        onKeyUp={handleEnterKey}
+                        onFocus={ () => SearchInput.placeholder = ""}
                     />
                 </DivSearchField>
 
@@ -54,16 +58,12 @@ export default function Search() {
                         Sök 
                     </Button>
 
-
-
                 <Button onClick={() => setIsSearchDirty((false)) }> 
                     Visa alla produkter 
                 </Button>
-
 
             </SearchDiv>
                 <Filter/>
         </>
     )
 }
-

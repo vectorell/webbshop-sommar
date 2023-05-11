@@ -7,11 +7,16 @@ import hamburgerIcon from "/src/assets/menu.png"
 import cartIcon from "/src/assets/shopping-cart.png"
 import { NavLink } from 'react-router-dom'
 import { whoAmI } from '../../recoil/atom/whoAmI/whoAmI'
+import loadingSpinner from '../../recoil/atom/loadingSpinner/loadingSpinner'
+import loadingSpinnerGif from "../../assets/loading-spinner.gif"
+import { useRef } from 'react'
+import { cartState } from '../../recoil/atom/cartState/cartState'
 
 function Header() {
     const [showHamburgerMenu, setShowHamburgerMenu] = useRecoilState(hamburgerMenuState)
-    const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState)
-    const [whoIAm, setWhoIAm] = useRecoilState(whoAmI)
+    const [isLoading, setIsLoading] = useRecoilState(loadingSpinner)
+    const [cartList, setCartList] = useRecoilState(cartState)
+    const loaderRef = useRef(null)
 
     const HamburgerIcon = styled.img`
         width: 3em;
@@ -23,7 +28,7 @@ function Header() {
     `
         const CartIcon = styled.img`
         width: 3em;
-        margin: 1em;
+        /* margin: 1em; */
         justify-self: end;
 
         &:hover {
@@ -34,10 +39,16 @@ function Header() {
     return (
         <div className='header-div'>
             <HamburgerIcon src={hamburgerIcon} alt="hamburger-menu" className="hamburger-icon" onClick={() => setShowHamburgerMenu(!showHamburgerMenu)}/>
-            {isLoggedIn && <h3> inloggad som: {whoIAm.username}  </h3>}
-            <NavLink to="/cart">
-            <CartIcon src={cartIcon}/>
-            </NavLink> 
+            {isLoading ?
+                <img ref={loaderRef} src={loadingSpinnerGif} style={{ display: 'block' }} />
+                : <h1 className='header-title'> Roligt & Soligt </h1>
+            }
+            <div className='div-cart-icon'>
+            <h3> { cartList.length } </h3>
+                <NavLink to="/cart">
+                    <CartIcon src={cartIcon}/>
+                </NavLink> 
+            </div>
         </div>
     )
 }

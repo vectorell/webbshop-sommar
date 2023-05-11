@@ -1,5 +1,4 @@
 import heroImg from '../../assets/hero-image.jpg'
-import { NavLink } from 'react-router-dom';
 import { PageDiv, WelcomeCardDiv, PageTitle, InfoDiv, MainInfoDiv, InfoTitle, ImageElement, ProductsButton } from "./StyledStart";
 
 export default function Start() {
@@ -15,12 +14,14 @@ export default function Start() {
             <MainInfoDiv>
                 <InfoDiv>
                     <InfoTitle> Address: </InfoTitle>
-                    <p> Tullbärsvägen 12, 523 43 Nynäshamn </p>
+                    <p> Tullbärsvägen 12 </p> 
+                    <p>523 43 Nynäshamn </p>
                 </InfoDiv>
 
                 <InfoDiv>
                     <InfoTitle> Öppettider: </InfoTitle>
-                    <p> Måndag - fredag: 10 till 18 </p>
+                    <p> Måndag - fredag: 10.00 till 18.00 </p>
+                    <p> Lördag - Söndag: 10.00 - 16.00 </p>
                 </InfoDiv>
 
                 <ProductsButton to="/products"> Till produkterna! </ProductsButton>

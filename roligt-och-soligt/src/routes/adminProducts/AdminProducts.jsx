@@ -7,6 +7,7 @@ import { searchResults } from "../../recoil/atom/searchResults/searchResults.js"
 import AddProduct from "../../components/addProduct/AddProduct.jsx"
 import { productListToUpload, uploadProduct } from "../../utils.js"
 import { PageTitle, PageDiv, ProductsContainer, ProductCard, ProductTitle, ProductImageDiv, ProductImage, ProductPrice, LinkDiv, StyledLink } from "./StyledAdminProducts.jsx"
+import { deleteProductById } from "../../utils.js"
 
 function AdminProducts() {
 
@@ -26,9 +27,9 @@ function AdminProducts() {
         <PageDiv>
 
         <PageTitle> Produkter (admin) </PageTitle>
-        {/* <button onClick={eraseAllProducts}> RADERA ALLT </button>
+        <button onClick={eraseAllProducts}> RADERA ALLT </button>
         <br/>
-        <button onClick={resetAllProducts}> ÅTERSTÄLL ALLT </button> */}
+        <button onClick={resetAllProducts}> ÅTERSTÄLL ALLT </button>
 
         <Search/>
 

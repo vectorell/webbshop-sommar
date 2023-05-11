@@ -18,6 +18,7 @@ export default function HamburgerMenu() {
                 <NavLink to="cart" onClick={closeHamburgerMenu}> Kundvagn </NavLink>
                 <NavLink to="admin" onClick={closeHamburgerMenu}> Personalinloggning </NavLink>
             </div>
+                <NavLink to="creds" onClick={closeHamburgerMenu}> Credits </NavLink>
         </div>
     )
 }

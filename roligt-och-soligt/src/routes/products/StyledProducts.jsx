@@ -1,27 +1,18 @@
-import styled from "styled-components"
-import { NavLink } from "react-router-dom"
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const PageTitle = styled.h1`
     margin-top: 1em;
     margin-bottom: 1em;
     font-size: 3em;
-
-    @media (max-width: 500px) {
-        font-size: 2em;
-    }
 `
 
 export const PageDiv = styled.div`
+    padding-bottom: 2em;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 2em;
-    text-align: center;
-    width: 60%;
-
-    @media (max-width: 500px) {
-        width: 100%;
-    }
 `
 
 export const ProductsContainer = styled.div`
@@ -29,11 +20,10 @@ export const ProductsContainer = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
     padding-bottom: 2em;
-    
+
     @media (max-width: 500px) {
         grid-template-columns: 1fr;
     }
-    
 `
 
 export const ProductCard = styled.div`
@@ -52,14 +42,15 @@ export const ProductCard = styled.div`
     transition: 0.2s;
 
     &:hover {
-        transition: 0.2s;
-        transform: scale(105%);
-        box-shadow: var(--shadow-hover);
+    transition: 0.2s;
+    transform: scale(105%);
+    box-shadow: var(--shadow-hover);
     }
+
     &:active {
-        transition: 0s;
-        transform: scale(97%);
-        box-shadow: var(--shadow-active);
+    transition: 0s;
+    transform: scale(97%);
+    box-shadow: var(--shadow-active);
     }
 `
 
@@ -83,8 +74,9 @@ export const ProductImage = styled.img`
 export const ProductPrice = styled.p`
 
 `
+
 export const LinkDiv = styled.div`
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: space-around;
     margin-top: 2em;
@@ -97,18 +89,30 @@ export const LinkDiv = styled.div`
 `
 
 export const StyledLink = styled(NavLink)`
-    border: 1px solid #000000;
+border: 1px solid #000000;
     padding: 0.5em;
     background: #313131;
     color: white;
     transition: 0.2s;
-    font-size: 1.5em;
+    font-size: 1.1em;
     border-radius: var(--radius-small);
+    margin: 1em;
+
+    &:active {
+        background: linear-gradient(230deg, #FFFFFF 55%, var(--color-jonquil) 55%, #ffffff);;
+        color: black;
+    }
 
     &:hover {
-        background: white;
-        color: black;
         transition: 0.2s;
+        box-shadow: var(--shadow-hover);
+        transform: scale(103%);
+    }
 
+    &:active {
+        transition: 0s;
+        box-shadow: var(--shadow-active);
+        transform: scale(97%);
+    
     }
 `

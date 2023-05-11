@@ -27,3 +27,22 @@ pil upp/ned: <a href="https://www.flaticon.com/free-icons/traffic" title="traffi
 defaultToys: <a href="https://www.freepik.com/free-vector/toy-designs-collection_1024942.htm#query=toys&position=19&from_view=search&track=sph">Image by orsolyarigo</a> on Freepik
 tillbaka-ikon: <a href="https://www.flaticon.com/free-icons/arrow" title="arrow icons">Arrow icons created by Freepik - Flaticon</a>
 hero image: <a href="https://www.freepik.com/free-photo/concept-summer-skin-care-accessories-space-text_41131945.htm#query=summer%20toys&position=43&from_view=search&track=ais">Image by atlascompany</a> on Freepik
+add-button2 : <a href="https://www.flaticon.com/free-icons/plus" title="plus icons">Plus icons created by Freepik - Flaticon</a>
+delete-button : <a href="https://www.flaticon.com/free-icons/cancel" title="cancel icons">Cancel icons created by Alfredo Hernandez - Flaticon</a>
+loading-spinner: https://icons8.com/preloaders/en/circular
+
+
+Lägga in 00 på öppettiderna
+LÄgg in sortering på nya produkter
+Kategorier? Vattenlek typisch
+Enter när man söker efter saker!
+Siffra på kundkorgen, ävwen komma upp ruta att "nu är varav tillagd"
+Ta bort placeholder vid fokus
+Produktvy nollställs vid ut och ingång
+Mer färg!
+Popup vid hovring kundvagnsikon
+Dela upp adressen på 2 rader
+
+__________
+* Fixa så vanliga Products sidans grid fyller ut hela bredden så som AdminProducts gör.
+

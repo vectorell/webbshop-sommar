@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 export const PageDiv = styled.div`
     /* border: 1px solid black; */
@@ -94,7 +94,7 @@ export const ButtonsDiv = styled.div`
 `
 
 export const Button = styled.button`
-    padding: 0.1em 0.3em;
+    /* padding: 0.1em 0.3em; */
     /* margin: 1em 0em; */
     font-size: 1.5em;
     color: white;
@@ -107,18 +107,23 @@ export const Button = styled.button`
         /* transform: var(--transform-hover); */
         box-shadow: var(--shadow-hover);
     }
-
-    &:nth-child(1) {
-        background-color: red;
-    }
-    &:nth-child(2) {
-        background-color: green;
-    }
 `
+
+export const CartBtn = styled.img`
+    max-width: 40px;
+    transition: 0.2s;
+
+    &:hover {
+        filter: hue-rotate(110deg);
+    }
+
+`
+
 export const PricePara = styled.p`
     margin: 0.5em 3em;
     font-size: 1.5em;
     flex-grow: 1;
+    text-align: center;
 `
 
 
@@ -129,14 +134,18 @@ export const NavButton = styled(Link)`
     background: #313131;
     color: white;
     transition: 0.2s;
-    font-size: 1.5em;
+    font-size: 1.2em;
     border-radius: var(--radius-small);
+    text-align: center;
 
     &:hover {
         background: white;
         color: black;
         transition: 0.2s;
-
+    }
+    
+    @media (max-width: 500px) {
+        width: 90%;
     }
 
 
@@ -161,4 +170,8 @@ export const BottomDiv = styled.div`
         flex-direction: column;
         height: fit-content
     }
+`
+
+export const StyledNavLink = styled(NavLink)`
+    width: 100%;
 `

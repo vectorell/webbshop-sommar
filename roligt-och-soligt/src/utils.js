@@ -1,7 +1,7 @@
 import defaultPicture from '../src/assets/product-images/default.jpg'
 import skateboard from '../src/assets/product-images/skateboard.jpg'
 import badboll from '../src/assets/product-images/badboll.jpg'
-import vattenpistol from '../src/assets/product-images/vattenpistol.jpg'
+import vattenpistol from '../src/assets/product-images/vattenpistol2.jpg'
 import sandpitset from '../src/assets/product-images/sandpitset.jpg'
 import drake from '../src/assets/product-images/kite.jpg'
 import snorkelset from '../src/assets/product-images/snorkelset2.jpg'
@@ -68,27 +68,36 @@ export function validateSearch(input, inputElement, errorMessage, type) {
 const baseUrl = 'https://www.forverkliga.se/JavaScript/api/fe/'
 const shopId = 3001
 
-export async function uploadProduct(product) {
+
+
+export async function uploadProduct(product, products, setProducts) {
+   
+    try {
+        const data = {
+            action: 'add-product',
+            name: product.name,
+            description: product.description,
+            picture: product.picture,
+            price: product.price,
+            shopid: shopId
+        }
     
-    const data = {
-        action: 'add-product',
-        name: product.name,
-        description: product.description,
-        picture: product.picture,
-        price: product.price,
-        shopid: shopId
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        }
+    
+        const response = await fetch(baseUrl, options)
+        const statusObject = await response.json()
+        console.log(statusObject)
+        statusObject.stats === 'success' ? true : false
+        
+    } catch (error) {
+        console.log('error')        
+    } finally {
+        getAllProducts()
     }
-
-    const options = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    }
-
-    const response = await fetch(baseUrl, options)
-    const statusObject = await response.json()
-    console.log(statusObject)
-    statusObject.stats === 'success' ? true : false
 
 }
 
@@ -109,7 +118,7 @@ export async function deleteProductById(id) {
     let statusObject = await response.json()
     console.log(statusObject)
 }
-
+// deleteProductById(7836)
 
 
 export let productListToUpload = [
@@ -277,6 +286,8 @@ export let productListToUpload = [
 
 
 // productListToUpload.forEach(product => uploadProduct(product))
+// uploadProduct(productListToUpload[8])
+// console.log(productListToUpload[8])
 
 export async function addUserToAPI(username, password) {
 

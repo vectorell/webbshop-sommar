@@ -8,6 +8,7 @@ import { newUserState } from "../../recoil/atom/newUser/newUserState"
 import { validateName, validatePassword } from "../../utils"
 import { whoAmI } from "../../recoil/atom/whoAmI/whoAmI"
 import {InputDiv,PageTitle,Form,InputField,ContentDiv,ErrorMessageUser,LoginButton,StyledNavLink, ParaFieldName} from "./StyledAdmin"
+import loadingSpinner from '../../assets/loading-spinner.gif'
 
 export default function Admin() {
     const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState)
@@ -18,6 +19,7 @@ export default function Admin() {
     const [userPasswordErrorMessage, setUserPasswordErrorMessage] = useState(false)
     const [isNewUserClean, setIsNewUserClean] = useRecoilState(newUserState)
     const [whoIAm, setWhoIAm] = useRecoilState(whoAmI)
+    const loaderRef = useRef(null)
 
     async function validateLogin(name, password) {
         event.preventDefault()
@@ -27,23 +29,28 @@ export default function Admin() {
         const passwordIsValid = /^.{8,30}$/.test(password)
 
         if (usernameIsValid && passwordIsValid) {
-            const data = { shopid: 3001, username: name, password: password }
-            const options = {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
+            loaderRef.current.style.display = 'block';
+
+            try {
+                const data = { shopid: 3001, username: name, password: password }
+                const options = {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data),
+                }
+    
+                let response = await fetch("https://www.forverkliga.se/JavaScript/api/fe/?action=login-user", options)
+                let statusObject = await response.json()
+                console.log(statusObject)
+                statusObject.status === "success"
+                    ? (setIsLoggedIn(true),
+                      setLoginError(false),
+                      setWhoIAm({ ...whoIAm, username: name }))
+                    : setLoginError(true)
+            } catch (error) {
+            } finally {
+                loaderRef.current.style.display = 'none';
             }
-
-            let response = await fetch("https://www.forverkliga.se/JavaScript/api/fe/?action=login-user", options)
-
-            let statusObject = await response.json()
-            console.log(statusObject)
-
-            statusObject.status === "success"
-                ? (setIsLoggedIn(true),
-                  setLoginError(false),
-                  setWhoIAm({ ...whoIAm, username: name }))
-                : setLoginError(true)
         }
     }
 
@@ -96,11 +103,11 @@ export default function Admin() {
                             )}
                         </InputDiv>
 
-                        <LoginButton
-                            onClick={() =>
-                                validateLogin(userNameInput.current.value, userPasswordInput.current.value)}> Logga in 
+                        <LoginButton onClick={() => validateLogin(userNameInput.current.value, userPasswordInput.current.value)}> 
+                            Logga in 
                         </LoginButton>
 
+                        <img ref={loaderRef} src={loadingSpinner} style={{ display: 'none' }} />
                         {loginError ? (
                             <p> Inget konto som matchar namn/lösenord hittades. Har du skrivit in dina uppgifter korrekt? </p> ) : null}
                     </Form>

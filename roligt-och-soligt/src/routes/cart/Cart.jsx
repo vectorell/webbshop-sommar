@@ -1,6 +1,8 @@
 import { useRecoilState } from "recoil"
 import { cartState } from "../../recoil/atom/cartState/cartState"
-import { PageDiv, ProductDiv, ImageDiv, ProductImage, ButtonsDiv, Button, PageTitle, NavButton, PricePara, BottomDiv, ParaProductName, ParaProductPrice } from "./StyledCart"
+import { CartBtn ,PageDiv, ProductDiv, ImageDiv, ProductImage, ButtonsDiv, Button, PageTitle, NavButton, PricePara, BottomDiv, ParaProductName, ParaProductPrice, StyledNavLink } from "./StyledCart"
+import deleteBtn from '../../assets/x-button.png'
+import addBtn from '../../assets/plus.png'
 
 function Cart() {
     const [cart, setCart] = useRecoilState(cartState)
@@ -19,26 +21,43 @@ function Cart() {
         setCart(prevCart => [...prevCart, product])
     }
 
+    function countDuplicates(product) {
+        let count = 1
+        cart.forEach(item => {
+            if (cart.includes(item)) {
+                count++
+                console.log(count, 'innehåller detta')
+            } else { console.log('innehåller ej detta') }
+        })
+        
+    }
+
+    
+
     return (
         <>
             <PageDiv>
                 <PageTitle> Kundvagn </PageTitle>
                 {cart.map((product, index) => {
                     return (
-                        <ProductDiv key={index}>
-                            <ImageDiv>
-                                <ProductImage src={product.picture} alt={product.name}/>
-                            </ImageDiv>
-                            <div>
-                                <ParaProductName> {product.name} </ParaProductName>
-                                <ParaProductPrice> {product.price}:- </ParaProductPrice>
-                            </div>
-                            <ButtonsDiv>
-                                <Button onClick={()=> removeFromCart(index)}> - </Button>
-                                <Button onClick={()=> addAnotherToCart(product)}> + </Button>
-                            </ButtonsDiv>
-
-                        </ProductDiv>
+                        <ProductDiv>
+                                <ImageDiv>
+                                    <ProductImage src={product.picture} alt={product.name}/>
+                                </ImageDiv>
+                                <div>
+                                <StyledNavLink key={index} to={`/products/${product.id}`}>
+                                    <ParaProductName> {product.name} </ParaProductName>
+                                    <ParaProductPrice> {product.price}:- </ParaProductPrice>
+                                </StyledNavLink>
+                                </div>
+                                <ButtonsDiv>
+                                    <CartBtn src={addBtn} onClick={()=> 
+                                        {addAnotherToCart(product)
+                                        countDuplicates(product)}
+                                        }/>
+                                    <CartBtn src={deleteBtn} onClick={()=> removeFromCart(product)}/>
+                                </ButtonsDiv>
+                            </ProductDiv>
                     )
                 })}
 
