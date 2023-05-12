@@ -85,8 +85,23 @@ export const ButtonLink = styled(Link)`
 export const DivInput = styled.div`
     display: flex;
     flex-direction: column;
-    width: 50%;
+    /* width: 50%; */
     max-height: 100%;
+    font-size: var(--fontsize-small);
+
+    & > p {
+        font-size: var(--fontsize-medium);
+        font-weight: 600;
+    }
+
+    & > input {
+        font-size: var(--fontsize-small);
+        padding-left: 0.2em;
+    }
+
+    & > input:focus::placeholder {
+        opacity: 0;
+    }
 
     @media (max-width: 500px) {
         width: 100%;
@@ -97,8 +112,8 @@ export const DivErrorMsg = styled.div`
 `
 
 export const ParaErrorMsg = styled.p`
+    color: red;
     @media (max-width: 500px) {
         font-size: 0.9em;
-        color: red;
     }
 `

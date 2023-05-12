@@ -4,8 +4,12 @@ import { useParams, useNavigate } from "react-router-dom"
 import productList from "../../recoil/atom/products/products.jsx"
 import isLoadingAPI from "../../recoil/atom/isLoadingAPI/isLoadingAPI.js"
 import { validateSearch } from "../../utils.js"
+import { postProductChanges } from "../../recoil/atom/API/apiFunctions.js"
+import { getAllProducts } from "../../recoil/atom/API/apiFunctions.js"
+import { postEraseProduct } from "../../recoil/atom/API/apiFunctions.js"
+import { validateProductChanges } from "../../recoil/atom/API/apiFunctions.js"
 
-import { PageTitle, ProductDiv, ProductImage, ProductInfo, ButtonsDiv, ButtonLink, DivInput, ParaErrorMsg, DivErrorMsg } from "../../routes/adminProductDetails/StyledAdminProductDetails.jsx"
+import { PageTitle, ProductDiv, ProductImage, ProductInfo, ButtonsDiv, ButtonLink, DivInput, ParaErrorMsg, DivErrorMsg, PageDiv, InputField, ParaProductDescription, ParaProductPrice, ParaProductName } from "../../routes/adminProductDetails/StyledAdminProductDetails.jsx"
 import loadingSpinner from "../../recoil/atom/loadingSpinner/loadingSpinner.js"
 
 export default function AdminProductDetails() {
@@ -29,98 +33,34 @@ export default function AdminProductDetails() {
     const [errorMessagePrice, setErrorMessagePrice] = useState(false)
     const inputDescription = useRef(null)
     const inputPrice = useRef(null)
-    
-    const baseUrl = 'https://www.forverkliga.se/JavaScript/api/fe/'
-    const shopId = 3001
-
 
     function findProduct(id) { return products.find(product => product.id == id) }
 
     useEffect(() => { setProduct( findProduct(id)) }, [id] )
-
-    async function getAllProducts() {
-        setSpinnerLoading(true)
-        try {
-            let response = await fetch(baseUrl + '?action=get-products&shopid=' + shopId)
-            const data = await response.json()
-            setProducts(data)
-        } catch (error) {
-            console.log('error !')
-        } finally {
-            setSpinnerLoading(false)
-            setIsLoading(false)
-        }
-    }
-
     useEffect( () => { getAllProducts() }, [] )
 
     async function applyChanges(title, description, price) {
-        const regexName = /^[-"()=:.,!?0-9a-öA-Ö\s]{2,150}$/
-        const regexDescription = /^[-"()=:.,!?0-9a-öA-Ö\s]{5,150}$/
-        const regexPrice = /^[0-9]{1,15}$/
-
-        title === '' && (title = product.name)
-        description === '' && (description = product.description)
-        price === '' && (price = product.price)
-
-        let nameIsValid = regexName.test(title)
-        let descriptionIsValid = regexDescription.test(description)
-        let priceIsValid = regexPrice.test(price)
-
-        if (nameIsValid && descriptionIsValid && priceIsValid) {
+        if ( validateProductChanges(title, description, price, product) ) {
             setSpinnerLoading(true)
             try {
-                const data = {
-                    name: inputTitle.current.value !== '' ? title : product.name,
-                    price: inputPrice.current.value !== '' ? Number(price) : Number(product.price),
-                    description: inputDescription.current.value !== '' ? description : product.description,
-                    picture: product.picture,
-                    shopid: 3001,
-                    productid: product.id,
-                }
-                
-                const options = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                }
-                
-                let response = await fetch((baseUrl + '?action=edit-product'), options)
-                console.log(response)
-                
-                getAllProducts()
-                navigate("/admin/products")
-                
+                await postProductChanges( product, inputTitle, inputPrice, inputDescription)
+                setProducts(await getAllProducts())
+
             } catch (error) {
-            } finally {
-                setSpinnerLoading(false)
-            }
+            
+            } finally {navigate("/admin/products"), setSpinnerLoading(false)}
         }
     }
-  
-    async function eraseProduct() {
-        setSpinnerLoading(true)
-        try {
-            const data = { shopid: shopId, productid: product.id }
     
-            const options = {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(data)
-            }
-            
-            let response = await fetch((baseUrl + '?action=delete-product'), options)
-            console.log(response)
-        } catch (error) {
-        } finally {
-            setSpinnerLoading(false)
-            navigate("/admin/products")
-        }
-        getAllProducts()
+    async function eraseProduct(product) {
+        setSpinnerLoading(true)
+        try {await postEraseProduct(product), setProducts(await getAllProducts())} 
+        catch (error) {} 
+        finally { setSpinnerLoading(false), navigate("/admin/products")}
     }
 
     return (
-        <>
+        <PageDiv>
             <PageTitle> Produktdetaljer (admin) </PageTitle>
             <ProductDiv>
                 {product && 
@@ -129,15 +69,15 @@ export default function AdminProductDetails() {
                 <ProductInfo>
                     { !edit ?
                      <>
-                        <h1> {product.name} </h1>
-                        <p> { product.description } </p>
-                        <p> { product.price }:- </p>
+                        <ParaProductName> {product.name} </ParaProductName>
+                        <ParaProductDescription> { product.description } </ParaProductDescription>
+                        <ParaProductPrice> { product.price }:- </ParaProductPrice>
                     </>
                     :
                     <>
                     <DivInput>
                         <p> Namn </p>
-                        <input
+                        <InputField
                             className="input"
                             ref={inputTitle} 
                             type="text"
@@ -154,7 +94,7 @@ export default function AdminProductDetails() {
 
                     <DivInput>
                         <p> Beskrivning </p>
-                        <input 
+                        <InputField 
                             className="input"
                             ref={inputDescription} 
                             type="text"
@@ -171,7 +111,7 @@ export default function AdminProductDetails() {
                                 
                     <DivInput>
                         <p> Pris </p>
-                        <input 
+                        <InputField 
                             className="input"
                             ref={inputPrice} 
                             placeholder={product.price}
@@ -195,12 +135,15 @@ export default function AdminProductDetails() {
                                 setEdit(!edit)
                                 applyChanges(title, description, price)
                                 }}> Spara </ButtonLink>}
-                            <ButtonLink onClick={eraseProduct}> Ta bort produkt </ButtonLink>
+                            <ButtonLink onClick={() => eraseProduct(product)}> Ta bort produkt </ButtonLink>
                         </ButtonsDiv>
                     </>
                 }
             </ProductDiv>
-            <ButtonLink to="/admin/products"> Tillbaka </ButtonLink>
-        </>
+            <ButtonsDiv>
+                <ButtonLink to="/admin/products"> Tillbaka </ButtonLink>
+
+            </ButtonsDiv>
+        </PageDiv>
     )
 }

@@ -40,7 +40,7 @@ function Header() {
         <div className='header-div'>
             <HamburgerIcon src={hamburgerIcon} alt="hamburger-menu" className="hamburger-icon" onClick={() => setShowHamburgerMenu(!showHamburgerMenu)}/>
             {isLoading ?
-                <img ref={loaderRef} src={loadingSpinnerGif} style={{ display: 'block' }} />
+                <img className="spinner" ref={loaderRef} src={loadingSpinnerGif} style={{ display: 'block' }} />
                 : <h1 className='header-title'> Roligt & Soligt </h1>
             }
             <div className='div-cart-icon'>

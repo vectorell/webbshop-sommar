@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import pattern from '../../assets/pattern.jpg'
 
 export const PageTitle = styled.h1`
     margin-top: 1em;
@@ -29,7 +30,7 @@ export const ProductsContainer = styled.div`
 export const ProductCard = styled.div`
     border: 1px solid #0000007d;
     border-radius: var(--radius-small);
-    background-color: white;
+    background-image: url( ${pattern} );
     padding: 0.5em;
     margin: 0.5em;
     height: 22em;
@@ -55,7 +56,7 @@ export const ProductCard = styled.div`
 `
 
 export const ProductTitle = styled.h2`
-    font-size: 1em;
+    font-size: var(--fontsize-medium);
 `
 
 export const ProductImageDiv = styled.div`
@@ -94,7 +95,7 @@ border: 1px solid #000000;
     background: #313131;
     color: white;
     transition: 0.2s;
-    font-size: 1.1em;
+    font-size: var(--fontsize-medium);
     border-radius: var(--radius-small);
     margin: 1em;
 
