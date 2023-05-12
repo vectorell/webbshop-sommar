@@ -41,7 +41,7 @@ export const ProductDiv = styled.div`
     font-weight: 600;
     box-shadow: var(--shadow-normal);
     transition: 0.2s;
-    height: 5em;
+    min-height: 5em;
     overflow: hidden;
     padding-right: 1em;
     width: 90%;
@@ -53,8 +53,9 @@ export const ProductDiv = styled.div`
         box-shadow: var(--shadow-hover);
         transform: var(--transform-hover);
     }
-
+    
     @media (max-width: 500px) {
+        text-align: center;
         flex-direction: column;
         min-height: 15em;
         padding-right: unset;
@@ -62,6 +63,7 @@ export const ProductDiv = styled.div`
 `
 
 export const ImageDiv = styled.div`
+    display: flex;
     width: 30%;
     min-width: fit-content;
     height: 100%;
@@ -78,6 +80,8 @@ export const ProductImage = styled.img`
     height: 100%;
     object-fit: cover;
     /* overflow: hidden; */
+    font-size: var(--fontsize-small);
+    flex-wrap: wrap;
 `
 
 export const ParaProductName = styled.p`

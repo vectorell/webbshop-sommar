@@ -7,6 +7,8 @@ import { searchResults } from "../../recoil/atom/searchResults/searchResults.js"
 import isLoadingAPI from "../../recoil/atom/isLoadingAPI/isLoadingAPI.js"
 import { PageTitle, PageDiv, ProductsContainer, ProductCard, ProductTitle, ProductImageDiv, ProductImage, ProductPrice, LinkDiv, StyledLink } from "./StyledProducts.jsx"
 
+
+
 export default function Products() {
     const [products, setProducts] = useRecoilState(productList)
     const [isSearchDirty, setIsSearchDirty] = useRecoilState(searchState)

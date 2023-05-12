@@ -27,9 +27,9 @@ function AdminProducts() {
         <PageDiv>
 
         <PageTitle> Produkter (admin) </PageTitle>
-        <button onClick={eraseAllProducts}> RADERA ALLT </button>
+        {/* <button onClick={eraseAllProducts}> RADERA ALLT </button>
         <br/>
-        <button onClick={resetAllProducts}> ÅTERSTÄLL ALLT </button>
+        <button onClick={resetAllProducts}> ÅTERSTÄLL ALLT </button> */}
 
         <Search/>
 

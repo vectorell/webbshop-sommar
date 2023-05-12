@@ -14,6 +14,8 @@ export const PageDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 50em;
 `
 
 export const ProductsContainer = styled.div`

@@ -1,4 +1,5 @@
 import defaultPicture from '../src/assets/product-images/default.jpg'
+// import defaultPicture from '../../assets/product-images/default.jpg'
 import skateboard from '../src/assets/product-images/skateboard.jpg'
 import badboll from '../src/assets/product-images/badboll.jpg'
 import vattenpistol from '../src/assets/product-images/vattenpistol2.jpg'
@@ -11,6 +12,8 @@ import badminton from '../src/assets/product-images/badminton.jpg'
 import slide from '../src/assets/product-images/slide.jpg'
 import dart from '../src/assets/product-images/dart.jpg'
 import zipline from '../src/assets/product-images/zipline.jpg'
+
+import { getAllProducts } from './recoil/atom/API/apiFunctions'
 
 /** VALIDERING ANVÄNDARNAMN ******/
 export function validateName(input, errorMessage) {
@@ -70,7 +73,7 @@ const shopId = 3001
 
 
 
-export async function uploadProduct(product, products, setProducts) {
+export async function uploadProduct(product) {
    
     try {
         const data = {

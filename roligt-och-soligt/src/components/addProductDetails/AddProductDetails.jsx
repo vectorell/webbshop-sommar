@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react"
 import { useRecoilState } from "recoil"
 import { useNavigate } from "react-router-dom"
 import productList from "../../recoil/atom/products/products.jsx"
-import defaultToysImage from '../../assets/product-images/default-toys.jpg'
+import defaultToysImage from '/product-images/default-toys.jpg'
 import { uploadProduct } from "../../utils.js"
 import { PageTitle, ProductDiv, ProductImage, ProductInfo, ButtonsDiv, ButtonLink} from "../../routes/productDetails/StyledProductDetails.jsx"
 import {DivErrorMsg, ParaErrorMsg} from '../addProductDetails/StyledAddProductDetails.jsx'

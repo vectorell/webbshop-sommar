@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil"
 import { useParams } from "react-router-dom"
 import productList from "../../recoil/atom/products/products.jsx"
 import { PageDiv, PageTitle, ProductDiv, ProductImage, ProductInfo, ButtonsDiv, ButtonLink, ButtonLinkAddToCart, DivAddToCart, DivProductImage, ParaProductDescription, ParaProductName, ParaProductPrice } from "./StyledProductDetails.jsx"
+import { addToCart } from "../cart/cartFunction.js"
 
 export default function ProductDetails() {
     const {id} = useParams()
@@ -41,7 +42,8 @@ export default function ProductDetails() {
                     </ProductInfo>
                     <DivAddToCart>
                         <ButtonLinkAddToCart onClick={() => {
-                            addProductToCart(findProduct(id))
+                            // addProductToCart(findProduct(id))
+                            addToCart(product, cart, setCart)
                             setShowAddedText(true)
                         }}> Lägg till i kundvagn </ButtonLinkAddToCart>
                         {showAddedText && <p> Tillagd i kundvagnen </p>}
