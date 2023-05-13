@@ -58,13 +58,23 @@ export function validateSearch(input, inputElement, errorMessage, type) {
     regex.test(input) ? console.log('matchar') 
     : console.log('matchar ej')
 
-    
     string === '' ? (inputElement.current.classList.add('input'), errorMessage((false)), inputElement.current.classList.remove('invalid'), inputElement.current.classList.remove('valid'))
 
     : regex.test(string) ? (inputElement.current.classList.add('valid'), inputElement.current.classList.remove('invalid'), errorMessage((false)))
 
     : (inputElement.current.classList.remove('valid'), inputElement.current.classList.add('invalid'), errorMessage((true)))
 }
+
+export function countCartItems(cartList, setCartCount) {
+    let count = 0
+    cartList.forEach(cartItem => {
+        count = count + cartItem.amount 
+    })
+    setCartCount(count)
+}
+
+
+
 
 
 /** API-funktioner nedan */

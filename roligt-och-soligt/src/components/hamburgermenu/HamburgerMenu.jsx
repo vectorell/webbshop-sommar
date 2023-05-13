@@ -24,12 +24,12 @@ export default function HamburgerMenu() {
                 <NavLink to="admin" onClick={closeHamburgerMenu}> Personalinloggning </NavLink>
             </div>
                 <NavLink to="creds" onClick={closeHamburgerMenu}> Credits </NavLink>
-                {!isLoggedIn && <button onClick={() => {
+                {/* {!isLoggedIn && <button onClick={() => {
                     setIsLoggedIn(!isLoggedIn)
                     setWhoIAm(sudo)
                     }}>
                 {isLoggedIn ? "Logga ut" : "Logga in"}{" "}
-            </button>}
+            </button>} */}
         </div>
     )
 }

@@ -8,7 +8,6 @@ export default function Filter() {
     const [products, setProducts] = useRecoilState(productList)
     const [filteredProducts, setFilteredProducts] = useRecoilState(searchResults)
 
-
     function sortByAscendingPrice() {
         const sortedArray = [...products].sort((a, b) => a.price - b.price )
         setProducts(sortedArray)

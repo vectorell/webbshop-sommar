@@ -19,7 +19,7 @@ const router = createHashRouter([
     element: <Root />,
     children: [
       {
-        path: 'start',
+        path: '/',
         element: <Start />,
       },
       {
@@ -54,6 +54,10 @@ const router = createHashRouter([
         path: 'creds',
         element: <Credits />,
       },
+      {
+        path: '/*',
+        element: <Start />,
+      }
     ]
   }
 ])
@@ -64,5 +68,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <RouterProvider router={router} />
     </RecoilRoot>
   </React.StrictMode>,
-  window.location.href = "#/start"
+  // window.location.href = "#/start"
 )
