@@ -85,13 +85,13 @@ body {
     border: 1px solid rgb(199, 199, 199);
     border-top: none;
     border-left: none;
-    border-radius: var(--radius-small);
+    /* border-radius: var(--radius-small); */
     background: linear-gradient(230deg, #FFFFFF 55%, var(--color-jonquil) 55%, #ffffff 80%);
     display: flex;
     align-items: center;
     position: fixed;
     top: 6em;
-    z-index: 20;
+    z-index: 1;
     box-shadow: var(--shadow-normal);
 }
 

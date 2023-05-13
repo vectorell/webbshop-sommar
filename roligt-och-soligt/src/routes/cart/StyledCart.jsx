@@ -41,10 +41,11 @@ export const ProductDiv = styled.div`
     font-weight: 600;
     box-shadow: var(--shadow-normal);
     transition: 0.2s;
-    height: 5em;
+    /* height: 5em; */
     overflow: hidden;
     padding-right: 1em;
     width: 90%;
+    max-width: 35em;
     background-image: url( ${pattern}) ;
     
     &:hover {
@@ -59,6 +60,7 @@ export const ProductDiv = styled.div`
         flex-direction: column;
         min-height: 15em;
         padding-right: unset;
+        height: unset;
     }
 `
 
@@ -80,21 +82,43 @@ export const ProductImage = styled.img`
     object-fit: cover;
     /* overflow: hidden; */
     font-size: var(--fontsize-small);
+    display: flex;
+    justify-self: center;
 `
 
 export const ParaProductName = styled.p`
-    font-weight: 500;
+    font-weight: 600;
     font-size: var(--fontsize-medium);
+    /* margin-left: 1em; */
     `
 export const ParaProductPrice = styled.p`
     font-weight: 500;
-    font-size: var(--fontsize-small);
+    font-size: var(--fontsize-mediumsmall);
+    /* margin-left: 1em; */
+`
+
+export const ParaProductAmount = styled.p`
+    /* margin-left: 1em; */
 `
 
 export const ButtonsDiv = styled.div`
     display: flex;
     column-gap: 0.5em;
+    max-width: 4em;
     /* flex-wrap: wrap; */
+`
+
+export const DivProductInfo = styled.div`
+    margin-left: 1em;
+    min-width: 100%;
+
+    @media(max-width: 500px) {
+        margin-left: unset;
+
+        & > * {
+            margin: 0.5em;
+        }
+    }
 `
 
 export const Button = styled.button`
@@ -174,5 +198,13 @@ export const BottomDiv = styled.div`
 `
 
 export const StyledNavLink = styled(NavLink)`
-    width: 100%;
+    /* width: 100%; */
+    max-width: 30%;
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 500px) {
+        flex-direction: column;
+        max-width: 100%;
+    }
 `

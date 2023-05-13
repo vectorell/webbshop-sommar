@@ -15,6 +15,7 @@ import zipline from '../src/assets/product-images/zipline.jpg'
 
 import { getAllProducts } from './recoil/atom/API/apiFunctions'
 
+
 /** VALIDERING ANVÄNDARNAMN ******/
 export function validateName(input, errorMessage) {
     const userString = input.current.value
@@ -41,14 +42,19 @@ export function validatePassword(userPasswordInput, setUserPasswordErrorMessage)
     : (userPasswordInput.current.classList.add('invalid'), userPasswordInput.current.classList.remove('valid'), setUserPasswordErrorMessage((true)))
 }
 
+// Funktion för att göra stor bokstav på angiven sträng.
+export function capitalizeFirstLetter(string) { 
+    return string[0].toUpperCase() + string.slice(1) 
+}
 
 /** VALIDERING: sökfält */
 export function validateSearch(input, inputElement, errorMessage, type) {
+    
     console.log('validateSearch körs')
     inputElement.current.classList.remove('invalid')
     inputElement.current.classList.remove('valid')
 
-    const string = input
+    let string = capitalizeFirstLetter(input)
 
     let regex
     type === 'search' ? regex = /^[-"()=:.,!?0-9a-öA-Ö\s]{1,30}$/ :
@@ -72,7 +78,6 @@ export function countCartItems(cartList, setCartCount) {
     })
     setCartCount(count)
 }
-
 
 
 

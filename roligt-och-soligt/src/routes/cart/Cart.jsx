@@ -1,11 +1,12 @@
 import { useRecoilState } from "recoil"
 import { cartState } from "../../recoil/atom/cartState/cartState"
-import { CartBtn ,PageDiv, ProductDiv, ImageDiv, ProductImage, ButtonsDiv, Button, PageTitle, NavButton, PricePara, BottomDiv, ParaProductName, ParaProductPrice, StyledNavLink } from "./StyledCart"
+import { CartBtn ,PageDiv, ProductDiv, ImageDiv, ProductImage, ButtonsDiv, Button, PageTitle, NavButton, PricePara, BottomDiv, ParaProductName, ParaProductPrice, StyledNavLink, ParaProductAmount, DivProductInfo } from "./StyledCart"
 import deleteBtn from '../../assets/x-button.png'
 import addBtn from '../../assets/plus.png'
 import { addToCart } from "./cartFunction"
 import { removeFromCart } from "./cartFunction"
 import { useEffect, useState } from "react"
+import defaultImg from '../../assets/product-images/default.jpg'
 
 function Cart() {
     const [cart, setCart] = useRecoilState(cartState)
@@ -62,24 +63,26 @@ function Cart() {
                 {cart.map((product, index) => {
                     
                     return (
-                        <ProductDiv key={index}>
+                        <>
+                        <ProductDiv>
+                        <StyledNavLink key={index} to={`/products/${product.id}`}>
                                 <ImageDiv>
                                     <ProductImage src={product.picture} alt={product.name}/>
                                 </ImageDiv>
-                                <div>
-                                <StyledNavLink key={index} to={`/products/${product.id}`}>
+                                <DivProductInfo>
                                     <ParaProductName> {product.name} </ParaProductName>
                                     <ParaProductPrice> {product.price}:- st </ParaProductPrice>
-                                     <p> {product.amount} st </p> 
-                                </StyledNavLink>
-                                </div>
+                                     <ParaProductAmount> {product.amount} st </ParaProductAmount> 
+                                </DivProductInfo>
+                                    </StyledNavLink>
                                 <ButtonsDiv>
                                     <CartBtn src={deleteBtn} onClick={()=> removeFromCart(product, cart, setCart, index)}/>
                                     <CartBtn src={addBtn} onClick={()=> 
                                         {addToCart(product, cart, setCart)}
-                                        }/>
+                                    }/>
                                 </ButtonsDiv>
                             </ProductDiv>
+                    </>
                     )
                 })}
 

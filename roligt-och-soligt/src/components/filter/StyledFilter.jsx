@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const FilterDiv = styled.div`
-    background: linear-gradient(230deg, #FFFFFF 55%, var(--color-jonquil) 55%, #ffffff);
+    background-color: var(--color-jonquil);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,7 +20,7 @@ export const FilterDiv = styled.div`
 `
 
 export const Button = styled.button`
-    border: 1px solid #000000;
+    border: 1px solid #6e6e6e;
     padding: 0.5em;
     background: #313131;
     color: white;

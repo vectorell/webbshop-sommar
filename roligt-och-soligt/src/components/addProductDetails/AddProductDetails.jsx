@@ -9,6 +9,7 @@ import {DivErrorMsg, ParaErrorMsg} from '../addProductDetails/StyledAddProductDe
 import { DivInput } from "./StyledAddProductDetails.jsx"
 import { validateSearch } from "../../utils.js"
 import loadingSpinner from "../../recoil/atom/loadingSpinner/loadingSpinner.js"
+import { capitalizeFirstLetter } from "../../utils.js"
 
 export default function AddProductDetails() {
     const navigate = useNavigate()
@@ -43,7 +44,7 @@ export default function AddProductDetails() {
         }
     }
     
-    async function applyChanges() {
+    async function applyChanges(title, description, price) {
         setErrorMessageTitle(false)
         setErrorMessageDescription(false)
         setErrorMessagePrice(false)
@@ -60,9 +61,9 @@ export default function AddProductDetails() {
         !priceIsValid ? setErrorMessagePrice(true) : setErrorMessagePrice(false)
         
         const product = {
-            name: inputTitle.current.value,
+            name: capitalizeFirstLetter(inputTitle.current.value),
             price: inputPrice.current.value,
-            description: inputDescription.current.value,
+            description: capitalizeFirstLetter(inputDescription.current.value),
             picture: defaultToysImage,
             shopId: 3001,
         }

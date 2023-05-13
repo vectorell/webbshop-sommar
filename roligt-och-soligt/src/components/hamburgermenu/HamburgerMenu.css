@@ -11,7 +11,7 @@
     left: 0em;
     background-color: white;
     z-index: 20;
-    /* background: linear-gradient(280deg, #FFFFFF 60%, var(--color-jonquil) 55%, #ffffff); */
+    background: linear-gradient(50deg, #FFFFFF 40%, var(--color-jonquil) 55%, #ffffff);
 }
 
 .hamburger-links {
@@ -23,7 +23,7 @@
 }
 
 .hamburger-links > * {
-    border: 1px solid #bcbcbc;
+    border: 1px solid #424242;
     padding: 0.5em;
     background: #313131;
     color: white;
@@ -48,6 +48,7 @@
 .hamburger-links > *.active {
     background: linear-gradient(230deg, #FFFFFF 55%, var(--color-jonquil) 55%, #ffffff);
     color: black;
+    font-weight: 600;
 }
 
 a {

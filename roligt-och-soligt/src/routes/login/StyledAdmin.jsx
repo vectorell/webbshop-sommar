@@ -31,20 +31,23 @@ export const Form = styled.form`
     flex-direction: column;
     align-items: center;
     max-width: 35em;
-
+    row-gap: 1.5em;
+    
     @media (max-width: 500px) {
         width: 80%;
-        row-gap: 1.5em;
+        row-gap: 2.5em;
     }
 `
 export const ParaFieldName = styled.p`
     align-self: start;
+font-size: var(--fontsize-smallmedium);
 `
 
 export const InputField = styled.input`
     padding: 0.5em;
     /* max-width: 25em; */
     width: 100%;
+    font-size: var(--fontsize-small);
 `
 
 export const InputDiv = styled.div`
@@ -153,7 +156,7 @@ export const EditIcon = styled.img`
 `
 
 export const ErrorMessageUser = styled.p`
-    font-size: 0.8em;
+    font-size: var(--fontsize-small);
     color: #ff0000;
 `
 
