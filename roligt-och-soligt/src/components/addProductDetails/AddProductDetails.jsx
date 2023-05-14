@@ -17,14 +17,17 @@ export default function AddProductDetails() {
     const [isLoading, setIsLoading] = useRecoilState(loadingSpinner)
 
     const [errorMessageTitle, setErrorMessageTitle] = useState(false)
+    const [errorMessagePicture, setErrorMessagePicture] = useState(false)
     const [errorMessageDescription, setErrorMessageDescription] = useState(false)
     const [errorMessagePrice, setErrorMessagePrice] = useState(false)
     
     const inputTitle = useRef(null)
+    const inputPicture = useRef(null)
     const inputDescription = useRef(null)
     const inputPrice = useRef(null)
 
     const [title, setTitle] = useState('')
+    const [picture, setPicture] = useState(null)
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState(null)
 
@@ -44,19 +47,24 @@ export default function AddProductDetails() {
         }
     }
     
-    async function applyChanges(title, description, price) {
+    async function applyChanges(title, description, price, picture) {
         setErrorMessageTitle(false)
+        setErrorMessagePicture(false)
         setErrorMessageDescription(false)
         setErrorMessagePrice(false)
         
         const string = inputDescription.current.value
-        const regexDescription = /^[\w\s"'-.,!?:]{2,50}$/i
+        const stringPicture = inputPicture.current.value
+        const regexDescription = /^[\w\s"'-.,!?:a-öA-Ö]{2,50}$/i
+        const regexPicture = /^(ftp|http|https):\/\/[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*([\/\?#][^\s]*)?$/
 
-        const nameIsValid = (inputTitle.current.value).match( '^[\s0-9a-öA-Ö]{2,30}$' )
+        const nameIsValid = (inputTitle.current.value).match( '^[\s 0-9a-öA-Ö]{2,30}$' )
+        const pictureIsValid = regexPicture.test( stringPicture )
         const descriptionIsValid = regexDescription.test( string )
         const priceIsValid = (inputPrice.current.value).match( '^[0-9]{1,12}$' )
 
         !nameIsValid ? setErrorMessageTitle(true) : setErrorMessageTitle(false)
+        !pictureIsValid ? setErrorMessagePicture(true) : setErrorMessagePicture(false)
         !descriptionIsValid ? setErrorMessageDescription(true) : setErrorMessageDescription(false)
         !priceIsValid ? setErrorMessagePrice(true) : setErrorMessagePrice(false)
         
@@ -64,11 +72,11 @@ export default function AddProductDetails() {
             name: capitalizeFirstLetter(inputTitle.current.value),
             price: inputPrice.current.value,
             description: capitalizeFirstLetter(inputDescription.current.value),
-            picture: defaultToysImage,
+            picture: inputPicture.current.value,
             shopId: 3001,
         }
         
-        if (nameIsValid && descriptionIsValid && priceIsValid) {
+        if (nameIsValid && descriptionIsValid && priceIsValid && pictureIsValid) {
             setIsLoading(true)
             try {
                 await uploadProduct(product, isLoading, setIsLoading)
@@ -105,12 +113,29 @@ export default function AddProductDetails() {
                     </DivInput>
 
                     <DivInput>
+                        <p> Bild (URL) </p>
+                        <input
+                            className="input"
+                            ref={inputPicture} 
+                            type="text"
+                            placeholder='https://...'
+                            onChange={ (event) => { 
+                                validateSearch(event.target.value, inputPicture, setErrorMessagePicture, 'picture')
+                                setPicture(inputPicture.current.value)
+                            }}
+                        />
+                        <DivErrorMsg>
+                            { errorMessagePicture && <ParaErrorMsg> Var god ange en giltig <strong> URL </strong></ParaErrorMsg> }
+                        </DivErrorMsg>
+                    </DivInput>
+
+                    <DivInput>
                         <p> Beskrivning </p> 
                         <input 
                             className="input"
                             ref={inputDescription} 
                             type="text"
-                            placeholder='beskrivning'
+                            placeholder='Beskrivning'
                             onChange={ (event) => { 
                                 validateSearch(event.target.value, inputDescription, setErrorMessageDescription, 'text')
                                 setDescription(inputDescription.current.value)
@@ -140,7 +165,7 @@ export default function AddProductDetails() {
                 
                 </ProductInfo>
                 <ButtonsDiv>
-                    <ButtonLink onClick={() => { applyChanges(title, description, price) }}> Spara </ButtonLink>
+                    <ButtonLink onClick={() => { applyChanges(title, description, price, picture) }}> Spara </ButtonLink>
                 </ButtonsDiv>
             </ProductDiv>
             <ButtonLink to="/admin/products"> Tillbaka </ButtonLink>

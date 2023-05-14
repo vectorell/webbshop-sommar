@@ -54,11 +54,16 @@ export function validateSearch(input, inputElement, errorMessage, type) {
     inputElement.current.classList.remove('invalid')
     inputElement.current.classList.remove('valid')
 
-    let string = capitalizeFirstLetter(input)
+    let string = input
+    if (type !== 'picture') {
+        string = capitalizeFirstLetter(input)
+    }
+    
 
     let regex
     type === 'search' ? regex = /^[-"()=:.,!?0-9a-öA-Ö\s]{1,30}$/ :
-    type === 'text' ? regex = /^[-"()=:.,!?0-9a-öA-Ö\s]{2,150}$/ :
+    type === 'text' ? regex = /^[-"()åäö=:.,!?0-9a-zA-z\s]{2,150}$/ :
+    type === 'picture' ? regex = /^(ftp|http|https):\/\/[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*([\/\?#][^\s]*)?$/ :
     type === 'price' ? regex = /^[0-9]{1,15}$/ : null
 
     regex.test(input) ? console.log('matchar') 

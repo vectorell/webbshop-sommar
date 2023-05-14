@@ -113,6 +113,10 @@ export default function Credits() {
                     <LiTitle> Delete icon </LiTitle>
                     <a href="https://www.flaticon.com/free-icons/cancel" title="cancel icons">Cancel icons created by Alfredo Hernandez - Flaticon</a>
                 </LiElement>
+                <LiElement>
+                    <LiTitle> Store icon </LiTitle>
+                    <a href="https://www.flaticon.com/free-icons/sun" title="sun icons">Sun icons created by Freepik - Flaticon</a>
+                </LiElement>
             </UlElement>
 
             <h2> Others </h2>

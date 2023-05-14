@@ -32,7 +32,7 @@ delete-button : <a href="https://www.flaticon.com/free-icons/cancel" title="canc
 loading-spinner: https://icons8.com/preloaders/en/circular
 patgtern: <a href="https://www.freepik.com/free-vector/white-triangles-background_893922.htm#query=pattern%20subtle&position=5&from_view=search&track=ais">Image by Layerace</a> on Freepik
 waater slide: <a href="https://www.freepik.com/free-photo/play-swimming-park-entertainment-recreation_1044523.htm#page=2&query=water%20slide&position=40&from_view=search&track=ais">Image by mrsiraphol</a> on Freepik
-
+tab-ikon: <a href="https://www.flaticon.com/free-icons/sun" title="sun icons">Sun icons created by Freepik - Flaticon</a>
 
 -- Lägga in 00 på öppettiderna
 LÄgg in sortering på nya produkter
