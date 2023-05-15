@@ -58,10 +58,10 @@ function Header() {
 
             <div className='div-cart-icon'>
 
-            <h3> { cartCount } </h3>
                 <NavLink to="/cart" className="cart-icon-link">
                     <CartIcon className="cart-icon" src={cartIcon}/>
                 </NavLink> 
+            <h3> { cartCount } </h3>
             </div>
         </div>
     )

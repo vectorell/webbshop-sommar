@@ -18,11 +18,12 @@
 
 .div-cart-icon {
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
     height: 90%;
     margin-right: 1em;
     justify-self: flex-end;
-    /* width:15em; */
+    width:15em;
 }
 
 @media (max-width: 500px) {
@@ -35,6 +36,7 @@
     object-fit: cover;
     overflow: hidden;
     width:15em;
+    padding-left: 1em;
 }
 
 .header-links {
