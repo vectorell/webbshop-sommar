@@ -26,7 +26,7 @@ export async function postProductChanges(product, inputTitle, inputPrice, inputD
         productid: product.id,
     }
 
-    console.log(data)
+    // console.log(data)
 
     const options = {
         method: 'POST',
@@ -41,9 +41,9 @@ export async function postProductChanges(product, inputTitle, inputPrice, inputD
 export async function postEraseProduct(product) {
     // setSpinnerLoading(true)
 
-    console.log('eraseProduct körs')
+    // console.log('eraseProduct körs')
     
-    console.log('try körs')
+    // console.log('try körs')
     const data = { shopid: shopId, productid: product.id }
         
     const options = {
@@ -54,7 +54,7 @@ export async function postEraseProduct(product) {
     
     let response = await fetch((baseUrl + '?action=delete-product'), options)
     console.log(response)
-    console.log('utanför try/catch körs')
+    // console.log('utanför try/catch körs')
 }
 
 export function validateProductChanges(title, description, price, product) {

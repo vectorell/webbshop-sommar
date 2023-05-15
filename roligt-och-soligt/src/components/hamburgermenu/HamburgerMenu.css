@@ -11,7 +11,7 @@
     left: 0em;
     background-color: white;
     z-index: 20;
-    background: linear-gradient(50deg, #FFFFFF 40%, var(--color-jonquil) 55%, #ffffff);
+    background: linear-gradient(50deg, #ffffff 55%, #fff5c4 55% 55%, #ffffff 80%);
 }
 
 .hamburger-links {

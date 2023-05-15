@@ -93,7 +93,7 @@ function Cart() {
                         <PricePara> {totalPrice}:- </PricePara>
                     </div>
                     <NavButton to="/products"> {'< '}Tillbaka till produkter</NavButton>
-                    <NavButton> Till kassan {'>'} </NavButton>
+                    <NavButton type='disable'> Till kassan {'>'} </NavButton>
                 </BottomDiv>
         </>
     )

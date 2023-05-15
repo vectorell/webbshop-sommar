@@ -1,4 +1,4 @@
-import './Header.css'
+import './HeaderSmall.css'
 import { useRecoilState } from 'recoil'
 import { loginState } from '../../recoil/atom/loginState/loginState'
 import { hamburgerMenuState } from '../../recoil/atom/showHamburger/showHamburger'
@@ -14,7 +14,7 @@ import { cartState } from '../../recoil/atom/cartState/cartState'
 import { countCartItems } from '../../utils'
 import logo from '../../assets/logo.png'
 
-function Header() {
+function HeaderSmall() {
     const [showHamburgerMenu, setShowHamburgerMenu] = useRecoilState(hamburgerMenuState)
     const [isLoading, setIsLoading] = useRecoilState(loadingSpinner)
     const [cartList, setCartList] = useRecoilState(cartState)
@@ -32,7 +32,7 @@ function Header() {
         const CartIcon = styled.img`
         width: 3em;
         /* margin: 1em; */
-        /* justify-self: end; */
+        justify-self: end;
 
         &:hover {
             cursor: pointer;
@@ -43,28 +43,21 @@ function Header() {
     }, [cartList])
      
     return (
-        <div className='header-div'>
-            {/* <HamburgerIcon src={hamburgerIcon} alt="hamburger-menu" className="hamburger-icon" onClick={() => setShowHamburgerMenu(!showHamburgerMenu)}/> */}
+        <div className='headersmall-div'>
+            <HamburgerIcon src={hamburgerIcon} alt="hamburger-menu" className="hamburger-icon" onClick={() => setShowHamburgerMenu(!showHamburgerMenu)}/>
             {isLoading ?
                 <img className="spinner" ref={loaderRef} src={loadingSpinnerGif} style={{ display: 'block' }} />
                 : <img className="logo" src={logo} alt="Roligt & Soligt"/>
             }
-            <div className="header-links">
-                <NavLink to="start"> Start </NavLink>
-                <NavLink to="products"> Produkter </NavLink>
-                <NavLink to="cart"> Kundvagn </NavLink>
-                <NavLink to="admin"> Personalinloggning </NavLink>
-            </div>
-
-            <div className='div-cart-icon'>
+            <div className='div-cart-icon-small'>
 
             <h3> { cartCount } </h3>
-                <NavLink to="/cart" className="cart-icon-link">
-                    <CartIcon className="cart-icon" src={cartIcon}/>
+                <NavLink to="/cart">
+                    <CartIcon src={cartIcon}/>
                 </NavLink> 
             </div>
         </div>
     )
 }
 
-export default Header
+export default HeaderSmall

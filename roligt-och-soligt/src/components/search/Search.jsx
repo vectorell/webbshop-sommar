@@ -23,7 +23,7 @@ export default function Search() {
         
         searchIsValid &&
         (setFoundProducts(products.filter(product => product.name.toLowerCase().includes(searchString))),
-        console.log('test #2'), 
+        // console.log('test #2'), 
         setIsSearchDirty(true)
         )
 

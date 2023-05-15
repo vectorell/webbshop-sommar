@@ -47,6 +47,7 @@ export const ProductDiv = styled.div`
     width: 90%;
     max-width: 35em;
     background-image: url( ${pattern}) ;
+    height: 7em;
     
     &:hover {
         cursor: pointer;
@@ -165,7 +166,11 @@ export const NavButton = styled(Link)`
     border-radius: var(--radius-small);
     text-align: center;
 
-    &:hover {
+    &:nth-child(odd) {
+        color: #777777;
+    }
+
+    &:nth-child(even):hover {
         background: white;
         color: black;
         transition: 0.2s;

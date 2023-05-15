@@ -7,7 +7,7 @@ import Users from "../../components/users/Users"
 import { newUserState } from "../../recoil/atom/newUser/newUserState"
 import { validateName, validatePassword } from "../../utils"
 import { whoAmI } from "../../recoil/atom/whoAmI/whoAmI"
-import {InputDiv,PageTitle,Form,InputField,ContentDiv,ErrorMessageUser,LoginButton,StyledNavLink, ParaFieldName, SectionTitle, PageDiv, ButtonsDiv} from "./StyledAdmin"
+import {InputDiv,PageTitle,Form,InputField,ContentDiv,ErrorMessageUser,LoginButton,StyledNavLink, ParaFieldName, SectionTitle, PageDiv, ButtonsDiv, DivUsersPrimary} from "./StyledAdmin"
 import loadingSpinner from '../../assets/loading-spinner.gif'
 
 export default function Admin() {
@@ -62,10 +62,12 @@ export default function Admin() {
             {isLoggedIn && (
                 <>
                     <SectionTitle> Användare </SectionTitle>
-                    <ContentDiv>
-                        <Users />
-                        {isNewUserClean ? <NewUserClean /> : <NewUserDirty />}
-                    </ContentDiv>
+                    <DivUsersPrimary>
+                        <ContentDiv>
+                            <Users />
+                        </ContentDiv>
+                            {isNewUserClean ? <NewUserClean /> : <NewUserDirty />}
+                    </DivUsersPrimary>
                     <ButtonsDiv>
                         <StyledNavLink to="/admin/products"> Redigera produkter </StyledNavLink>
                         <LoginButton onClick={() => {setLoginError(false), setIsLoggedIn(false)}}>

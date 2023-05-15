@@ -1,5 +1,5 @@
 /** Styled Components */
-import { UserDiv, UserImageDiv, UserImage, UserName, EditIcon } from "../../routes/login/StyledAdmin"
+import { UserDiv, UserImageDiv, UserImage, UserName, EditIcon } from "./StyledNewUserClean"
 import noPhoto from "../../../src/assets/staff/no-photo.jpg"
 import addIcon from "../../../src/assets/add-button.png"
 import { useRecoilState } from "recoil"

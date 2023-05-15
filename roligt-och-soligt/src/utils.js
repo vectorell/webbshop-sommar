@@ -44,13 +44,13 @@ export function validatePassword(userPasswordInput, setUserPasswordErrorMessage)
 
 // Funktion för att göra stor bokstav på angiven sträng.
 export function capitalizeFirstLetter(string) { 
-    return string[0].toUpperCase() + string.slice(1) 
+    string && string[0].toUpperCase() + string.slice(1) 
 }
 
 /** VALIDERING: sökfält */
 export function validateSearch(input, inputElement, errorMessage, type) {
     
-    console.log('validateSearch körs')
+    // console.log('validateSearch körs')
     inputElement.current.classList.remove('invalid')
     inputElement.current.classList.remove('valid')
 
@@ -62,12 +62,12 @@ export function validateSearch(input, inputElement, errorMessage, type) {
 
     let regex
     type === 'search' ? regex = /^[-"()=:.,!?0-9a-öA-Ö\s]{1,30}$/ :
-    type === 'text' ? regex = /^[-"()åäö=:.,!?0-9a-zA-z\s]{2,150}$/ :
-    type === 'picture' ? regex = /^(ftp|http|https):\/\/[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*([\/\?#][^\s]*)?$/ :
+    type === 'text' ? regex = /^[-"()=:.,!?0-9a-öA-Ö\s]{2,150}$/ :
+    type === 'picture' ? regex = /^(ftp|http|https):\/\/[a-öA-Ö0-9]+(\.[a-zA-Z0-9]+)*([\/\?#][^\s]*)?$/ :
     type === 'price' ? regex = /^[0-9]{1,15}$/ : null
 
-    regex.test(input) ? console.log('matchar') 
-    : console.log('matchar ej')
+    // regex.test(input) ? console.log('matchar') 
+    // : console.log('matchar ej')
 
     string === '' ? (inputElement.current.classList.add('input'), errorMessage((false)), inputElement.current.classList.remove('invalid'), inputElement.current.classList.remove('valid'))
 
@@ -338,3 +338,26 @@ export async function addUserToAPI(username, password) {
 // addUserToAPI('Lisa','password')
 // fetchUsers()
 
+export function sortByAscendingPrice(products, setProducts, filteredProducts, setFilteredProducts) {
+    const sortedArray = [...products].sort((a, b) => a.price - b.price )
+    setProducts(sortedArray)
+    setFilteredProducts(sortedArray)
+}
+
+export function sortByDescendingPrice(products, setProducts, filteredProducts, setFilteredProducts) {
+    const sortedArray = [...products].sort((a, b) => b.price - a.price )
+    setProducts(sortedArray)
+    setFilteredProducts(sortedArray)
+}
+
+export function sortByAscendingName(products, setProducts, filteredProducts, setFilteredProducts) {
+    const sortedArray = [...products].sort((a, b) => a.name > b.name)
+    setProducts(sortedArray)
+    setFilteredProducts(sortedArray)
+}
+
+export function sortByDescendingName(products, setProducts, filteredProducts, setFilteredProducts) {
+    const sortedArray = [...products].sort((a, b) => a.name < b.name)
+    setProducts(sortedArray)
+    setFilteredProducts(sortedArray)
+}

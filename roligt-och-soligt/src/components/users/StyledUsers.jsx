@@ -69,11 +69,10 @@ export const ContentDiv = styled.div`
 
 export const UserDiv = styled.div`
     border: 1px solid black;
-    width: 10em;
-    height: 7em;
+    max-width: 12em;
+    height: 5em;
     margin: 1em;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: var(--radius-small);
@@ -105,7 +104,6 @@ export const UserName = styled.p`
 `
 
 export const EditIcon = styled.img`
-    margin-top: 1em;
     height: 2em;
     padding: 0.1em 1em;
     border-radius: var(--radius-medium);

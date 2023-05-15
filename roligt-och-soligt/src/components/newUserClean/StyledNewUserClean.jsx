@@ -93,7 +93,7 @@ export const DivUsersPrimary = styled.div`
 `
 
 export const ContentDiv = styled.div`
-    border: 1px solid #929292c6;
+    border: 1px solid var(--color-light-sea-green);
     border-radius: var(--radius-medium);
     /* width: 80%; */
     min-height: fit-content;
@@ -110,8 +110,8 @@ export const ContentDiv = styled.div`
 `
 
 export const UserDiv = styled.div`
-    border: 1px solid black;
-    max-width: 10em;
+    border: 1px solid #929292c6;
+    width: 10em;
     height: 14em;
     margin: 1em;
     display: flex;

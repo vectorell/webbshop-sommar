@@ -29,7 +29,7 @@ export function removeFromCart (product, cart, setCart, index) {
     //     modifiedProduct.amount = modifiedProduct.amount - 1
     // }
 
-    console.log(check.amount, ' st i kundvagnen')
+    // console.log(check.amount, ' st i kundvagnen')
 
     if (check.amount > 1) {
         modifiedProduct.amount -= 1

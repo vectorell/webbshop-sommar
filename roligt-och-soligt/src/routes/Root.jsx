@@ -12,6 +12,8 @@ import staffList from '../recoil/atom/staffList/staffList'
 import { useNavigate } from 'react-router-dom'
 import { loginState } from '../recoil/atom/loginState/loginState'
 import { whoAmI } from '../recoil/atom/whoAmI/whoAmI'
+import { useMediaQuery } from 'react-responsive'
+import HeaderSmall from '../components/headerSmall/HeaderSmall'
 
 export default function Root() {
     const [showHamburgerMenu, setShowHamburgerMenu] = useRecoilState(hamburgerMenuState)
@@ -21,10 +23,11 @@ export default function Root() {
     const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState)
     const [whoIAm, setWhoIAm] = useRecoilState(whoAmI)
-
+    const smallScreen = useMediaQuery({ query: `(max-width: 1000px)`})
+    
     const Space = styled.div`
         margin: 3em;
-    `
+        `
 
     const baseUrl = 'https://www.forverkliga.se/JavaScript/api/fe/'
     const shopId = 3001
@@ -60,7 +63,10 @@ export default function Root() {
     return (
         <div className='body'>
             <header>
+                {!smallScreen ? 
                 <Header />
+                : <HeaderSmall />
+                }
             </header>
             <main>
             <Space/>
