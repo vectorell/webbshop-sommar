@@ -8,6 +8,7 @@ import { postProductChanges } from "../../recoil/atom/API/apiFunctions.js"
 import { getAllProducts } from "../../recoil/atom/API/apiFunctions.js"
 import { postEraseProduct } from "../../recoil/atom/API/apiFunctions.js"
 import { validateProductChanges } from "../../recoil/atom/API/apiFunctions.js"
+import { capitalizeFirstLetter } from "../../utils.js"
 
 import { PageTitle, ProductDiv, ProductImage, ProductInfo, ButtonsDiv, ButtonLink, DivInput, ParaErrorMsg, DivErrorMsg, PageDiv, InputField, ParaProductDescription, ParaProductPrice, ParaProductName } from "../../routes/adminProductDetails/StyledAdminProductDetails.jsx"
 import loadingSpinner from "../../recoil/atom/loadingSpinner/loadingSpinner.js"
@@ -83,7 +84,7 @@ export default function AdminProductDetails() {
                             type="text"
                             placeholder={product.name}
                             onChange={ (event) => { 
-                                validateSearch(event.target.value, inputTitle, setErrorMessageTitle, 'text')
+                                validateSearch( capitalizeFirstLetter(event.target.value) , inputTitle, setErrorMessageTitle, 'text')
                                 setTitle(inputTitle.current.value)
                             }}
                         />

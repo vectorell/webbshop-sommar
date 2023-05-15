@@ -44,7 +44,9 @@ export function validatePassword(userPasswordInput, setUserPasswordErrorMessage)
 
 // Funktion för att göra stor bokstav på angiven sträng.
 export function capitalizeFirstLetter(string) { 
-    string && string[0].toUpperCase() + string.slice(1) 
+    if (string) {
+        return string[0].toUpperCase() + string.slice(1) 
+    } 
 }
 
 /** VALIDERING: sökfält */
@@ -55,10 +57,7 @@ export function validateSearch(input, inputElement, errorMessage, type) {
     inputElement.current.classList.remove('valid')
 
     let string = input
-    if (type !== 'picture') {
-        string = capitalizeFirstLetter(input)
-    }
-    
+  
 
     let regex
     type === 'search' ? regex = /^[-"()=:.,!?0-9a-öA-Ö\s]{1,30}$/ :
@@ -69,7 +68,7 @@ export function validateSearch(input, inputElement, errorMessage, type) {
     // regex.test(input) ? console.log('matchar') 
     // : console.log('matchar ej')
 
-    string === '' ? (inputElement.current.classList.add('input'), errorMessage((false)), inputElement.current.classList.remove('invalid'), inputElement.current.classList.remove('valid'))
+    string === '' || string === undefined ? (inputElement.current.classList.add('input'), errorMessage((false)), inputElement.current.classList.remove('invalid'), inputElement.current.classList.remove('valid'))
 
     : regex.test(string) ? (inputElement.current.classList.add('valid'), inputElement.current.classList.remove('invalid'), errorMessage((false)))
 
