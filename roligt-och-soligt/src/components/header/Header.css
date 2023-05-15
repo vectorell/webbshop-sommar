@@ -72,7 +72,7 @@
 .header-links > *.active {
     background: linear-gradient(230deg, #FFFFFF 55%, var(--color-jonquil) 55%, #ffffff);
     color: black;
-    font-weight: 600;
+    /* font-weight: 600; */
 }
 
 a {
